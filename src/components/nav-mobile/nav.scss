@@ -1,0 +1,13 @@
+@import "../../assets/styles/variables.scss";
+
+nav {
+    background-color: $background-peach;
+    display: flex;
+    padding: 10px;
+    justify-content: space-around;
+    align-items: center;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100vw;
+}
