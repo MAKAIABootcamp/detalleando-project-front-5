@@ -3,6 +3,9 @@ import Login from "../pages/login/Login";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Registro from "../pages/registro/Registro";
 import LoginVendedor from "../pages/loginVendedor/LoginVendedor";
+import Home from "../pages/home/Home";
+import Shop from "../pages/shop/Shop";
+import Product from "../pages/product/Product";
 
 
 const Router = () => {
@@ -13,7 +16,10 @@ const Router = () => {
               <Route index element={<Login />} />
               <Route path="registro" element={<Registro/>} />
               <Route path="loginvendedor" element={<LoginVendedor/>} />
-            </Route>
+              <Route path="home" element={<Home/>}/>
+              <Route path="shop" element={<Shop/>}/>
+              <Route path="product" element={<Product/>}/>
+        </Route>
       </Routes>
     </BrowserRouter>
   );
