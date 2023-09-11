@@ -1,0 +1,17 @@
+@import "../../assets/styles/variables.scss";
+
+.address {
+    p {
+        color: $font-light;
+        font-size: 12px;
+    }
+    .choice {
+        font-family: $font-primary;
+        display: flex;
+        gap: 10px;
+        font-size: 14px;
+        img {
+            width: 20px;
+        }
+    }
+}
