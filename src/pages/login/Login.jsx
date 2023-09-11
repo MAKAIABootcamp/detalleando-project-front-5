@@ -7,6 +7,7 @@ import phone from "/phone.svg";
 import imageDek from "/Fondologin.svg";
 import { useDispatch } from "react-redux";
 import { loginWithGoogle } from "../../redux/store/auth/authActions";
+import mykitty from "/Mykitty1.svg";
 
 const Login = () => {
 
@@ -28,10 +29,13 @@ const Login = () => {
 
   return (
     <main className="login">
-      <div className="left">
+      <figure className="leftL">
         <img src={imageDek} alt="dekstop" />
-      </div>
+      </figure>
       <section className="info">
+        <figure className="logoD">
+          <img src={mykitty} alt="Logo" />
+        </figure>
         <h2>Inicio de sesión</h2>
 
         <form className="form" onSubmit={handleSubmit(onSubmit)}>
@@ -75,6 +79,13 @@ const Login = () => {
             <span> </span>
             <Link to="/registro" className="text">
               Registrate
+            </Link>
+          </span>
+          <span className="form-register">
+            ¿Eres vendedor?
+            <span> </span>
+            <Link to="/loginvendedor" className="text">
+              Inicia sesión aquí
             </Link>
           </span>
         </form>

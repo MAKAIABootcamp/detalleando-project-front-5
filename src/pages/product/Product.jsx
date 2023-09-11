@@ -8,8 +8,8 @@ const Product = () => {
   return (
     <main className='product-main'>
         <div className='main-image'>
-            <img src={test} alt="" />
-            <figure>
+            <img src={test} alt="" className='main-image'/>
+            <figure className='back'>
                 <img src={arrow} alt="Icon for arrow" />
             </figure>
             <figure className='like'>
@@ -21,18 +21,18 @@ const Product = () => {
             <img src={test} alt="" />
             <img src={test} alt="" />
         </div>
-        <div>
-            <p>En stock</p>
+        <div className='product-info'>
+            <p className='availability'>En stock</p>
             <h2>Cupcakes with cream cheese</h2>
-            <p>Delivery fee: $2.5</p>
-            <div>
+            <p className='delivery'>Delivery fee: $2.5</p>
+            <div className='shop-info'>
                 <img src={test} alt="" />
                 <h3>Shop name</h3>
             </div>
-            <p>Descripción del producto</p>
+            <p className='description'>Descripción del producto</p>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut vel dui risus. Pellentesque eros leo,</p>
         </div>
-        <div>
+        <div className='more-products'>
             <h4>Mas de esa tienda</h4>
             <div className='shop-cards-container'>
                 <div className='card'>
@@ -50,13 +50,13 @@ const Product = () => {
                 </div>
             </div>
         </div>
-        <div>
-            <div>
+        <div className='product-footer'>
+            <div className='product-counter'>
                 <span>-</span>
                 <p>1</p>
                 <span>+</span>
             </div>
-            <div>
+            <div className='product-add'>
                 <h4>Add to order</h4>
                 <span>$14</span>
             </div>

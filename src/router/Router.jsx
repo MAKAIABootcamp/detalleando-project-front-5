@@ -2,6 +2,7 @@ import React from "react";
 import Login from "../pages/login/Login";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Registro from "../pages/registro/Registro";
+import LoginVendedor from "../pages/loginVendedor/LoginVendedor";
 import Home from "../pages/home/Home";
 import Shop from "../pages/shop/Shop";
 import Product from "../pages/product/Product";
@@ -24,6 +25,7 @@ const Router = () => {
             <Route path="registro" element={<Registro />} />
             <Route path="phoneAuthentication" element={<LoginByPhone />}/>
             <Route path="insertcode" element={<InsertCode />}/>
+            <Route path="loginvendedor" element={<LoginVendedor/>} />
           </Route>
           <Route element={<PrivateRouter isAuthenticate={isLogged} />}>
             <Route path="home" element={<Home />} />
