@@ -1,16 +1,24 @@
 import React from "react";
 import "./login.scss";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import google from "/Google.svg";
 import phone from "/phone.svg";
 import imageDek from "/Fondologin.svg";
 
 const Login = () => {
+
+  const navigate = useNavigate();
   const { register, handleSubmit } = useForm();
+
   const onSubmit = async (data) => {
     console.log("datos del formulario", data);
   };
+
+  const phoneAuthentication = () => {
+    navigate('/phoneAuthentication');
+  };
+
   return (
     <main className="login">
       <div className="left">
@@ -52,7 +60,7 @@ const Login = () => {
           <div className="form-others">
             <img src={google} alt="Google" />
             <span>o</span>
-            <img src={phone} alt="Phone" />
+            <img src={phone} alt="Phone" onClick={phoneAuthentication} />
           </div>
 
           <span className="form-register">
