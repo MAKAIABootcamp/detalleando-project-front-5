@@ -9,7 +9,6 @@ import { useDispatch } from "react-redux";
 
 const LoginByPhone = () => {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
   const { register, handleSubmit } = useForm();
 
   //Función que genera el recaptcha
@@ -30,7 +29,6 @@ const LoginByPhone = () => {
 
   //Función que envía el código de verificación
   const sendSms = (number, recaptchaVerifier) => {
-    console.log(recaptchaVerifier, number)
     signInWithPhoneNumber(auth, `+57${number}`, recaptchaVerifier)
       .then((response) => {
         window.confirmationResult = response;

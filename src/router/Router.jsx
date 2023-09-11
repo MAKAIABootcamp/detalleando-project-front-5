@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import PublicRouter from "./PublicRouter";
 import PrivateRouter from "./PrivateRouter";
 import LoginByPhone from "../pages/loginByPhone/LoginByPhone";
+import InsertCode from "../pages/insertCode/InsertCode";
 
 const Router = () => {
   const dispatch = useDispatch();
@@ -22,6 +23,7 @@ const Router = () => {
             <Route index element={<Login />} />
             <Route path="registro" element={<Registro />} />
             <Route path="phoneAuthentication" element={<LoginByPhone />}/>
+            <Route path="insertcode" element={<InsertCode />}/>
           </Route>
           <Route element={<PrivateRouter isAuthenticate={isLogged} />}>
             <Route path="home" element={<Home />} />

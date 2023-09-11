@@ -5,9 +5,12 @@ import { useForm } from "react-hook-form";
 import google from "/Google.svg";
 import phone from "/phone.svg";
 import imageDek from "/Fondologin.svg";
+import { useDispatch } from "react-redux";
+import { loginWithGoogle } from "../../redux/store/auth/authActions";
 
 const Login = () => {
 
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const { register, handleSubmit } = useForm();
 
@@ -18,6 +21,10 @@ const Login = () => {
   const phoneAuthentication = () => {
     navigate('/phoneAuthentication');
   };
+
+  const googleAuthentication = () => {
+    dispatch(loginWithGoogle())
+  }
 
   return (
     <main className="login">
@@ -58,7 +65,7 @@ const Login = () => {
           <hr className="button-divider" />
 
           <div className="form-others">
-            <img src={google} alt="Google" />
+            <img src={google} alt="Google" onClick={googleAuthentication} />
             <span>o</span>
             <img src={phone} alt="Phone" onClick={phoneAuthentication} />
           </div>
