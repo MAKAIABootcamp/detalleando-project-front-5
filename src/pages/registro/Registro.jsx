@@ -8,11 +8,11 @@ const Registro = () => {
     console.log("datos del formulario", data);
   };
   return (
-    <main className="main">
-      <div className="left">
+    <main className="mainR">
+      <figure className="left">
         <img src={imageDek} alt="dekstop" />
-      </div>
-      <section className="registro ">
+      </figure>
+      <section className="registroS ">
         <h2>Registrate</h2>
         <form className="formRegistro" onSubmit={handleSubmit(onSubmit)}>
           <div className="form-div">

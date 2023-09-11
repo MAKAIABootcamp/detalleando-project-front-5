@@ -1,38 +1,36 @@
-import React from "react";
-import "./login.scss";
-import { Link } from "react-router-dom";
-import { useForm } from "react-hook-form";
+import React from 'react'
+import loginV from '/imagenRegistro.jpg'
+import './loginVendedor.scss'
+import { useForm } from 'react-hook-form';
 import google from "/Google.svg";
 import phone from "/phone.svg";
-import imageDek from "/Fondologin.svg";
 import mykitty from "/Mykitty1.svg";
-
-const Login = () => {
-  const { register, handleSubmit } = useForm();
-  const onSubmit = async (data) => {
-    console.log("datos del formulario", data);
-  };
+const LoginVendedor = () => {
+    const { register, handleSubmit } = useForm();
+    const onSubmit = async (data) => {
+      console.log("datos del formulario", data);
+    };
   return (
-    <main className="login">
-      <figure className="leftL">
-        <img src={imageDek} alt="dekstop" />
+    <main className="loginVendedor">
+      <figure className="leftV">
+        <img src={loginV} alt="dekstop" />
       </figure>
-      <section className="info">
-        <figure className="logoD">
+      <section className="infoVe">
+      <figure className="logoD">
           <img src={mykitty} alt="Logo" />
         </figure>
-        <h2>Inicio de sesión</h2>
+        <h2>Inicio de sesión como vendedor</h2>
 
         <form className="form" onSubmit={handleSubmit(onSubmit)}>
           <div className="form-div">
             <label className="form-label">
-              <span>Correo</span>
+              <span>Nombre de usuario</span>
             </label>
             <input
-              type="email"
+              type="name"
               className="form-input"
-              name="email"
-              {...register("email", { required: true })}
+              name="name"
+              {...register("name", { required: true })}
             />
           </div>
 
@@ -62,21 +60,12 @@ const Login = () => {
           <span className="form-register">
             ¿No tienes una cuenta?
             <span> </span>
-            <Link to="/registro" className="text">
-              Registrate
-            </Link>
-          </span>
-          <span className="form-register">
-            ¿Eres vendedor?
-            <span> </span>
-            <Link to="/loginvendedor" className="text">
-              Inicia sesión aquí
-            </Link>
+            
           </span>
         </form>
       </section>
     </main>
-  );
-};
+  )
+}
 
-export default Login;
+export default LoginVendedor
