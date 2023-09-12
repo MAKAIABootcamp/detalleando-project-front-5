@@ -2,10 +2,41 @@ import React from "react";
 import "./registro.scss";
 import { useForm } from "react-hook-form";
 import imageDek from "/Fondologin.svg";
+import Swal from "sweetalert2";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import fileUpload from "../../services/fileUpload";
+import { createAnUser } from "../../redux/store/auth/authActions";
 const Registro = () => {
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { register, handleSubmit } = useForm();
+  const { error } = useSelector(store => store.auth);
+
   const onSubmit = async (data) => {
-    console.log("datos del formulario", data);
+    try {
+      const imageFile = data.photoURL[0];
+      const avatar = await fileUpload(imageFile);
+      const newUser = {
+        ...data,
+        photoURL: avatar
+      }
+      dispatch(createAnUser(newUser));
+      Swal.fire(
+        "Excelente!", 
+        "Haz creado tu cuenta!", 
+        "success"
+      )
+    } catch (error) {
+      console.log(error);
+      Swal.fire(
+        "Oops!", 
+        "Hubo un error en la creación de tu cuenta", 
+        "error"
+      )
+    }
+
   };
   return (
     <main className="mainR">

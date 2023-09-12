@@ -5,7 +5,7 @@ import { RecaptchaVerifier, signInWithPhoneNumber } from "firebase/auth";
 import { auth } from "../../firebase/firebaseConfig";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import logo from "/icons/logo-transparent.png";
 
 const LoginByPhone = () => {
   const navigate = useNavigate();
@@ -61,6 +61,9 @@ const LoginByPhone = () => {
 
   return (
     <main className="main-login-Phone">
+       <figure className="main-login-Phone-logo">
+          <img src={logo} alt="Logo" />
+        </figure>
       <h5>Inicio de Sesión por número celular</h5>
       <form
         className="main-login-Phone__form"
