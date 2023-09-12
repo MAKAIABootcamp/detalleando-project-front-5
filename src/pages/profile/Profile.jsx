@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import arrowBack from "/arrowback.svg";
 import { useNavigate } from "react-router";
 import "./profile.scss";
@@ -6,12 +6,37 @@ import user from "/test.jfif";
 import arrowB from "/arrow-right.svg";
 import NavMobile from "../../components/nav-mobile/NavMobile";
 const Profile = () => {
+
   const navigate = useNavigate();
+  const [widthMovile, setWidthMovile] = useState();
+
+  useEffect(() => {
+    handleResize()
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    }
+  },[])
+
+  const handleResize = () => {
+    const width = window.innerWidth;
+    if(width <= 768) {
+      setWidthMovile(true)
+    }else{
+      setWidthMovile(false)
+    }
+  }
+
   const handleProfileEdit = () => {
     navigate("/profileEdit");
   };
+
   return (
-    <main className="profile">
+    <>
+    {
+      widthMovile ? 
+      (<main className="profile">
       <div className="profile-up">
         <img src={arrowBack} alt="ArrowBack" onClick={() => navigate(-1)} />
         <h2>Perfil</h2>
@@ -60,6 +85,14 @@ const Profile = () => {
 
       <NavMobile/>
     </main>
+
+      ) : (
+        <main>
+          <div>hola</div>
+        </main>
+      )
+    }
+    </>
   );
 };
 
