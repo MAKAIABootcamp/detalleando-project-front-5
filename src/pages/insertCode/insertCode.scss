@@ -17,6 +17,17 @@
     color: $font-dark;
     justify-content: space-evenly;
     box-shadow: 4px 4px 6px rgba($font-dark, 0.4);
+    align-items: center;
+
+    &-logo{
+        width: 100px;
+        height: auto;
+
+        img{
+            width: 100%;
+            height: auto;
+        }
+    }
 
     h3 {
         text-align: center;
@@ -41,7 +52,7 @@
             margin-bottom: 10px;
             border: 1px solid $background-grey;
             border-radius: 5px;
-            background-color: $background-grey;
+            background-color: white;
             height: 40px;
 
             &:focus {

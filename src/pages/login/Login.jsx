@@ -5,27 +5,40 @@ import { useForm } from "react-hook-form";
 import google from "/Google.svg";
 import phone from "/phone.svg";
 import imageDek from "/Fondologin.svg";
-import { useDispatch } from "react-redux";
-import { loginWithGoogle } from "../../redux/store/auth/authActions";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  loginWithEmailAndPassword,
+  loginWithGoogle,
+} from "../../redux/store/auth/authActions";
 import mykitty from "/Mykitty1.svg";
+import Swal from "sweetalert2";
 
 const Login = () => {
-
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { register, handleSubmit } = useForm();
+  const { error } = useSelector((store) => store.auth);
 
   const onSubmit = async (data) => {
-    console.log("datos del formulario", data);
+    dispatch(loginWithEmailAndPassword(data));
   };
 
+  if (error) {
+    Swal.fire("Oops!", "Ha occurrido un error en el inicio de sesión", "error");
+  }
+  if (error === false) {
+    Swal.fire("Excelente", "Haz iniciado sesión correctamente", "success").then(
+      () => navigate("/home")
+    );
+  }
+
   const phoneAuthentication = () => {
-    navigate('/phoneAuthentication');
+    navigate("/phoneAuthentication");
   };
 
   const googleAuthentication = () => {
-    dispatch(loginWithGoogle())
-  }
+    dispatch(loginWithGoogle());
+  };
 
   return (
     <main className="login">
