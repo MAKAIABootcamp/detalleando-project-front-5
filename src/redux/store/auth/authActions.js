@@ -2,7 +2,7 @@ import { GoogleAuthProvider, createUserWithEmailAndPassword, signInWithEmailAndP
 import { auth } from "../../../firebase/firebaseConfig";
 import { setError, setIsLogged, setUserLogged } from "./authReducer";
 import loginFromFirestore from "../../../services/loginFromCollection";
-import { createAnUserInCollection, getUserFromCollection } from "../../../services/getUser";
+import { createAnSellerUserInCollection, createAnUserInCollection, getUserFromCollection } from "../../../services/getUser";
 
 export const loginWithCode = (code) => {
   return async (dispatch) => {
@@ -111,6 +111,30 @@ export const createAnUser = (newUser) => {
       });
       const createdUser = await createAnUserInCollection(user.uid, newUser);
       dispatch(setUserLogged(createdUser));
+      dispatch(setIsLogged(true));
+      dispatch(setError(false));
+      
+    } catch (error) {
+      console.log(error);
+      dispatch(setError({
+        error: true,
+        code: error.code,
+        message: error.message
+      }))
+    }
+  }
+}
+
+export const createAnSellerUser = (newUser) => {
+  return async (dispatch) => {
+    try {
+      const { user } = await createUserWithEmailAndPassword(auth, newUser.email, newUser.password)
+      await updateProfile(auth.currentUser,{
+        displayName: newUser.displayName,
+        photoURL: newUser.photoURL,
+      });
+      const createdSellerUser = createAnSellerUserInCollection(user.uid, newUser);
+      dispatch(setUserLogged(createAnSellerUser));
       dispatch(setIsLogged(true));
       dispatch(setError(false));
       
