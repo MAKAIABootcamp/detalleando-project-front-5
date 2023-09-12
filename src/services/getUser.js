@@ -11,6 +11,7 @@ import {
 import { fireStore } from "../firebase/firebaseConfig";
 
 const collectionName = "users";
+const collectionSellersUsers = "sellersUsers";
 
 //Obtenemos un usuario en la colección users
 export const getUserFromCollection = async (uid) => {
@@ -50,6 +51,24 @@ export const createAnUserInCollection = async (uid, newUser) => {
     return false;
   }
 };
+
+//Crear usuario en la collection sellersUsers
+export const createAnSellerUserInCollection = async (uid, newUser) =>{
+    try {
+        const newUserRef = doc(fireStore, collectionSellersUsers, uid);
+        await setDoc(newUserRef, newUser);
+        return {
+          ok: true,
+          user: {
+            id: uid,
+            ...newUser,
+          },
+        };
+      } catch (error) {
+        console.log(error);
+        return false;
+      }
+}
 
 export const searchDoc = async ({ collectionName, fieldName, searchTerm }) => {
   const collectionRef = collection(fireStore, collectionName);
