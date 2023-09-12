@@ -11,6 +11,10 @@ import PublicRouter from "./PublicRouter";
 import PrivateRouter from "./PrivateRouter";
 import LoginByPhone from "../pages/loginByPhone/LoginByPhone";
 import InsertCode from "../pages/insertCode/InsertCode";
+import Order from "../pages/order/Order";
+import OrderEmpty from "../components/orderEmpty/OrderEmpty";
+import Profile from "../pages/profile/Profile";
+import ProfileEdit from "../pages/profileEdit/ProfileEdit";
 
 const Router = () => {
   const dispatch = useDispatch();
@@ -31,6 +35,10 @@ const Router = () => {
             <Route path="home" element={<Home />} />
             <Route path="shop" element={<Shop />} />
             <Route path="product" element={<Product />} />
+            <Route path="cart" element={<Order />} />
+            <Route path="orderempty" element={<OrderEmpty />} />
+            <Route path="profile" element={<Profile />} />
+            <Route path="profileEdit" element={<ProfileEdit />} />
           </Route>
         </Route>
       </Routes>
