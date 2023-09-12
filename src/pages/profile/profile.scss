@@ -6,34 +6,42 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
+
   .profile-up {
     display: flex;
     gap: 10px;
   }
+
   .profile-info {
     display: flex;
     gap: 20px;
     align-items: center;
+
     .photo {
       width: 80px;
+
       img {
         width: 100%;
         object-fit: cover;
         border-radius: 50%;
       }
     }
+
     .date {
       display: flex;
       flex-direction: column;
       gap: 5px;
+
       .view {
         cursor: pointer;
+
         &:hover {
           text-decoration: underline;
         }
       }
     }
   }
+
   .button-divider {
     width: 100%;
     border: none;
@@ -45,14 +53,79 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
+
     .order-section {
       display: flex;
       justify-content: space-between;
+
       .arrow-right {
         width: 10px;
+
         img {
           width: 100%;
         }
+      }
+    }
+  }
+}
+
+.main-profile-desktop {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &__info {
+    display: flex;
+    padding: 20px 0;
+    gap: 15px;
+    align-items: center;
+
+    &-photo {
+      display: flex;
+      width: 100px;
+      height: 100px;
+
+      img {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+      }
+    }
+
+    &-user {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+
+      span {
+        cursor: pointer;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+
+  &__filter {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+
+    &__card {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background-color: $background-peach;
+      padding: 20px 40px;
+      border-radius: 5px;
+      border: 1px solid $light-grey;
+
+      img {
+        width: 35px;
+        height: 35px;
       }
     }
   }
