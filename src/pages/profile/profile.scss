@@ -1,0 +1,59 @@
+@import "./../../assets/styles/reset.scss";
+@import "./../../assets/styles/variables.scss";
+
+.profile {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  .profile-up {
+    display: flex;
+    gap: 10px;
+  }
+  .profile-info {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    .photo {
+      width: 80px;
+      img {
+        width: 100%;
+        object-fit: cover;
+        border-radius: 50%;
+      }
+    }
+    .date {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      .view {
+        cursor: pointer;
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+  .button-divider {
+    width: 100%;
+    border: none;
+    border-bottom: 2px solid $font-light;
+    margin: 10px auto;
+  }
+
+  .profile-section {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    .order-section {
+      display: flex;
+      justify-content: space-between;
+      .arrow-right {
+        width: 10px;
+        img {
+          width: 100%;
+        }
+      }
+    }
+  }
+}
