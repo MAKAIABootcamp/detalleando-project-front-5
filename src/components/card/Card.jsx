@@ -21,7 +21,9 @@ const Card = () => {
         </figure>
         <div className="order-price">
           <div className="order-left">
+          <h4>Cupcakes with cream cheese</h4>
             <div className="order-info">
+              
               <img src={test} alt="Icon for logo" />
               <div>
                 <h4>Shop name</h4>
