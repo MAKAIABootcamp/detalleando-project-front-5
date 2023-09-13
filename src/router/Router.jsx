@@ -18,6 +18,8 @@ import ProfileEdit from "../pages/profileEdit/ProfileEdit";
 import HomeSeller from "../pages/homeSeller/HomeSeller";
 import CreateProduct from "../pages/createProduct/CreateProduct";
 import SaleSeller from "../pages/saleSeller/SaleSeller";
+import SellerRegister from "../pages/sellerRegister/SellerRegister";
+
 
 const Router = () => {
   const dispatch = useDispatch();
@@ -33,6 +35,7 @@ const Router = () => {
             <Route path="phoneAuthentication" element={<LoginByPhone />}/>
             <Route path="insertcode" element={<InsertCode />}/>
             <Route path="loginvendedor" element={<LoginVendedor/>} />
+            <Route path="sellerRegister" element={<SellerRegister />}/>
           </Route>
           <Route element={<PrivateRouter isAuthenticate={isLogged} />}>
           <Route path="homeseller" element={<HomeSeller />} />
