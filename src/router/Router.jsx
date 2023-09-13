@@ -15,6 +15,7 @@ import Order from "../pages/order/Order";
 import OrderEmpty from "../components/orderEmpty/OrderEmpty";
 import Profile from "../pages/profile/Profile";
 import ProfileEdit from "../pages/profileEdit/ProfileEdit";
+import SellerRegister from "../pages/sellerRegister/SellerRegister";
 
 const Router = () => {
   const dispatch = useDispatch();
@@ -30,6 +31,7 @@ const Router = () => {
             <Route path="phoneAuthentication" element={<LoginByPhone />}/>
             <Route path="insertcode" element={<InsertCode />}/>
             <Route path="loginvendedor" element={<LoginVendedor/>} />
+            <Route path="sellerRegister" element={<SellerRegister />}/>
           </Route>
           <Route element={<PrivateRouter isAuthenticate={isLogged} />}>
             <Route path="home" element={<Home />} />
