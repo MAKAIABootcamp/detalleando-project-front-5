@@ -20,7 +20,10 @@ const Registro = () => {
       const avatar = await fileUpload(imageFile);
       const newUser = {
         ...data,
-        photoURL: avatar
+        photoURL: avatar,
+        address: [],
+        phone: "",
+        payment: []
       }
       dispatch(createAnUser(newUser));
       Swal.fire(
