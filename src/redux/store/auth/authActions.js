@@ -2,7 +2,8 @@ import { GoogleAuthProvider, createUserWithEmailAndPassword, signInWithEmailAndP
 import { auth } from "../../../firebase/firebaseConfig";
 import { setError, setIsLogged, setUserLogged } from "./authReducer";
 import loginFromFirestore from "../../../services/loginFromCollection";
-import { createAnSellerUserInCollection, createAnUserInCollection, getUserFromCollection } from "../../../services/getUser";
+import { createAnUserInCollection, getUserFromCollection } from "../../../services/getUser";
+import { createAnSellerUserInCollection, getSellerUserFromCollection } from "../../../services/sellerUser";
 
 export const loginWithCode = (code) => {
   return async (dispatch) => {
@@ -122,6 +123,27 @@ export const createAnUser = (newUser) => {
         message: error.message
       }))
     }
+  }
+}
+
+export const loginSellerWithEmailAndPassword = (loggedUser) => {
+  return async(dispatch) => {
+      try {
+          const { user } = await signInWithEmailAndPassword(auth, loggedUser.email, loggedUser.password)
+          const foundUser = await getSellerUserFromCollection(user.uid);
+          // console.log("respuesta firebase", user);
+          // console.log("respuesta firestore", foundUser);
+          dispatch(setUserLogged(foundUser));
+          dispatch(setIsLogged(true));
+          dispatch(setError(false));
+      } catch (error) {
+          console.log(error);
+          dispatch(setError({
+              error: true,
+              code: error.code,
+              message: error.message
+          }))
+      }
   }
 }
 
