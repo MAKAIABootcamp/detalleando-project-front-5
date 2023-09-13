@@ -1,0 +1,25 @@
+@import "./../../assets/styles/reset.scss";
+@import "./../../assets/styles/variables.scss";
+
+.table-sale-course {
+  border-collapse: separate;
+  border-spacing: 0;
+  border: 2px solid $font-light;
+  border-radius: 10px;
+  box-shadow: 5px 0 5px -5px $font-dark, -5px 0 5px -5px $font-dark,
+    0 5px 5px -5px $font-dark;
+
+  th,
+  td {
+    border-bottom: 2px solid $font-light;
+    padding: 10px;
+    text-align: center;
+  }
+
+  th {
+    background-color: #f5f5f5;
+  }
+  tr:last-child td {
+    border-bottom: none;
+  }
+}

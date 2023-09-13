@@ -5,7 +5,7 @@
   padding: 20px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 20px;
 
   .profile-up {
     display: flex;
@@ -116,12 +116,15 @@
 
     &__card {
       display: flex;
+      flex-direction: column; 
       align-items: center;
       gap: 8px;
       background-color: $background-peach;
       padding: 20px 40px;
       border-radius: 5px;
       border: 1px solid $light-grey;
+      width: calc(33.33% - 20px); 
+      margin-bottom: 20px;
 
       img {
         width: 35px;

@@ -1,0 +1,35 @@
+@import "./../../assets/styles/reset.scss";
+@import "./../../assets/styles/variables.scss";
+
+.navseller-dekstop {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    justify-content: flex-start;
+    align-items: center; 
+  &-left{
+    display: flex;
+    flex-direction: column;
+    &-navlink{
+        text-decoration: none;
+        &-span {
+            font-family: $font-secondary;
+            font-weight: 400;
+            color: $main-blue;
+            margin-left: 10px;
+          }
+      }
+  }
+ 
+ 
+  .button-divider-dekstop {
+  &-right{
+    width: 1px;
+    height: 100px;
+    background-color: $main-blue;
+    transform: rotate(0deg);
+    margin-top: 0px;
+  }
+    
+  }
+}

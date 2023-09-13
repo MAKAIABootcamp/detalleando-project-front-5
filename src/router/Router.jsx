@@ -15,7 +15,11 @@ import Order from "../pages/order/Order";
 import OrderEmpty from "../components/orderEmpty/OrderEmpty";
 import Profile from "../pages/profile/Profile";
 import ProfileEdit from "../pages/profileEdit/ProfileEdit";
+import HomeSeller from "../pages/homeSeller/HomeSeller";
+import CreateProduct from "../pages/createProduct/CreateProduct";
+import SaleSeller from "../pages/saleSeller/SaleSeller";
 import SellerRegister from "../pages/sellerRegister/SellerRegister";
+
 
 const Router = () => {
   const dispatch = useDispatch();
@@ -34,11 +38,13 @@ const Router = () => {
             <Route path="sellerRegister" element={<SellerRegister />}/>
           </Route>
           <Route element={<PrivateRouter isAuthenticate={isLogged} />}>
+          <Route path="homeseller" element={<HomeSeller />} />
+          <Route path="createproduct" element={<CreateProduct />} />
+          <Route path="ventas" element={<SaleSeller />} />
             <Route path="home" element={<Home />} />
             <Route path="shop" element={<Shop />} />
             <Route path="product" element={<Product />} />
             <Route path="cart" element={<Order />} />
-            <Route path="orderempty" element={<OrderEmpty />} />
             <Route path="profile" element={<Profile />} />
             <Route path="profileEdit" element={<ProfileEdit />} />
           </Route>
