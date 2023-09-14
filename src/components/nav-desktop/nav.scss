@@ -1,23 +1,28 @@
 @import "../../assets/styles/variables.scss";
 
-nav {
-    background-color: $background-peach;
+.navbar-desktop {
+    background-color: rgb(255, 234, 229, 0.5);
     display: flex;
     padding: 10px 2rem;
     justify-content: space-between;
     width: 100vw;
+    position: static;
+    .logo {
+        width: 50px;
+    }
     .search {
         position: relative;
         input {
             border: none;
             border-radius: 10px;
-            width: 30%;
-            padding: 10px;
+            width: 30vw;
+            padding: 15px 10px 15px 50px;
         }
         .search-icon {
             position: absolute;
-            top: 5px;
+            top: 10px;
             left: 10px;
+            width: 30px;
         }
     }
     .navigation {

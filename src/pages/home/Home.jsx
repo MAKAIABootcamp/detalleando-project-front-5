@@ -12,11 +12,18 @@ import delivery from "/icons/delivery.svg"
 import star from "/icons/star.svg"
 import NavMobile from '../../components/nav-mobile/NavMobile'
 import "./home.scss"
+import NavDesktop from '../../components/nav-desktop/NavDesktop'
+import Banner from '../../components/home-banner/Banner'
 
 const Home = () => {
   return (
     <>
+    <header>
+        <NavDesktop/>
+        <Banner/>
+    </header>
     <main>
+        
         <div className='choose-address'>
             <Address/>
             <img src={calendar} alt="Icon for events" className='calendar'/>
@@ -114,7 +121,10 @@ const Home = () => {
         </div>
         
     </main>
-    <NavMobile/>
+    <div className='mobile-navbar'>
+        <NavMobile/>
+    </div>
+    
     </>
   )
 }
