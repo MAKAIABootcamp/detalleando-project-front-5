@@ -3,13 +3,14 @@
 
 .navseller-dekstop {
     display: flex;
-    flex-direction: column;
     padding: 10px;
     justify-content: flex-start;
     align-items: center; 
+    gap: 50px;
   &-left{
     display: flex;
     flex-direction: column;
+    gap: 40px;
     &-navlink{
         text-decoration: none;
         &-span {

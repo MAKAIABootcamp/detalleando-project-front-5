@@ -16,21 +16,21 @@ const saleCourse = () => {
             <td>Cupcakes with cream cheese</td>
             <td>1 unidad</td>
             <td>Preparando</td>
-            <td><Address/></td>
+            <td>Tunja, cll 12, 22.12.23 19:00</td>
             <td><img src={arrow} alt="arrow" /></td>
         </tr>
         <tr> 
             <td>Cupcakes with cream cheese</td>
             <td>1 unidad</td>
             <td>Preparando</td>
-            <td><Address/></td>
+            <td>Tunja, cll 12, 22.12.23 19:00</td>
             <td><img src={arrow} alt="arrow" /></td>
         </tr>
         <tr> 
             <td>Cupcakes with cream cheese</td>
             <td>1 unidad</td>
             <td>Preparando</td>
-            <td><Address/></td>
+            <td>Tunja, cll 12, 22.12.23 19:00</td>
             <td><img src={arrow} alt="arrow" /></td>
         </tr>
     </table>

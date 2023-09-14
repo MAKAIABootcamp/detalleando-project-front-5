@@ -7,7 +7,7 @@ import profile from "/icons/user-circle.svg"
 
 const NavDesktop = () => {
   return (
-    <nav>
+    <nav className='nav-dekstop'>
         <img src={logo} alt="Icon for logo" />
         <div className='search'>
             <input type="search" name="" id="" placeholder='Buscar'/>
