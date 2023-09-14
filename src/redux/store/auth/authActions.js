@@ -3,6 +3,7 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signInWithPopup,
+  signOut,
   updateProfile,
 } from "firebase/auth";
 import { auth } from "../../../firebase/firebaseConfig";
@@ -87,9 +88,16 @@ export const logout = () => {
       await signOut(auth);
       dispatch(setUserLogged(null));
       dispatch(setIsLogged(false));
-      dispatch(setError(false));
+      dispatch(setError(null));
     } catch (error) {
-      console.log("error", error.error);
+      console.log(error);
+      dispatch(
+        setError({
+          error: true,
+          code: error.code,
+          message: error.message,
+        })
+      );
     }
   };
 };
@@ -105,11 +113,6 @@ export const loginWithEmailAndPassword = (loggedUser) => {
         loggedUser.password
       );
       const foundUser = await getUserFromCollection(user.uid);
-      // const newUser = {
-      //   id: user.uid
-      // }
-      // console.log(newUser)
-      // saveInfo(key, newUser );
       // console.log("respuesta firebase", user);
       // console.log("respuesta firestore", foundUser);
       dispatch(setUserLogged(foundUser));
@@ -160,6 +163,8 @@ export const createAnUser = (newUser) => {
 export const loginSellerWithEmailAndPassword = (loggedUser) => {
   return async (dispatch) => {
     try {
+      const key = "user";
+      const { saveInfo } = useSessionStorage();
       const { user } = await signInWithEmailAndPassword(
         auth,
         loggedUser.email,
@@ -201,6 +206,47 @@ export const createAnSellerUser = (newUser) => {
         newUser
       );
       dispatch(setUserLogged(createAnSellerUser));
+      dispatch(setIsLogged(true));
+      dispatch(setError(false));
+    } catch (error) {
+      console.log(error);
+      dispatch(
+        setError({
+          error: true,
+          code: error.code,
+          message: error.message,
+        })
+      );
+    }
+  };
+};
+
+export const getUserActionFromCollection = (uid) => {
+  return async (dispatch) => {
+    try {
+      const userLogged = await getUserFromCollection(uid);
+      dispatch(setUserLogged(userLogged));
+      dispatch(setIsLogged(true));
+      dispatch(setError(false));
+    } catch (error) {
+      console.log(error);
+      dispatch(
+        setError({
+          error: true,
+          code: error.code,
+          message: error.message,
+        })
+      );
+    }
+  };
+};
+
+export const getSellerActionFromCollection = (uid) => {
+  return async (dispatch) => {
+    try {
+      const userLogged = await getSellerUserFromCollection(uid);
+      // console.log(userLogged);
+      dispatch(setUserLogged(userLogged));
       dispatch(setIsLogged(true));
       dispatch(setError(false));
     } catch (error) {
