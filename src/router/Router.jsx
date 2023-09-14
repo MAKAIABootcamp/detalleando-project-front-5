@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Login from "../pages/login/Login";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Registro from "../pages/registro/Registro";
@@ -19,10 +19,25 @@ import HomeSeller from "../pages/homeSeller/HomeSeller";
 import CreateProduct from "../pages/createProduct/CreateProduct";
 import SaleSeller from "../pages/saleSeller/SaleSeller";
 import SellerRegister from "../pages/sellerRegister/SellerRegister";
+import useSessionStorage from "../hooks/useSessionStorege";
+import { setIsLogged } from "../redux/store/auth/authReducer";
 
 const Router = () => {
   const dispatch = useDispatch();
   const { isLogged, userLogged } = useSelector((store) => store.auth);
+  const key = 'user';
+  const { getInfo } = useSessionStorage();
+  const user = getInfo(key);
+
+  // console.log(user)
+
+  // useEffect(() => {
+  //   if(user?.id){
+  //     dispatch(setIsLogged(true));
+  //   }else{
+  //     dispatch(setIsLogged(false));
+  //   }
+  // },[])
 
   return (
     <BrowserRouter>

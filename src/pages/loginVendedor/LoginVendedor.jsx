@@ -7,15 +7,19 @@ import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { loginSellerWithEmailAndPassword } from "../../redux/store/auth/authActions";
 import Swal from "sweetalert2";
+import useSessionStorage from "../../hooks/useSessionStorege";
 const LoginVendedor = () => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { register, handleSubmit } = useForm();
-  const { error } = useSelector(store => store.auth)
+  const { error } = useSelector(store => store.auth);
+  const key = 'user';
+  const { saveInfo } = useSessionStorage(key);
 
   const onSubmit = async (data) => {
     dispatch(loginSellerWithEmailAndPassword(data));
+    saveInfo(key, data);
   };
 
   if (error) {
