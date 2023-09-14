@@ -6,6 +6,10 @@ import LoginVendedor from "../pages/loginVendedor/LoginVendedor";
 import Home from "../pages/home/Home";
 import Shop from "../pages/shop/Shop";
 import Product from "../pages/product/Product";
+import Checkout from "../pages/order-checkout/Checkout";
+import Payment from "../pages/payment-methods/Payment";
+import Success from "../pages/purchase-success/Success";
+import Favorites from "../pages/favorites/Favorites";
 import { useDispatch, useSelector } from "react-redux";
 import PublicRouter from "./PublicRouter";
 import PrivateRouter from "./PrivateRouter";
@@ -53,6 +57,10 @@ const Router = () => {
             <Route path="cart" element={<Order isTypeSeller={userLogged?.isSeller}/>} />
             <Route path="profile" element={<Profile isTypeSeller={userLogged?.isSeller} />} />
             <Route path="profileEdit" element={<ProfileEdit isTypeSeller={userLogged?.isSeller} />} />
+            <Route path="checkout" element={<Checkout/>}/>
+              <Route path="payment-methods" element={<Payment/>}/>
+              <Route path="purchase-success" element={<Success/>}/>
+              <Route path="favorites" element={<Favorites/>}/>
           </Route>
         </Route>
       </Routes>
