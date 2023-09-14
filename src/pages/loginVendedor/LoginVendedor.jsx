@@ -1,22 +1,45 @@
-import React from 'react'
-import loginV from '/imagenRegistro.jpg'
-import './loginVendedor.scss'
-import { useForm } from 'react-hook-form';
-import google from "/Google.svg";
-import phone from "/phone.svg";
+import React from "react";
+import loginV from "/imagenRegistro.jpg";
+import "./loginVendedor.scss";
+import { useForm } from "react-hook-form";
 import mykitty from "/Mykitty1.svg";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { loginSellerWithEmailAndPassword } from "../../redux/store/auth/authActions";
 const LoginVendedor = () => {
-    const { register, handleSubmit } = useForm();
-    const onSubmit = async (data) => {
-      console.log("datos del formulario", data);
-    };
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { register, handleSubmit } = useForm();
+  const { error } = useSelector(store => store.auth)
+
+  const onSubmit = async (data) => {
+    dispatch(loginSellerWithEmailAndPassword(data));
+  };
+
+  if (error) {
+    Swal.fire(
+      "Oops!", 
+      "Ha occurrido un error en el inicio de sesión", 
+      "error");
+  }
+  if (error === false) {
+    Swal.fire(
+      "Excelente", 
+      "Haz iniciado sesión correctamente", 
+      "success")
+      // .then(
+      // () => navigate("/home")
+    // );
+  }
+
   return (
     <main className="loginVendedor">
       <figure className="leftV">
         <img src={loginV} alt="dekstop" />
       </figure>
       <section className="infoVe">
-      <figure className="logoD">
+        <figure className="logoD">
           <img src={mykitty} alt="Logo" />
         </figure>
         <h2>Inicio de sesión como vendedor</h2>
@@ -33,7 +56,6 @@ const LoginVendedor = () => {
               {...register("name", { required: true })}
             />
           </div>
-
           <div className="form-div">
             <label className="form-label">
               <span>Contraseña</span>
@@ -50,22 +72,15 @@ const LoginVendedor = () => {
             Iniciar sesión
           </button>
           <hr className="button-divider" />
-
-          <div className="form-others">
-            <img src={google} alt="Google" />
-            <span>o</span>
-            <img src={phone} alt="Phone" />
-          </div>
-
           <span className="form-register">
             ¿No tienes una cuenta?
-            <span> </span>
-            
+            <br />
+            <Link to="/sellerRegister" className="text">Registrate</Link>
           </span>
         </form>
       </section>
     </main>
-  )
-}
+  );
+};
 
-export default LoginVendedor
+export default LoginVendedor;
