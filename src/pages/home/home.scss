@@ -3,7 +3,7 @@
 header {
     display: none;
 }
-main {
+.main-home{
     background-color: white;
     padding: 1rem 1rem 5rem 1rem;
     font-family: $font-secondary;
@@ -167,7 +167,7 @@ main {
     header {
         display: inline-block;
     }
-    main {
+    .main-home {
         .choose-address {
             display: none;
         }
@@ -176,6 +176,7 @@ main {
         }
         .categories {
             display: flex;
+            justify-content: center;
         }
         .section .cards-container .card {
             display: flex;
@@ -201,9 +202,35 @@ main {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 1rem;
+            .shop-card .shop-price .shop-info {
+                margin-top: 0;
+            }
         }
     }
     .mobile-navbar {
         display: none;
+    }
+}
+
+@media (min-width: 1000px) {
+    .main-home {
+        padding: 1rem 10%;
+        .categories {
+            justify-content: space-around;
+            margin: 10px 0;
+            .category {
+                padding: 5px 40px;
+                width: 15rem;
+            }
+        }
+        .section {
+            h2 {
+                font-weight: 500;
+                margin: 1rem 0;
+            }
+        }
+        .section .shops-cards-container {
+            grid-template-columns: repeat(3, 1fr);
+        }
     }
 }

@@ -1,0 +1,52 @@
+@import "./../../assets/styles/reset.scss";
+@import "./../../assets/styles/variables.scss";
+
+main {
+  padding: 0;
+
+  .sales-orders-details{
+    padding: 20px;
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+    .sale-seller {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      h3 {
+        text-align: center;
+      }
+    }
+  
+    .sale-completed {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      h3 {
+        text-align: center;
+      }
+    }
+
+  }
+  
+}
+
+.sales-orders-dekstop{
+  
+  &__logo{
+    display: flex;
+    align-items: center;
+    h1{
+      font-family: $font-primary;
+      color: $main-pink;
+      font-weight: 600;
+    }
+  }
+  &__information{
+    display: flex;
+    flex-direction: column;
+    &-seller{
+      display: flex;
+    }
+  }
+}

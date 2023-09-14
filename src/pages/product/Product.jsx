@@ -4,8 +4,8 @@ import heartWhite from "/icons/heart-white.svg"
 import arrow from "/icons/arrow-down.svg"
 import "./product.scss"
 
-const Product = () => {
-  return (
+const Product = ({ isTypeSeller }) => {
+  return !isTypeSeller && (
     <main className='product-main'>
         <div className='main-image'>
             <img src={test} alt="" className='main-image'/>

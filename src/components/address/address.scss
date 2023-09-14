@@ -1,6 +1,8 @@
 @import "../../assets/styles/variables.scss";
 
 .address {
+    font-family: $font-secondary;
+    color: $font-dark;
     p {
         color: $font-light;
         font-size: 12px;

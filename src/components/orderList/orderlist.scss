@@ -1,0 +1,60 @@
+@import "./../../assets/styles/reset.scss";
+@import "./../../assets/styles/variables.scss";
+
+.orders-container {
+  padding: 0px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+ 
+  .infoup {
+    display: flex;
+    gap: 10px;
+  }
+  .historial {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    .status{
+      display: flex;
+      gap: 10px;
+    }
+  }
+  .button-divider {
+    width: 100%;
+    border: none;
+    border-bottom: 2px solid $font-light;
+    margin: 10px auto;
+  }
+}
+
+@media (min-width: 768px) {
+  .orders-container {
+    img{
+      display: none;
+    }
+
+    .infoup {
+      display: none;
+    }
+  .historial {
+    display: flex;
+    flex-direction: row;
+      padding: 20px;
+      gap: 20px;
+      .status{
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .button-divider {
+        width: 1px;
+          height: 100px;
+          background-color: $font-dark;
+          transform: rotate(0deg);
+          margin-top: 0px;
+      }
+  }
+ 
+  }
+}

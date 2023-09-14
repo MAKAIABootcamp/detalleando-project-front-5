@@ -14,15 +14,18 @@ import NavMobile from '../../components/nav-mobile/NavMobile'
 import "./home.scss"
 import NavDesktop from '../../components/nav-desktop/NavDesktop'
 import Banner from '../../components/home-banner/Banner'
+import { useNavigate } from 'react-router'
 
-const Home = () => {
-  return (
+const Home = ({ isTypeSeller }) => {
+
+    const navigate = useNavigate()
+  return !isTypeSeller && (
     <>
     <header>
         <NavDesktop/>
         <Banner/>
     </header>
-    <main>
+    <main className='main-home'>
         
         <div className='choose-address'>
             <Address/>
@@ -91,7 +94,7 @@ const Home = () => {
         <div className='section'>
             <h2>Todas las tiendas</h2>
             <div className='shops-cards-container'>
-                <div className='shop-card'>
+                <div className='shop-card' onClick={() => navigate('/shop')}>
                     <img src={test} alt="" />
                     <figure className='like'>
                         <img src={heartWhite} alt="Icon for like" />
