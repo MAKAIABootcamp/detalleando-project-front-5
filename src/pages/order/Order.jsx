@@ -6,7 +6,7 @@ import { useNavigate } from "react-router";
 import OrderList from "../../components/orderList/OrderList";
 import NavDesktop from "../../components/nav-desktop/NavDesktop";
 import "./order.scss";
-const Order = () => {
+const Order = ({ isTypeSeller }) => {
   const navigate = useNavigate();
   const [widthMovile, setWidthMovile] = useState();
 
@@ -28,7 +28,7 @@ const Order = () => {
     }
   };
 
-  return (
+  return !isTypeSeller && (
     <>
       {widthMovile ? (
         <main className="orders-infor">

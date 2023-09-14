@@ -13,11 +13,11 @@ import chocoBox from "/icons/chocolate-box.svg"
 import NavMobile from '../../components/nav-mobile/NavMobile'
 import "./shop.scss"
 
-const Shop = () => {
+const Shop = ({ isTypeSeller }) => {
 
     const categoriesShop = [{name: 'Tortas', image: cake}, {name: 'Chocolate', image: choco}, {name: 'Cupcakes', image: cupcake}, {name: 'Panadería', image: croissant}, {name: 'Más dulces', image: chocoBox}]
 
-  return (
+  return !isTypeSeller && (
     <>
     <main>
         <Address/>

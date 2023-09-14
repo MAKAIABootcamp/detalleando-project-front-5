@@ -6,6 +6,7 @@ import mykitty from "/Mykitty1.svg";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { loginSellerWithEmailAndPassword } from "../../redux/store/auth/authActions";
+import Swal from "sweetalert2";
 const LoginVendedor = () => {
 
   const dispatch = useDispatch();
@@ -27,10 +28,9 @@ const LoginVendedor = () => {
     Swal.fire(
       "Excelente", 
       "Haz iniciado sesión correctamente", 
-      "success")
-      // .then(
-      // () => navigate("/home")
-    // );
+      "success").then(
+      () => navigate("/homeseller")
+    );
   }
 
   return (
@@ -47,13 +47,13 @@ const LoginVendedor = () => {
         <form className="form" onSubmit={handleSubmit(onSubmit)}>
           <div className="form-div">
             <label className="form-label">
-              <span>Nombre de usuario</span>
+              <span>Email</span>
             </label>
             <input
-              type="name"
+              type="email"
               className="form-input"
-              name="name"
-              {...register("name", { required: true })}
+              name="email"
+              {...register("email", { required: true })}
             />
           </div>
           <div className="form-div">

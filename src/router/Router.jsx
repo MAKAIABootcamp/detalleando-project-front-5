@@ -20,7 +20,6 @@ import CreateProduct from "../pages/createProduct/CreateProduct";
 import SaleSeller from "../pages/saleSeller/SaleSeller";
 import SellerRegister from "../pages/sellerRegister/SellerRegister";
 
-
 const Router = () => {
   const dispatch = useDispatch();
   const { isLogged, userLogged } = useSelector((store) => store.auth);
@@ -29,24 +28,31 @@ const Router = () => {
     <BrowserRouter>
       <Routes>
         <Route path="/">
-          <Route element={<PublicRouter isAuthenticate={isLogged} />}>
+          <Route element={<PublicRouter isAuthenticate={isLogged} isTypeSeller={userLogged?.isSeller} />}>
             <Route index element={<Login />} />
             <Route path="registro" element={<Registro />} />
-            <Route path="phoneAuthentication" element={<LoginByPhone />}/>
-            <Route path="insertcode" element={<InsertCode />}/>
-            <Route path="loginvendedor" element={<LoginVendedor/>} />
-            <Route path="sellerRegister" element={<SellerRegister />}/>
+            <Route path="phoneAuthentication" element={<LoginByPhone />} />
+            <Route path="insertcode" element={<InsertCode />} />
+            <Route path="loginvendedor" element={<LoginVendedor />} />
+            <Route path="sellerRegister" element={<SellerRegister />} />
           </Route>
-          <Route element={<PrivateRouter isAuthenticate={isLogged} />}>
-          <Route path="home" element={<HomeSeller />} />
-          <Route path="createproduct" element={<CreateProduct />} />
-          <Route path="ventas" element={<SaleSeller />} />
-            <Route path="home" element={<Home />} />
-            <Route path="shop" element={<Shop />} />
-            <Route path="product" element={<Product />} />
-            <Route path="cart" element={<Order />} />
-            <Route path="profile" element={<Profile />} />
-            <Route path="profileEdit" element={<ProfileEdit />} />
+          <Route
+            element={
+              <PrivateRouter
+                isAuthenticate={isLogged}
+                
+              />
+            }
+          >
+            <Route path="homeseller" element={<HomeSeller isTypeSeller={userLogged?.isSeller} />} />
+            <Route path="createproduct" element={<CreateProduct isTypeSeller={userLogged?.isSeller} />} />
+            <Route path="ventas" element={<SaleSeller isTypeSeller={userLogged?.isSeller} />} />
+            <Route path="home" element={<Home isTypeSeller={userLogged?.isSeller} />} />
+            <Route path="shop" element={<Shop isTypeSeller={userLogged?.isSeller} />} />
+            <Route path="product" element={<Product isTypeSeller={userLogged?.isSeller}/>} />
+            <Route path="cart" element={<Order isTypeSeller={userLogged?.isSeller}/>} />
+            <Route path="profile" element={<Profile isTypeSeller={userLogged?.isSeller} />} />
+            <Route path="profileEdit" element={<ProfileEdit isTypeSeller={userLogged?.isSeller} />} />
           </Route>
         </Route>
       </Routes>

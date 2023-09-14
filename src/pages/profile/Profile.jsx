@@ -11,7 +11,7 @@ import language from "/icons/language.svg";
 import chat from "/icons/chat-conversation.svg";
 import heart from "/icons/heart-pink.svg";
 
-const Profile = () => {
+const Profile = ({ isTypeSeller }) => {
   const navigate = useNavigate();
   const [widthMovile, setWidthMovile] = useState();
 
@@ -37,7 +37,7 @@ const Profile = () => {
     navigate("/profileEdit");
   };
 
-  return (
+  return !isTypeSeller && (
     <>
       {widthMovile ? (
         <main className="profile">
