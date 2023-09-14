@@ -8,7 +8,7 @@ import "./nav.scss"
 
 const NavMobile = () => {
   return (
-    <nav>
+    <nav className='nav-mobile'>
         <NavLink to={'/'}>
             <img src={home} alt="Icon for home" />
         </NavLink>

@@ -35,7 +35,7 @@ const Router = () => {
             <Route path="loginvendedor" element={<LoginVendedor/>} />
           </Route>
           <Route element={<PrivateRouter isAuthenticate={isLogged} />}>
-          <Route path="homeseller" element={<HomeSeller />} />
+          <Route path="home" element={<HomeSeller />} />
           <Route path="createproduct" element={<CreateProduct />} />
           <Route path="ventas" element={<SaleSeller />} />
             <Route path="home" element={<Home />} />
