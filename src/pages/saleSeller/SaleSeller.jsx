@@ -6,7 +6,7 @@ import SaleCompleted from "../../components/saleCompleted/SaleCompleted";
 import { useNavigate } from "react-router-dom";
 import Logo from "/logo.svg";
 import NavSellerDekstop from "../../components/navSellerDekstop/NavSellerDekstop";
-const SaleSeller = () => {
+const SaleSeller = ({ isTypeSeller }) => {
   const navigate = useNavigate();
   const [widthMovile, setWidthMovile] = useState();
 
@@ -27,7 +27,7 @@ const SaleSeller = () => {
       setWidthMovile(false);
     }
   };
-  return (
+  return isTypeSeller && (
     <>
       {widthMovile ? (
         <main>

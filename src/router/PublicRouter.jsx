@@ -1,9 +1,9 @@
 import React from 'react'
 import { Navigate, Outlet } from 'react-router-dom'
 
-const PublicRouter = ({ isAuthenticate }) => {
+const PublicRouter = ({ isAuthenticate, isTypeSeller }) => {
   return (
-    <div>{isAuthenticate ? <Navigate to={"/home"} /> : <Outlet />}</div>
+    <div>{isAuthenticate ? <Navigate to={!isTypeSeller ? "/home" : "/homeseller"} /> : <Outlet />}</div>
   )
 }
 

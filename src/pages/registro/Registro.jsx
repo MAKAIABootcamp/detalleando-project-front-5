@@ -23,7 +23,8 @@ const Registro = () => {
         photoURL: avatar,
         address: [],
         phone: "",
-        payment: []
+        payment: [],
+        isSeller: false
       }
       dispatch(createAnUser(newUser));
       Swal.fire(
