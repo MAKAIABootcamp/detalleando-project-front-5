@@ -3,7 +3,7 @@ import "./profileEdit.scss";
 import arrowBack from "/arrowback.svg";
 import { useNavigate } from "react-router-dom";
 import user from "/test.jfif";
-const ProfileEdit = () => {
+const ProfileEdit = ({ isTypeSeller }) => {
   const navigate = useNavigate();
   const [widthMovile, setWidthMovile] = useState();
 
@@ -25,7 +25,7 @@ const ProfileEdit = () => {
     }
   };
 
-  return (
+  return !isTypeSeller && (
     <>
       {widthMovile ? (
         <main className="profileEdit">

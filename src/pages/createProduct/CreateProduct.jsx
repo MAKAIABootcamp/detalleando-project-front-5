@@ -4,7 +4,7 @@ import arrowBack from "/arrowback.svg";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 
-const CreateProduct = () => {
+const CreateProduct = ({ isTypeSeller }) => {
   const navigate = useNavigate();
   const { register, handleSubmit } = useForm();
   const categorias = ["Categoría 1", "Categoría 2", "Categoría 3"];
@@ -12,7 +12,7 @@ const CreateProduct = () => {
   const onSubmit = async (data) => {
     console.log(data);
   };
-  return (
+  return isTypeSeller && (
     <main className="create-new-product">
       <div className="create-new-product__info">
         <img src={arrowBack} alt="ArrowBack" onClick={() => navigate(-1)} />

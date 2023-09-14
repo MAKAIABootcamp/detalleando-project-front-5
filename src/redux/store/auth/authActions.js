@@ -87,7 +87,7 @@ export const loginWithEmailAndPassword = (loggedUser) => {
             const { user } = await signInWithEmailAndPassword(auth, loggedUser.email, loggedUser.password)
             const foundUser = await getUserFromCollection(user.uid);
             // console.log("respuesta firebase", user);
-            // console.log("respuesta firestore", foundUser);
+            console.log("respuesta firestore", foundUser);
             dispatch(setUserLogged(foundUser));
             dispatch(setIsLogged(true));
             dispatch(setError(false));

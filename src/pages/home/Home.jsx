@@ -13,8 +13,8 @@ import star from "/icons/star.svg"
 import NavMobile from '../../components/nav-mobile/NavMobile'
 import "./home.scss"
 
-const Home = () => {
-  return (
+const Home = ({ isTypeSeller }) => {
+  return !isTypeSeller && (
     <>
     <main>
         <div className='choose-address'>
