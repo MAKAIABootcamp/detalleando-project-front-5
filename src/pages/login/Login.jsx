@@ -12,15 +12,19 @@ import {
 } from "../../redux/store/auth/authActions";
 import mykitty from "/Mykitty1.svg";
 import Swal from "sweetalert2";
+import useSessionStorage from "../../hooks/useSessionStorege";
 
 const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { register, handleSubmit } = useForm();
   const { error } = useSelector((store) => store.auth);
+  // const key = 'user';
+  // const { saveInfo } = useSessionStorage();
 
   const onSubmit = async (data) => {
     dispatch(loginWithEmailAndPassword(data));
+    // saveInfo(key, data);
   };
 
   if (error) {
