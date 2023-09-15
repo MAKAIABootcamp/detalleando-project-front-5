@@ -19,6 +19,8 @@ import HomeSeller from "../pages/homeSeller/HomeSeller";
 import CreateProduct from "../pages/createProduct/CreateProduct";
 import SaleSeller from "../pages/saleSeller/SaleSeller";
 import SellerRegister from "../pages/sellerRegister/SellerRegister";
+import ProfileSeller from "../pages/profileSeller/ProfileSeller";
+import Mapa from "../pages/mapa/Mapa";
 
 const Router = () => {
   const dispatch = useDispatch();
@@ -44,9 +46,11 @@ const Router = () => {
               />
             }
           >
+            <Route path="mapa" element={<Mapa isTypeSeller={userLogged?.isSeller} />} />
             <Route path="homeseller" element={<HomeSeller isTypeSeller={userLogged?.isSeller} />} />
             <Route path="createproduct" element={<CreateProduct isTypeSeller={userLogged?.isSeller} />} />
             <Route path="ventas" element={<SaleSeller isTypeSeller={userLogged?.isSeller} />} />
+            <Route path="perfil" element={<ProfileSeller isTypeSeller={userLogged?.isSeller} />} />
             <Route path="home" element={<Home isTypeSeller={userLogged?.isSeller} />} />
             <Route path="shop" element={<Shop isTypeSeller={userLogged?.isSeller} />} />
             <Route path="product" element={<Product isTypeSeller={userLogged?.isSeller}/>} />

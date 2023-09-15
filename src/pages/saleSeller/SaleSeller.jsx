@@ -27,48 +27,51 @@ const SaleSeller = ({ isTypeSeller }) => {
       setWidthMovile(false);
     }
   };
-  return isTypeSeller && (
-    <>
-      {widthMovile ? (
-        <main>
-          <NavSeller />
-          <section className="sales-orders-details">
-            <div className="sale-seller">
-              <h3>Ventas en curso</h3>
-              <SaleCourse />
-            </div>
-
-            <div className="sale-completed">
-              <h3>Ventas completadas</h3>
-              <SaleCompleted />
-            </div>
-          </section>
-        </main>
-      ) : (
-        <main className="sales-orders-dekstop">
-          <div className="sales-orders-dekstop__logo">
-            <figure>
-              <img src={Logo} alt="Logo" />
-            </figure>
-            <h1>Detalleando</h1>
-          </div>
-          <div className="sales-orders-dekstop__information">
-            <NavSellerDekstop />
-
-            <section className="sales-orders-dekstop__information-section">
-              <div className="sale-seller-dekstop">
+  return (
+    isTypeSeller && (
+      <>
+        {widthMovile ? (
+          <main>
+            <NavSeller />
+            <section className="sales-orders-details">
+              <div className="sale-seller">
                 <h3>Ventas en curso</h3>
                 <SaleCourse />
               </div>
-              <div className="sale-completed-dekstop">
+
+              <div className="sale-completed">
                 <h3>Ventas completadas</h3>
                 <SaleCompleted />
               </div>
             </section>
-          </div>
-        </main>
-      )}
-    </>
+          </main>
+        ) : (
+          <main className="sales-orders-dekstop">
+            <div className="sales-orders-dekstop__logo">
+              <figure>
+                <img src={Logo} alt="Logo" />
+              </figure>
+              <h1>Detalleando</h1>
+            </div>
+            <div className="sales-orders-dekstop__information">
+              <NavSellerDekstop />
+              <div className="sales-orders-dekstop__information-div">
+                <section className="sales-orders-dekstop__information-section">
+                  <div className="sale-seller-dekstop">
+                    <h3>Ventas en curso</h3>
+                    <SaleCourse />
+                  </div>
+                  <div className="sale-completed-dekstop">
+                    <h3>Ventas completadas</h3>
+                    <SaleCompleted />
+                  </div>
+                </section>
+              </div>
+            </div>
+          </main>
+        )}
+      </>
+    )
   );
 };
 

@@ -1,6 +1,7 @@
 import React from "react";
 import test from "/test.jfif";
 import trash from "/icons/trash-bin.svg";
+import pencil from "/icons/pencil.svg";
 import "./cardSeller.scss";
 const CardSeller = () => {
   return (
@@ -9,14 +10,17 @@ const CardSeller = () => {
         <div className="seller-cards-container__up-left">
           <img className="seller-img" src={test} alt="" />
           <figure className="trash">
-            <img src={trash} alt="Icon for like" />
+            <img src={trash} alt="Icon trash" />
+          </figure>
+          <figure className="pencil">
+          <img src={pencil} alt="Icon pencil" />
           </figure>
         </div>
 
         <figure className="seller-right-img">
-          <img className="seller-imgs" src={test} alt="" />
-          <img className="seller-imgs" src={test} alt="" />
-          <img className="seller-imgs" src={test} alt="" />
+          <img className="seller-imgs" src={test} alt="Imagenes adicionales" />
+          <img className="seller-imgs" src={test} alt="Imagenes adicionales" />
+          <img className="seller-imgs" src={test} alt="Imagenes adicionales" />
         </figure>
       </div>
 
