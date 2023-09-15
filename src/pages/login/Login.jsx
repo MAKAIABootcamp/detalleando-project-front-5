@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   loginWithEmailAndPassword,
   loginWithGoogle,
-} from "../../redux/store/auth/authActions";
+} from "../../redux/auth/authActions";
 import mykitty from "/Mykitty1.svg";
 import Swal from "sweetalert2";
 

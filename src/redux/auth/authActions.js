@@ -1,9 +1,9 @@
 import { GoogleAuthProvider, createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup, updateProfile } from "firebase/auth";
-import { auth } from "../../../firebase/firebaseConfig";
+import { auth } from "../../firebase/firebaseConfig";
 import { setError, setIsLogged, setUserLogged } from "./authReducer";
-import loginFromFirestore from "../../../services/loginFromCollection";
-import { createAnUserInCollection, getUserFromCollection } from "../../../services/getUser";
-import { createAnSellerUserInCollection, getSellerUserFromCollection } from "../../../services/sellerUser";
+import loginFromFirestore from "../../services/loginFromCollection";
+import { createAnUserInCollection, getUserFromCollection } from "../../services/getUser";
+import { createAnSellerUserInCollection, getSellerUserFromCollection } from "../../services/sellerUser";
 
 export const loginWithCode = (code) => {
   return async (dispatch) => {

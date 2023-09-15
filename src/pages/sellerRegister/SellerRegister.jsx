@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import Swal from "sweetalert2";
 import fileUpload from "../../services/fileUpload";
-import { createAnSellerUser } from "../../redux/store/auth/authActions";
+import { createAnSellerUser } from "../../redux/auth/authActions";
 
 const SellerRegister = () => {
   const dispatch = useDispatch();

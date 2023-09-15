@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import mykitty from "/Mykitty1.svg";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { loginSellerWithEmailAndPassword } from "../../redux/store/auth/authActions";
+import { loginSellerWithEmailAndPassword } from "../../redux/auth/authActions";
 import Swal from "sweetalert2";
 const LoginVendedor = () => {
 
