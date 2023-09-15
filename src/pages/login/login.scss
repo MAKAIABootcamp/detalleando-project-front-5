@@ -25,7 +25,7 @@
     gap: 20px;
     justify-content: space-evenly;
     box-shadow: 4px 4px 6px rgba($font-dark, 0.4);
-    .logoD{
+    .logoD {
       display: none;
     }
   }
@@ -42,6 +42,9 @@
     flex-direction: column;
     align-items: center;
     gap: 10px;
+    span{
+      text-align: center;
+    }
 
     .form-div {
       display: flex;
@@ -122,8 +125,8 @@
     height: 100vh;
     width: 100vw;
     .leftL {
-      display: block;
-      width: 50vw;
+      display: flex;
+      width: 50%;
 
       img {
         height: 100vh;
@@ -139,11 +142,11 @@
       gap: 20px;
       padding: 0px;
       align-items: center;
-      .logoD{
-        display: block;
-        width: 200px;
+      .logoD {
+        display: flex;
+        width: 150px;
 
-        img{
+        img {
           width: 100%;
         }
       }
@@ -161,17 +164,17 @@
         .form-input {
           padding: 5px;
           margin-bottom: 10px;
-          border: 1px solid #EFF0EB;
+          border: 1px solid #eff0eb;
           border-radius: 5px;
           width: 300px;
-          background-color: #EFF0EB;
+          background-color: #eff0eb;
           height: 40px;
-      }
+        }
       }
       .button-login {
         padding: 10px;
         width: 140px;
-        background-color: #EDC4D6;
+        background-color: #edc4d6;
         color: #676662;
         font-weight: 500;
         font-size: 18px;
@@ -179,7 +182,7 @@
         border-radius: 5px;
         margin-left: 160px;
         cursor: pointer;
-    }
+      }
     }
   }
 }

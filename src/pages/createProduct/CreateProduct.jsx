@@ -3,7 +3,7 @@ import "./createproduct.scss";
 import arrowBack from "/arrowback.svg";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
-
+import logo from '/logo.svg'
 const CreateProduct = ({ isTypeSeller }) => {
   const navigate = useNavigate();
   const { register, handleSubmit } = useForm();
@@ -14,14 +14,20 @@ const CreateProduct = ({ isTypeSeller }) => {
   };
   return isTypeSeller && (
     <main className="create-new-product">
-      <div className="create-new-product__info">
+      <div className="create-new-product__info hidden">
         <img src={arrowBack} alt="ArrowBack" onClick={() => navigate(-1)} />
         <h2>Crear nuevo producto</h2>
       </div>
+      <div className="create-new-product__info-logo">
+        <img src={logo} alt="Logo"  />
+        <h2>Detalleando</h2>
+      </div>
       <form
+      
         className="create-new-product__form"
         onSubmit={handleSubmit(onSubmit)}
       >
+        <h2>Crear nuevo producto</h2>
         <div className="create-new-product__form-div">
           <label className="create-new-product__form-label">
             <span>Nombre</span>

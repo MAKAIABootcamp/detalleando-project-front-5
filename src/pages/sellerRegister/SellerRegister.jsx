@@ -54,9 +54,9 @@ const SellerRegister = () => {
         <img src={loginV} alt="desktop" />
       </figure>
       <section className="main__register-seller__card">
-        <figure className="main__register-seller__card-logo">
+        {/* <figure className="main__register-seller__card-logo">
           <img src={mykitty} alt="logo" />
-        </figure>
+        </figure> */}
         <h2>Registro para vendedor</h2>
         <form
           className="main__register-seller__card__form"
