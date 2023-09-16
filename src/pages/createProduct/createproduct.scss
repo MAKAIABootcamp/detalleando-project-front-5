@@ -9,9 +9,11 @@
   &__info {
     display: flex;
     gap: 10px;
+    &-logo {
+      display: none;
+    }
   }
 
- 
   &__form {
     display: flex;
     flex-direction: column;
@@ -21,9 +23,10 @@
     &-div {
       display: flex;
       flex-direction: column;
-      align-items:flex-start;
+      align-items: flex-start;
 
-      option, select{
+      option,
+      select {
         font-family: $font-primary;
       }
     }
@@ -48,31 +51,31 @@
     }
 
     &-divFile {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
     &-labelFile {
-        margin-bottom: 5px;
-        font-weight: 500;
-        font-size: 18px;
-      }
+      margin-bottom: 5px;
+      font-weight: 500;
+      font-size: 18px;
+    }
     &-inputFile {
-        padding: 5px;
-        margin-bottom: 10px;
-        border: 1px solid $background-grey;
-        border-radius: 5px;
-        background-color: $background-grey;
-        height: 40px;
-        width: 350px;
-        &:focus {
-          border: 2px solid $main-pink;
-          outline: none;
-          box-shadow: 0px 0px 5px 2px $background-peach;
-        }
+      padding: 5px;
+      margin-bottom: 10px;
+      border: 1px solid $background-grey;
+      border-radius: 5px;
+      background-color: $background-grey;
+      height: 40px;
+      width: 350px;
+      &:focus {
+        border: 2px solid $main-pink;
+        outline: none;
+        box-shadow: 0px 0px 5px 2px $background-peach;
       }
+    }
   }
-  .button-create{
+  .button-create {
     padding: 10px;
     width: 180px;
     background-color: $main-pink;
@@ -82,5 +85,104 @@
     border: none;
     border-radius: 5px;
     cursor: pointer;
+  }
+  .dekstop {
+    display: none;
+  }
+}
+
+@media (min-width: 768px) {
+  .hidden {
+    display: none;
+  }
+  .create-new-product {
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    gap: 2px;
+    &__info {
+      &-logo {
+        display: flex;
+        align-items: center;
+        h2 {
+          font-family: $font-primary;
+          color: $main-pink;
+          font-weight: 600;
+        }
+      }
+    }
+    &__form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      font-family: $font-primary;
+      &-div {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+
+        option,
+        select {
+          font-family: $font-primary;
+        }
+      }
+      &-label {
+        margin-bottom: 5px;
+        font-weight: 500;
+        font-size: 16px;
+      }
+
+      &-input {
+        padding: 5px;
+        margin-bottom: 10px;
+        border: 1px solid $font-dark;
+        border-radius: 5px;
+        height: 30px;
+        width: 600px;
+        &:focus {
+          border: 2px solid $main-pink;
+          outline: none;
+          box-shadow: 0px 0px 5px 2px $background-peach;
+        }
+      }
+
+      &-divFile {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      &-labelFile {
+        margin-bottom: 5px;
+        font-weight: 500;
+        font-size: 16px;
+      }
+      &-inputFile {
+        padding: 5px;
+        margin-bottom: 10px;
+        border: 1px solid $background-grey;
+        border-radius: 5px;
+        background-color: $background-grey;
+        height: 30px;
+        width: 600px;
+        &:focus {
+          border: 2px solid $main-pink;
+          outline: none;
+          box-shadow: 0px 0px 5px 2px $background-peach;
+        }
+      }
+    }
+    .button-create {
+      padding: 10px;
+      width: 180px;
+      background-color: #edc4d6;
+      color: #676662;
+      font-weight: 500;
+      font-size: 14px;
+      border: none;
+      border-radius: 5px;
+      margin-left: 216px;
+      cursor: pointer;
+    }
   }
 }

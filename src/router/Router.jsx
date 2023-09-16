@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Login from "../pages/login/Login";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Registro from "../pages/registro/Registro";
@@ -23,16 +23,44 @@ import HomeSeller from "../pages/homeSeller/HomeSeller";
 import CreateProduct from "../pages/createProduct/CreateProduct";
 import SaleSeller from "../pages/saleSeller/SaleSeller";
 import SellerRegister from "../pages/sellerRegister/SellerRegister";
+import ProfileSeller from "../pages/profileSeller/ProfileSeller";
+import Mapa from "../pages/mapa/Mapa";
+import { onAuthStateChanged } from "firebase/auth";
+import { getSellerActionFromCollection, getUserActionFromCollection } from "../redux/store/auth/authActions";
+import { auth } from "../firebase/firebaseConfig";
+
 
 const Router = () => {
   const dispatch = useDispatch();
   const { isLogged, userLogged } = useSelector((store) => store.auth);
 
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        const uid = user.uid;
+        if (!userLogged?.id) {
+          dispatch(getUserActionFromCollection(uid));
+          dispatch(getSellerActionFromCollection(uid));
+        }
+      } 
+      //else {
+      //   console.log("No hay sesión activa");
+      // }
+    });
+  }, [dispatch, userLogged]);
+
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/">
-          <Route element={<PublicRouter isAuthenticate={isLogged} isTypeSeller={userLogged?.isSeller} />}>
+          <Route
+            element={
+              <PublicRouter
+                isAuthenticate={isLogged}
+                isTypeSeller={userLogged?.isSeller}
+              />
+            }
+          >
             <Route index element={<Login />} />
             <Route path="registro" element={<Registro />} />
             <Route path="phoneAuthentication" element={<LoginByPhone />} />
@@ -40,27 +68,51 @@ const Router = () => {
             <Route path="loginvendedor" element={<LoginVendedor />} />
             <Route path="sellerRegister" element={<SellerRegister />} />
           </Route>
-          <Route
-            element={
-              <PrivateRouter
-                isAuthenticate={isLogged}
-                
-              />
-            }
-          >
-            <Route path="homeseller" element={<HomeSeller isTypeSeller={userLogged?.isSeller} />} />
-            <Route path="createproduct" element={<CreateProduct isTypeSeller={userLogged?.isSeller} />} />
-            <Route path="ventas" element={<SaleSeller isTypeSeller={userLogged?.isSeller} />} />
-            <Route path="home" element={<Home isTypeSeller={userLogged?.isSeller} />} />
-            <Route path="shop" element={<Shop isTypeSeller={userLogged?.isSeller} />} />
-            <Route path="product" element={<Product isTypeSeller={userLogged?.isSeller}/>} />
-            <Route path="cart" element={<Order isTypeSeller={userLogged?.isSeller}/>} />
-            <Route path="profile" element={<Profile isTypeSeller={userLogged?.isSeller} />} />
-            <Route path="profileEdit" element={<ProfileEdit isTypeSeller={userLogged?.isSeller} />} />
-            <Route path="checkout" element={<Checkout/>}/>
-              <Route path="payment-methods" element={<Payment/>}/>
-              <Route path="purchase-success" element={<Success/>}/>
-              <Route path="favorites" element={<Favorites/>}/>
+
+          <Route element={<PrivateRouter isAuthenticate={isLogged} />}>
+            <Route path="mapa" element={<Mapa isTypeSeller={userLogged?.isSeller} />} />
+            <Route
+              path="homeseller"
+              element={<HomeSeller isTypeSeller={userLogged?.isSeller} />}
+            />
+            <Route
+              path="createproduct"
+              element={<CreateProduct isTypeSeller={userLogged?.isSeller} />}
+            />
+            <Route
+              path="ventas"
+              element={<SaleSeller isTypeSeller={userLogged?.isSeller} />}
+            />
+            <Route path="perfil" element={<ProfileSeller isTypeSeller={userLogged?.isSeller} />} />
+            <Route
+              path="home"
+              element={<Home isTypeSeller={userLogged?.isSeller} />}
+            />
+            <Route
+              path="shop"
+              element={<Shop isTypeSeller={userLogged?.isSeller} />}
+            />
+            <Route
+              path="product"
+              element={<Product isTypeSeller={userLogged?.isSeller} />}
+            />
+            <Route
+              path="cart"
+              element={<Order isTypeSeller={userLogged?.isSeller} />}
+            />
+            <Route
+              path="profile"
+              element={<Profile isTypeSeller={userLogged?.isSeller} />}
+            />
+            <Route
+              path="profileEdit"
+              element={<ProfileEdit isTypeSeller={userLogged?.isSeller} />}
+            />
+            <Route path="checkout" element={<Checkout />} />
+            <Route path="payment-methods" element={<Payment />} />
+            <Route path="purchase-success" element={<Success />} />
+            <Route path="favorites" element={<Favorites />} />
+
           </Route>
         </Route>
       </Routes>

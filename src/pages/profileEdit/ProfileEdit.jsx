@@ -3,7 +3,12 @@ import "./profileEdit.scss";
 import arrowBack from "/arrowback.svg";
 import { useNavigate } from "react-router-dom";
 import user from "/test.jfif";
+import { useDispatch } from "react-redux";
+import { logout } from "../../redux/store/auth/authActions";
+
 const ProfileEdit = ({ isTypeSeller }) => {
+
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [widthMovile, setWidthMovile] = useState();
 
@@ -24,6 +29,11 @@ const ProfileEdit = ({ isTypeSeller }) => {
       setWidthMovile(false);
     }
   };
+
+  const handleLogout = () => {
+    console.log('hice click')
+    dispatch(logout());
+  }
 
   return !isTypeSeller && (
     <>
@@ -73,7 +83,7 @@ const ProfileEdit = ({ isTypeSeller }) => {
           </section>
           <div className="content-button">
             <button className="button-save">Guardar</button>
-            <span className="close-sesion">Cerrar sesión</span>
+            <span className="close-sesion" onClick={handleLogout}>Cerrar sesión</span>
           </div>
         </main>
       ) : (
@@ -98,7 +108,7 @@ const ProfileEdit = ({ isTypeSeller }) => {
             </div>
           </section>
           <div className="profileEdit-desktop__cerrar">
-            <span>Cerrar sesión</span>
+            <span onClick={handleLogout}>Cerrar sesión</span>
           </div>
         </main>
       )}
