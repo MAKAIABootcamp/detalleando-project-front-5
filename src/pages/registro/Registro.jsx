@@ -6,7 +6,7 @@ import Swal from "sweetalert2";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import fileUpload from "../../services/fileUpload";
-import { createAnUser } from "../../redux/store/auth/authActions";
+import { createAnUser } from "../../redux/auth/authActions";
 const Registro = () => {
 
   const dispatch = useDispatch();

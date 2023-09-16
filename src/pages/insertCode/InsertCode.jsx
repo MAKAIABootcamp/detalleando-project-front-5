@@ -1,7 +1,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
-import { loginWithCode } from "../../redux/store/auth/authActions";
+import { loginWithCode } from "../../redux/auth/authActions";
 import "./insertCode.scss";
 import logo from "/icons/logo-transparent.png";
 
