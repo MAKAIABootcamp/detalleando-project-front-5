@@ -26,7 +26,7 @@ import SellerRegister from "../pages/sellerRegister/SellerRegister";
 import ProfileSeller from "../pages/profileSeller/ProfileSeller";
 import Mapa from "../pages/mapa/Mapa";
 import { onAuthStateChanged } from "firebase/auth";
-import { getSellerActionFromCollection, getUserActionFromCollection } from "../redux/store/auth/authActions";
+import { getSellerActionFromCollection, getUserActionFromCollection } from "../redux/auth/authActions";
 import { auth } from "../firebase/firebaseConfig";
 
 

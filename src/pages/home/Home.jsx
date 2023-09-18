@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Address from '../../components/address/Address'
 import calendar from "/icons/calendar.svg"
 import search from "/icons/search.svg"
@@ -18,6 +18,16 @@ import { useNavigate } from 'react-router'
 
 const Home = ({ isTypeSeller }) => {
 
+    const [selectedCategory, setSelectedCategory] = useState("All");
+    const [searchValue, setSearchValue] = useState("");
+    const [filteredShops, setFilteredShops] = useState([]);
+
+    useEffect(() => 
+        { 
+          setFilteredShops(shops.filter(shop => shop.name.toLowerCase().includes(searchValue.toLowerCase())) );
+
+        }, [searchValue, shops])
+
     const navigate = useNavigate()
   return !isTypeSeller && (
     <>
@@ -36,19 +46,19 @@ const Home = ({ isTypeSeller }) => {
             <img src={search} alt="Icon for search" className='search-icon'/>
         </div>
         <div className='categories'>
-            <div className='category category-blue'>
+            <div className='category category-blue' onClick={() => setSelectedCategory("Bouquets y arreglos")}>
                 <p>Bouquets y arreglos</p>
                 <img src={bouquet} alt="Icon for bouquets" />
             </div>
-            <div className='category category-pink'>
+            <div className='category category-pink' onClick={() => setSelectedCategory("Pasteleria y confeteria")}>
                 <p>Pasteleria y confeteria</p>
                 <img src={cake} alt="Icon for pasteleria" />
             </div>
-            <div className='category category-pink'>
+            <div className='category category-pink' onClick={() => setSelectedCategory("Artesanias")}>
                 <p>Artesanias</p>
                 <img src={arte} alt="Icon for artesanias" />
             </div>
-            <div className='category category-blue'>
+            <div className='category category-blue' onClick={() => setSelectedCategory("Ropa y accesorios")}>
                 <p>Ropa y accesorios</p>
                 <img src={dress} alt="Icon for ropa" />
             </div>
