@@ -35,17 +35,28 @@
   .edit-section {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 25px;
 
-    .data {
+    &-date {
       display: flex;
-      justify-content: space-between;
-      align-items: center;
-
-      .text {
-        display: flex;
-        flex-direction: column;
-        gap: 5px;
+      flex-direction: column;
+      align-items: flex-start;
+      &__label {
+        font-family: $font-primary;
+        font-size: 16px;
+        font-weight: 600;
+        color: $font-light;
+      }
+      &__input {
+        font-family: $font-primary;
+        border: none;
+        font-size: 14px;
+        border-bottom: 1px solid #000;
+        outline: none;
+        background: transparent;
+        padding: 0;
+        margin: 0;
+        width: 100%;
       }
     }
   }
@@ -90,7 +101,7 @@
     flex-direction: column;
     gap: 15px;
     align-items: center;
-    width: 400px;
+    width: 600px;
 
     &__figure {
       display: flex;
@@ -110,16 +121,27 @@
       gap: 15px;
       width: 100%;
 
-      label{
-        color: $font-dark;
-        font-weight: 300;
-        font-size: 14px;
+      label {
+        font-family: $font-primary;
+        font-size: 16px;
+        font-weight: 600;
+        color: $font-light;
       }
 
-      input{
+      input {
         padding: 8px;
         border-radius: 8px;
-        border: 1px solid $light-grey;
+        font-family: $font-primary;
+        border: none;
+        font-size: 14px;
+        border: 1px solid $font-dark;
+        box-shadow: 5px 0 5px -5px $font-dark, -5px 0 5px -5px $font-dark,
+          0 5px 5px -5px $font-dark;
+        &:focus {
+          border: 2px solid $main-pink;
+          outline: none;
+          box-shadow: 0px 0px 5px 2px $background-peach;
+        }
       }
     }
 
@@ -137,7 +159,7 @@
         border: none;
         border-radius: 5px;
         cursor: pointer;
-        margin-left: 300px;
+        margin-left: 500px;
       }
     }
   }

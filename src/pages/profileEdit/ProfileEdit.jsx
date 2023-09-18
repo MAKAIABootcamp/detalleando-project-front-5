@@ -49,36 +49,55 @@ const ProfileEdit = ({ isTypeSeller }) => {
           </div>
 
           <section className="edit-section">
-            <div className="data">
-              <div className="text">
-                <span>Tú nombre</span>
-                <h3>Anna</h3>
-              </div>
-            </div>
-            <hr className="button-divider" />
 
-            <div className="data">
-              <div className="text">
-                <span>Tú correo</span>
-                <h3>ann@gmail.com</h3>
-              </div>
-            </div>
-            <hr className="button-divider" />
+            
+           <div className="edit-section-date">
+          <label className="edit-section-date__label">
+            <span>Tú nombre</span>
+          </label>
+          <input
+            type="text"
+            class="edit-section-date__input"
+            placeholder="Anna"
+          />
+        </div>
 
-            <div className="data">
-              <div className="text">
-                <span>Tú fecha de nacimiento</span>
-                <h3>22.12.1999</h3>
-              </div>
-            </div>
-            <hr className="button-divider" />
-            <div className="data">
-              <div className="text">
-                <span>Tú teléfono</span>
-                <h3>+57 3102706787</h3>
-              </div>
-            </div>
-            <hr className="button-divider" />
+        <div className="edit-section-date">
+          <label className="edit-section-date__label">
+            <span>Tú correo</span>
+          </label>
+          <input
+            type="email"
+            class="edit-section-date__input"
+            placeholder="anna@gmail.com"
+          />
+        </div>
+        
+
+        <div className="edit-section-date">
+          <label className="edit-section-date__label">
+            <span>Tú fecha de nacimiento</span>
+          </label>
+          <input
+            type="text"
+            class="edit-section-date__input"
+            placeholder="22/09/23"
+          />
+        </div>
+          
+
+        <div className="edit-section-date">
+          <label className="edit-section-date__label">
+            <span>Tú teléfono</span>
+          </label>
+          <input
+            type="text"
+            class="edit-section-date__input"
+            placeholder="3011234567"
+          />
+        </div>
+           
+
           </section>
           <div className="content-button">
             <button className="button-save">Guardar</button>
@@ -88,18 +107,18 @@ const ProfileEdit = ({ isTypeSeller }) => {
       ) : (
         <main className="profileEdit-desktop">
           <section className="profileEdit-desktop__card">
-            <h2>Información del Perfil</h2>
+            <h2>Información del perfil</h2>
             <figure className="profileEdit-desktop__card__figure">
               <img src={user} alt="Photo" />
             </figure>
             <div className="profileEdit-desktop__card__info">
-              <label>Tu nombre</label>
+              <label>Tú nombre</label>
               <input type="text" />
-              <label>Tu correo</label>
+              <label>Tú correo</label>
               <input type="text" />
-              <label>Tu teléfono</label>
+              <label>Tú teléfono</label>
               <input type="text" />
-              <label>Tu fecha de nacimiento</label>
+              <label>Tú fecha de nacimiento</label>
               <input type="text" />
             </div>
             <div className="profileEdit-desktop__card__button">
