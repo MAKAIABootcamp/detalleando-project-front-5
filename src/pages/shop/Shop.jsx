@@ -15,6 +15,7 @@ import "./shop.scss";
 import NavDesktop from "../../components/nav-desktop/NavDesktop";
 
 const Shop = ({ isTypeSeller }) => {
+  
   const categoriesShop = [
     { name: "Tortas", image: cake },
     { name: "Chocolate", image: choco },
@@ -82,7 +83,7 @@ const Shop = ({ isTypeSeller }) => {
           <div className="shop-main-content">
           <div className="categories-shop">
             {categoriesShop.map((category) => (
-              <div className="category">
+              <div className="category" key={category.name}>
                 <img src={category.image} alt={category.name} />
                 <p>{category.name}</p>
               </div>

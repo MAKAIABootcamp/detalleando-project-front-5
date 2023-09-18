@@ -4,7 +4,7 @@ import arrowBack from "/arrowback.svg";
 import { useNavigate } from "react-router-dom";
 import user from "/test.jfif";
 import { useDispatch } from "react-redux";
-import { logout } from "../../redux/store/auth/authActions";
+import { logout } from "../../redux/auth/authActions";
 
 const ProfileEdit = ({ isTypeSeller }) => {
 

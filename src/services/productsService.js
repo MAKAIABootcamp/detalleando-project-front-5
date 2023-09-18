@@ -1,4 +1,4 @@
-import { collection, getDocs } from "firebase/firestore";
+import { collection, doc, getDoc, getDocs, query, where } from "firebase/firestore";
 import { fireStore } from "../firebase/firebaseConfig";
 
 
@@ -16,6 +16,36 @@ export const getProductsFromCollection = async () => {
             })
         });
         return products;
+    } catch (error) {
+        console.log(error);
+        return null;
+    }
+};
+
+export const getStoreProducts = async (idStore) => {
+    const products = [];
+    try {
+        const q = query(collectionRef, where("shopId", "==", idStore));
+        const querySnapshot = await getDocs(q);
+        querySnapshot.forEach((doc) => {
+            products.push({
+                id: doc.id,
+                ...doc.data()
+            });
+        });
+        return products;
+    } catch (error) {
+        console.log(error);
+        return null;
+    }
+}
+
+export const getProductById = async(idProduct) => {
+    try {
+        const q = doc(collectionRef, idProduct);
+        const querySnapshot = await getDoc(q);
+        const product = querySnapshot.data();
+        return product;
     } catch (error) {
         console.log(error);
         return null;

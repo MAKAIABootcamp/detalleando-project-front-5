@@ -1,5 +1,5 @@
-import {getShopsFromCollection} from "../../services/shopsService"
-import { setShops } from "./shopsReducer";
+import {getShopById, getShopsFromCollection} from "../../services/shopsService"
+import { setError, setShops } from "./shopsReducer";
 
 
 export const fillShopsFromCollection = () => async (dispatch) => {
@@ -11,6 +11,21 @@ export const fillShopsFromCollection = () => async (dispatch) => {
         console.log(error);
         dispatch(setError({
             error: true,
+            code: error.code,
+            message: error.message
+        }))
+    }
+};
+
+export const getShopByIdFromCollection = (idShop) => async (dispatch) => {
+    try {
+        const shop = await getShopById(idShop);
+        dispatch(setShops(shop));
+        dispatch(setError(false));
+    } catch (error) {
+        console.log(error);
+        dispatch(setError({
+            error:true,
             code: error.code,
             message: error.message
         }))
