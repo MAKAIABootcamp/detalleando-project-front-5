@@ -51,6 +51,18 @@
           gap: 5px;
           align-items: center;
           padding-top: 5px;
+          .price {
+            font-family: $font-primary;
+            font-size: 20px;
+            font-weight: 600;
+            color: $font-dark;
+          }
+          .process {
+            font-family: $font-primary;
+            font-size: 14px;
+            font-weight: 600;
+            color: $main-blue;
+          }
           img {
             width: 20px;
           }
@@ -59,7 +71,7 @@
           padding: 10px;
           width: 100px;
           background-color: $main-blue;
-          color: $font-dark;
+          color: #fff;
           font-weight: 500;
           font-size: 14px;
           border: none;
@@ -94,14 +106,14 @@
       display: flex;
       border-radius: 10px;
       width: 100%;
-      height: 350px;
+      height: 200px;
       background-color: $background-grey;
       position: relative;
       .order-img {
         width: 40%;
         height: 100%;
         object-fit: cover;
-        border-radius: 10px 10px 0 0;
+        border-radius: 10px 0 0 10px;
       }
       p {
         padding-top: 5px;
@@ -154,7 +166,7 @@
           }
         }
       }
-  
+
       .trash {
         background-color: white;
         border-radius: 50%;

@@ -34,8 +34,8 @@ const Card = () => {
           </div>
           <div className="order-right">
             <div className="order-stats">
-              <span>$ 2.5</span>
-              <span>En proceso</span>
+              <span className="price">$ 2.5</span>
+              <span className="process">En proceso</span>
             </div>
             <button className="order-button" onClick={handleOrder}>
               Ir a la orden
