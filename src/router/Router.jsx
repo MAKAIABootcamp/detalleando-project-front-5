@@ -89,7 +89,7 @@ const Router = () => {
               element={<Home isTypeSeller={userLogged?.isSeller} />}
             />
             <Route
-              path="shop"
+              path=":idShop"
               element={<Shop isTypeSeller={userLogged?.isSeller} />}
             />
             <Route

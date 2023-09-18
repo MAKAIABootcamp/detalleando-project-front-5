@@ -25,7 +25,7 @@ const Home = ({ isTypeSeller }) => {
 
   useEffect(() => {
     dispatch(fillShopsFromCollection());
-  }, [dispatch]);
+  }, []);
 
   return (
     !isTypeSeller && (
@@ -101,7 +101,7 @@ const Home = ({ isTypeSeller }) => {
             <h2>Todas las tiendas</h2>
             <div className="shops-cards-container">
               {shops?.map((shop) => (
-                <div className="shop-card" onClick={() => navigate("/shop")} key={shop.id}>
+                <div className="shop-card" onClick={() => navigate(`/${shop.id}`)} key={shop.id}>
                   <img src={shop?.backgroundImage} alt="" />
                   <figure className="like">
                     <img src={heartWhite} alt="Icon for like" />
