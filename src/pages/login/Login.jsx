@@ -27,15 +27,6 @@ const Login = () => {
     // saveInfo(key, data);
   };
 
-  if (error) {
-    Swal.fire("Oops!", "Ha occurrido un error en el inicio de sesión", "error");
-  }
-  if (error === false) {
-    Swal.fire("Excelente", "Haz iniciado sesión correctamente", "success").then(
-      () => navigate("/home")
-    );
-  }
-
   const phoneAuthentication = () => {
     navigate("/phoneAuthentication");
   };
