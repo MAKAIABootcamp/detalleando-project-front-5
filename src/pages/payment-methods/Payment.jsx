@@ -6,11 +6,11 @@ import creditCard from "/icons/credit-card.svg"
 import close from "/icons/close-circle.svg"
 import "./payment.scss"
 
-const Payment = () => {
+const Payment = ({ isTypeSeller }) => {
 
     const [openForm, setOpenForm] = useState()
 
-  return (
+  return !isTypeSeller && (
     <>
     <main className='payment-main'>
         <div>

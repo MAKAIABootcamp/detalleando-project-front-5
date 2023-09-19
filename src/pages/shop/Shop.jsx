@@ -53,7 +53,7 @@ const Shop = ({ isTypeSeller }) => {
         <header>
           <NavDesktop />
         </header>
-        <main>
+        <main className="shop-main">
           <div className="shop-address">
             <Address />
           </div>

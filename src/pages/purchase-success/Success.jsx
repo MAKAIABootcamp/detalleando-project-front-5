@@ -6,8 +6,8 @@ import Address from '../../components/address/Address'
 import Time from '../../components/time/Time'
 import "./success.scss"
 
-const Success = () => {
-  return (
+const Success = ({ isTypeSeller }) => {
+  return !isTypeSeller && (
     <>
     <main>
         <div className='success-message'>

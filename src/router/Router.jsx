@@ -108,10 +108,10 @@ const Router = () => {
               path="profileEdit"
               element={<ProfileEdit isTypeSeller={userLogged?.isSeller} />}
             />
-            <Route path="checkout" element={<Checkout />} />
-            <Route path="payment-methods" element={<Payment />} />
-            <Route path="purchase-success" element={<Success />} />
-            <Route path="favorites" element={<Favorites />} />
+            <Route path="checkout" element={<Checkout isTypeSeller={userLogged?.isSeller}/>} />
+            <Route path="payment-methods" element={<Payment isTypeSeller={userLogged?.isSeller}/>} />
+            <Route path="purchase-success" element={<Success isTypeSeller={userLogged?.isSeller}/>} />
+            <Route path="favorites" element={<Favorites isTypeSeller={userLogged?.isSeller}/>} />
 
           </Route>
         </Route>

@@ -2,6 +2,9 @@
 
 .favorites-main {
     min-height: 100vh;
+    padding: 1rem 1rem 5rem 1rem;
+    font-family: $font-secondary;
+    color: $font-dark;
     .navigate-back {
         display: flex;
         gap: 30%;

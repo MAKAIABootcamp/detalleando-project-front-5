@@ -119,7 +119,7 @@ const Profile = ({ isTypeSeller }) => {
               <img src={chat} />
               <span>Mensajes</span>
             </div>
-            <div className="main-profile-desktop__filter__card">
+            <div className="main-profile-desktop__filter__card" onClick={() => navigate('/favorites')}>
               <img src={heart} />
               <span>Favoritos</span>
             </div>

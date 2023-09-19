@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState , useEffect } from "react";
 import Address from "../../components/address/Address";
 import calendar from "/icons/calendar.svg";
 import search from "/icons/search.svg";
@@ -6,6 +6,7 @@ import bouquet from "/icons/bouquet.svg";
 import cake from "/icons/cake.svg";
 import arte from "/icons/manualidades.svg";
 import dress from "/icons/dress.svg";
+import gift from "/icons/gift.svg";
 import test from "/test.jfif";
 import heartWhite from "/icons/heart-white.svg";
 import delivery from "/icons/delivery.svg";
@@ -19,13 +20,23 @@ import { useDispatch, useSelector } from "react-redux";
 import { fillShopsFromCollection } from "../../redux/shops/shopsActions";
 
 const Home = ({ isTypeSeller }) => {
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const { shops } = useSelector((store) => store.shops);
+
+    const [selectedCategory, setSelectedCategory] = useState("All");
+    const [searchValue, setSearchValue] = useState("");
+    const [filteredShops, setFilteredShops] = useState([]);
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const { shops } = useSelector((store) => store.shops);
 
   useEffect(() => {
     dispatch(fillShopsFromCollection());
   }, []);
+    // useEffect(() => 
+    //     { 
+    //       setFilteredShops(shops.filter(shop => shop.name.toLowerCase().includes(searchValue.toLowerCase())) );
+
+    //     }, [searchValue, shops])
+  
 
   return (
     !isTypeSeller && (
@@ -44,23 +55,31 @@ const Home = ({ isTypeSeller }) => {
             <img src={search} alt="Icon for search" className="search-icon" />
           </div>
           <div className="categories">
-            <div className="category category-blue">
+            <div className="category category-blue" onClick={() => setSelectedCategory("Bouquets y arreglos")}>
               <p>Bouquets y arreglos</p>
               <img src={bouquet} alt="Icon for bouquets" />
             </div>
-            <div className="category category-pink">
-              <p>Pasteleria y confeteria</p>
-              <img src={cake} alt="Icon for pasteleria" />
+            <div className='category category-pink' onClick={() => setSelectedCategory("Pasteleria y confeteria")}>
+                <p>Pasteleria y confeteria</p>
+                <img src={cake} alt="Icon for pasteleria" />
             </div>
-            <div className="category category-pink">
-              <p>Artesanias</p>
-              <img src={arte} alt="Icon for artesanias" />
+            <div className='category category-pink' onClick={() => setSelectedCategory("Artesanias")}>
+                <p>Artesanias</p>
+                <img src={arte} alt="Icon for artesanias" />
             </div>
-            <div className="category category-blue">
-              <p>Ropa y accesorios</p>
-              <img src={dress} alt="Icon for ropa" />
+            <div className='category category-blue' onClick={() => setSelectedCategory("Ropa y accesorios")}>
+                <p>Ropa y accesorios</p>
+                <img src={dress} alt="Icon for ropa" />
             </div>
+            { selectedCategory !== "All" &&
+            <div className='category category-peach' onClick={() => setSelectedCategory("All")}>
+              <p>Todas categorías</p>
+            <img src={gift} alt="Icon for gift" />
+        </div>
+            }
           </div>
+          { selectedCategory === "All" &&
+            <>
           <div className="section">
             <h2>Repetir orden</h2>
             <div className="cards-container">
@@ -82,7 +101,7 @@ const Home = ({ isTypeSeller }) => {
           <div className="section">
             <h2>Productos favoritos</h2>
             <div className="cards-container">
-              <div className="card">
+              <div className="card" onClick={() => navigate("/product")}>
                 <img src={test} alt="" />
                 <div>
                   <p>Cupcakes with cream cheese</p>
@@ -97,10 +116,18 @@ const Home = ({ isTypeSeller }) => {
               </div>
             </div>
           </div>
+          </>}
           <div className="section">
-            <h2>Todas las tiendas</h2>
+            { selectedCategory!== "All" ? <h2>{selectedCategory}</h2> : <h2>Todas las tiendas</h2>}
+            
             <div className="shops-cards-container">
-              {shops?.map((shop) => (
+              {shops?.map((shop) => {
+                if (
+                  selectedCategory === "All" ||
+                  (shop.category &&
+                    shop.category === selectedCategory)
+                ) {
+                  return (
                 <div className="shop-card" onClick={() => navigate(`/${shop.id}`)} key={shop.id}>
                   <img src={shop?.backgroundImage} alt="" />
                   <figure className="like">
@@ -126,7 +153,7 @@ const Home = ({ isTypeSeller }) => {
                     </div>
                   </div>
                 </div>
-              ))}
+              )}})}
             </div>
           </div>
         </main>
