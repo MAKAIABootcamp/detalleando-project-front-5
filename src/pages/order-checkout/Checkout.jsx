@@ -8,8 +8,8 @@ import Address from '../../components/address/Address'
 import Time from '../../components/time/Time'
 import "./checkout.scss"
 
-const Checkout = () => {
-  return (
+const Checkout = ({ isTypeSeller }) => {
+  return !isTypeSeller && (
     <>
     <main className='checkout-main'>
         <h1>Proceso del pago</h1>

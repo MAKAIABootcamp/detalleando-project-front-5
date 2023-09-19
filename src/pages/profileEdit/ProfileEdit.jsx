@@ -31,7 +31,6 @@ const ProfileEdit = ({ isTypeSeller }) => {
   };
 
   const handleLogout = () => {
-    console.log('hice click')
     dispatch(logout());
   }
 

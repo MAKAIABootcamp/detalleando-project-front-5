@@ -1,8 +1,8 @@
-import { collection, getDocs } from "firebase/firestore";
-import { firestore } from "../firebase/firebaseConfig";
+import { collection, doc, getDoc, getDocs} from "firebase/firestore";
+import { fireStore } from "../firebase/firebaseConfig";
 
 const collectionName = "sellersUsers";
-const collectionRef = collection(firestore, collectionName)
+const collectionRef = collection(fireStore, collectionName);
 
 export const getShopsFromCollection = async () => {
     const shops = [];
@@ -18,5 +18,17 @@ export const getShopsFromCollection = async () => {
     } catch (error) {
         console.log(error);
         return null;
+    }
+}
+
+export const getShopById = async (idShop) => {
+    try {
+        const q = doc(collectionRef, idShop);
+        const querySnapshot = await getDoc(q);
+        const shop = querySnapshot.data();
+        return shop;
+    } catch (error) {
+     console.log(error);
+     return null;   
     }
 }

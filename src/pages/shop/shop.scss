@@ -3,7 +3,7 @@
 header {
     display: none;
 }
-main {
+main, .shop-main {
     background-color: white;
     padding: 1rem 1rem 5rem 1rem;
     font-family: $font-secondary;
@@ -147,11 +147,25 @@ main {
     }
 }
 
+@media (min-width: 500px) {
+    .shop-main {
+        padding: 1rem 10%;
+    .categories-shop, .shop-main .categories-shop {
+        gap: 10%;
+    }
+    .shop-options .search {
+        input {
+            width: 20rem;
+        }
+    }
+}
+}
+
 @media (min-width: 700px) {
     header {
         display: inline-block;
     }
-    main {
+    .shop-main {
         padding: 1rem;
         .shop-desktop-layout {
             display: flex;
@@ -181,6 +195,7 @@ main {
             .categories-shop {
                 flex-direction: column;
                 margin: 1rem 2rem;
+                gap: 1rem;
             }
         }
         .shop-section .shop-cards-container .card {
@@ -195,6 +210,7 @@ main {
             img {
                 height: 100%;
                 width: 50%;
+                border-radius: 10px 0 0 10px;
             }
             .price {
                 flex-direction: column;

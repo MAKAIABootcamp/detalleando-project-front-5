@@ -1,4 +1,4 @@
-import { GoogleAuthProvider, createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup, updateProfile } from "firebase/auth";
+import { GoogleAuthProvider, createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
 import { auth } from "../../firebase/firebaseConfig";
 import { setError, setIsLogged, setUserLogged } from "./authReducer";
 import loginFromFirestore from "../../services/loginFromCollection";
@@ -170,3 +170,44 @@ export const createAnSellerUser = (newUser) => {
     }
   }
 }
+
+export const getUserActionFromCollection = (uid) => {
+  return async (dispatch) => {
+    try {
+      const userLogged = await getUserFromCollection(uid);
+      dispatch(setUserLogged(userLogged));
+      dispatch(setIsLogged(true));
+      dispatch(setError(false));
+    } catch (error) {
+      console.log(error);
+      dispatch(
+        setError({
+          error: true,
+          code: error.code,
+          message: error.message,
+        })
+      );
+    }
+  };
+};
+
+export const getSellerActionFromCollection = (uid) => {
+  return async (dispatch) => {
+    try {
+      const userLogged = await getSellerUserFromCollection(uid);
+      // console.log(userLogged);
+      dispatch(setUserLogged(userLogged));
+      dispatch(setIsLogged(true));
+      dispatch(setError(false));
+    } catch (error) {
+      console.log(error);
+      dispatch(
+        setError({
+          error: true,
+          code: error.code,
+          message: error.message,
+        })
+      );
+    }
+  };
+};

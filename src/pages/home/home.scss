@@ -55,6 +55,9 @@ header {
         .category-pink {
             background-color: $main-pink;
         }
+        .category-peach {
+            background-color: $background-peach;
+        }
     }
     .section {
         margin-top: 1rem;
@@ -163,6 +166,24 @@ header {
     }
 }
 
+@media (min-width: 450px) {
+    .main-home .categories {
+        .category {
+            padding: 5px 40px;
+            width: 12rem;
+        }
+    }
+}
+
+@media (min-width: 520px) {
+    .main-home .categories {
+        .category {
+            padding: 5px 40px;
+            width: 15rem;
+        }
+    }
+}
+
 @media (min-width: 700px) {
     header {
         display: inline-block;
@@ -177,6 +198,11 @@ header {
         .categories {
             display: flex;
             justify-content: center;
+            margin: 0 0 1.5rem 0;
+            .category {
+                padding: 5px 10px;
+                width: 10rem;
+            }
         }
         .section .cards-container .card {
             display: flex;

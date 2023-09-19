@@ -7,7 +7,7 @@ import delivery from "/icons/delivery.svg"
 import star from "/icons/star.svg"
 import "./favorites.scss"
 
-const Favorites = () => {
+const Favorites = ({ isTypeSeller }) => {
 
     const [likedProducts, seeLikedProducts] = useState(true)
     const [likedShops, seeLikedShops] = useState(false)
@@ -22,7 +22,7 @@ const Favorites = () => {
             seeLikedShops(false)
         }
     }
-  return (
+  return !isTypeSeller && (
     <>
     <main className='favorites-main'>
         <div className='navigate-back'>

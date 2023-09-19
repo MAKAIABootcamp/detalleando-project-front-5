@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Address from "../../components/address/Address";
 import test from "/test.jfif";
 import delivery from "/icons/delivery.svg";
@@ -13,6 +13,10 @@ import chocoBox from "/icons/chocolate-box.svg";
 import NavMobile from "../../components/nav-mobile/NavMobile";
 import "./shop.scss";
 import NavDesktop from "../../components/nav-desktop/NavDesktop";
+import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
+import { getShopById } from "../../services/shopsService";
+import { getShopProductFromCollection } from "../../redux/products/productsActions";
 
 const Shop = ({ isTypeSeller }) => {
   const categoriesShop = [
@@ -22,6 +26,26 @@ const Shop = ({ isTypeSeller }) => {
     { name: "Panadería", image: croissant },
     { name: "Más dulces", image: chocoBox },
   ];
+  const dispatch = useDispatch();
+  const { idShop } = useParams();
+  const [shop, setShop] = useState([]);
+  const { products } = useSelector((store) => store.products);
+
+  useEffect(() => {
+    dispatch(getShopProductFromCollection(idShop));
+    getShop();
+  }, []);
+
+  const getShop = async () => {
+    try {
+      const response = await getShopById(idShop);
+      setShop(response);
+      return response;
+    } catch (error) {
+      console.log(error);
+      return null
+    }
+  };
 
   return (
     !isTypeSeller && (
@@ -29,7 +53,7 @@ const Shop = ({ isTypeSeller }) => {
         <header>
           <NavDesktop />
         </header>
-        <main>
+        <main className="shop-main">
           <div className="shop-address">
             <Address />
           </div>
@@ -41,11 +65,8 @@ const Shop = ({ isTypeSeller }) => {
               <div className="shop-page-info">
                 <img src={test} alt="Icon for logo" />
                 <div>
-                  <h2>Shop name</h2>
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut
-                    vel dui risus. Pellentesque eros leo,{" "}
-                  </p>
+                  <h2>{shop?.storeName}</h2>
+                  <p>{shop?.description}</p>
                 </div>
               </div>
               <div className="stats">
@@ -80,50 +101,52 @@ const Shop = ({ isTypeSeller }) => {
             </div>
           </div>
           <div className="shop-main-content">
-          <div className="categories-shop">
-            {categoriesShop.map((category) => (
-              <div className="category">
-                <img src={category.image} alt={category.name} />
-                <p>{category.name}</p>
-              </div>
-            ))}
-          </div>
-          <div>
-          <div className="shop-section">
-            <h2>Los mas vendidos</h2>
-            <div className="shop-cards-container">
-              <div className="card">
-                <img src={test} alt="" />
-                <div>
-                  <h4>Cupcakes with cream cheese</h4>
-                  <div className="price">
-                    <span>$ 14</span>
+            <div className="categories-shop">
+              {categoriesShop.map((category) => (
+                <div className="category" key={category.name}>
+                  <img src={category.image} alt={category.name} />
+                  <p>{category.name}</p>
+                </div>
+              ))}
+            </div>
+            <div>
+              <div className="shop-section">
+                <h2>Los mas vendidos</h2>
+                <div className="shop-cards-container">
+                  <div className="card">
+                    <img src={test} alt="" />
+                    <div>
+                      <h4>Cupcakes with cream cheese</h4>
+                      <div className="price">
+                        <span>$ 14</span>
+                      </div>
+                    </div>
+                    <figure className="like">
+                      <img src={heartWhite} alt="Icon for like" />
+                    </figure>
                   </div>
                 </div>
-                <figure className="like">
-                  <img src={heartWhite} alt="Icon for like" />
-                </figure>
               </div>
-            </div>
-          </div>
-          <div className="shop-section">
-            <h2>Tortas</h2>
-            <div className="shop-cards-container">
-              <div className="card">
-                <img src={test} alt="" />
-                <div>
-                  <h4>Cupcakes with cream cheese</h4>
-                  <div className="price">
-                    <span>$ 14</span>
+              <div className="shop-section">
+                <h2>Tortas</h2>
+                {products?.map((product) => (
+                  <div className="shop-cards-container" key={product.id}>
+                    <div className="card">
+                      <img src={product?.main-image} alt="" />
+                      <div>
+                        <h4>{product?.name}</h4>
+                        <div className="price">
+                          <span>$ {product?.price}</span>
+                        </div>
+                      </div>
+                      <figure className="like">
+                        <img src={heartWhite} alt="Icon for like" />
+                      </figure>
+                    </div>
                   </div>
-                </div>
-                <figure className="like">
-                  <img src={heartWhite} alt="Icon for like" />
-                </figure>
+                ))}
               </div>
             </div>
-          </div>
-          </div>
           </div>
         </main>
         <div className="shop-nav">

@@ -1,17 +1,21 @@
 @import "../../assets/styles/variables.scss";
 
+header {
+    display: none;
+}
 .product-main {
     background-color: white;
     padding: 0 0 4rem 0;
     font-family: $font-secondary;
     color: $font-dark;
     .main-image {
-        width: 100wv;
-        height: 40%;
+        width: 100%;
+        height: 40vh;
         position: relative;
-        .main-image {
+        .main-product-image {
             width: 100%;
             height: 100%;
+            object-fit: cover;
         }
         .back {
             background-color: white;
@@ -56,7 +60,10 @@
             font-size: 24px;
             font-weight: 600;
             text-align: left;
-            padding: 5px 0;
+            padding: 5px 0 10px 0;
+        }
+        .desktop-price {
+            display: none;
         }
         .delivery {
             font-weight: 700;
@@ -66,9 +73,11 @@
             display: flex;
             align-items: center;
             margin-top: 10px;
+            gap: 10px;
             img {
                 width: 40px;
                 height: 40px;
+                border-radius: 50%;
             }
         }
         .description {
@@ -76,6 +85,9 @@
             padding: 10px 0 5px 0;
             font-size: 18px;
         }
+    }
+    .desktop-add-button{
+        display: none;
     }
     .more-products {
         margin: 1rem;
@@ -152,5 +164,116 @@
             gap: 20px;
             align-items: center;
         }
+    }
+}
+
+@media (min-width: 650px) {
+    header {
+        display: inline-block;
+    }
+.product-main {
+    padding: 1rem;
+    .desktop-product-container{
+        display: flex;
+        gap: 1rem;
+    
+    .main-image {
+        max-width: 40%;
+        height: 60vh;
+        .back {
+        display: none;
+    }
+    }
+    .secondary-images {
+        flex-direction: column;
+        img {
+            width: 70px;
+        }
+    }
+    .product-info {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        .desktop-price {
+            display: flex;
+            justify-content: space-around;
+            padding: 1rem 0;
+            align-items: center;
+            span {
+                font-size: 36px;
+                font-weight: 700;
+                font-family: $font-primary;
+            }
+            .desktop-quantity {
+                display: flex;
+                gap: 10px;
+                align-items: center;
+                select {
+                    border: 1px solid $font-dark;
+                    border-radius: 10px;
+                    padding: 5px 10px;
+                }
+            }
+        }
+        .desktop-shop-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+            .shop-info {
+                margin-top: 0;
+                img {
+                    width: 60px;
+                    height: 60px;
+                }
+            }
+        }
+    
+    .desktop-add-button {
+        display: inline-block;
+        background-color: $main-blue;
+        color: white;
+        padding: 15px 25px;
+        font-size: 24px;
+        border-radius: 10px;
+        border: none;
+        width: fit-content;
+        align-self: flex-end;
+    }
+}
+}
+.more-products .shop-cards-container .card {
+    display: flex;
+            width: 300px;
+            height: 150px;
+            padding-bottom: 0;
+            h4 {
+                margin-top: 1rem;
+                font-size: 18px;
+            }
+            img {
+                height: 100%;
+                width: 50%;
+                border-radius: 10px 0 0 10px;
+            }
+            .price {
+                flex-direction: column;
+                gap: 30px;
+                margin-top: 30%;
+                margin-left: 10%;
+            }
+            .like {
+                top: 75%;
+            }
+}
+    .product-footer {
+        display: none;
+    }
+    }
+}
+
+@media (min-width: 1000px) {
+    .product-main {
+        padding: 1rem 10%;
     }
 }
