@@ -1,5 +1,5 @@
 import {getShopById, getShopsFromCollection} from "../../services/shopsService"
-import { setError, setShops } from "./shopsReducer";
+import { setError, setShopSelection, setShops } from "./shopsReducer";
 
 
 export const fillShopsFromCollection = () => async (dispatch) => {
@@ -20,7 +20,7 @@ export const fillShopsFromCollection = () => async (dispatch) => {
 export const getShopByIdFromCollection = (idShop) => async (dispatch) => {
     try {
         const shop = await getShopById(idShop);
-        dispatch(setShops(shop));
+        dispatch(setShopSelection(shop));
         dispatch(setError(false));
     } catch (error) {
         console.log(error);
@@ -30,4 +30,5 @@ export const getShopByIdFromCollection = (idShop) => async (dispatch) => {
             message: error.message
         }))
     }
-}
+};
+

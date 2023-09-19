@@ -17,6 +17,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getShopById } from "../../services/shopsService";
 import { getShopProductFromCollection } from "../../redux/products/productsActions";
+import { getShopByIdFromCollection } from "../../redux/shops/shopsActions";
 
 const Shop = ({ isTypeSeller }) => {
   const categoriesShop = [
@@ -30,22 +31,24 @@ const Shop = ({ isTypeSeller }) => {
   const { idShop } = useParams();
   const [shop, setShop] = useState([]);
   const { products } = useSelector((store) => store.products);
+  const { selectedShop } = useSelector((store) => store.shops);
 
   useEffect(() => {
     dispatch(getShopProductFromCollection(idShop));
-    getShop();
+    dispatch(getShopByIdFromCollection(idShop));
+    // getShop();
   }, []);
 
-  const getShop = async () => {
-    try {
-      const response = await getShopById(idShop);
-      setShop(response);
-      return response;
-    } catch (error) {
-      console.log(error);
-      return null
-    }
-  };
+  // const getShop = async () => {
+  //   try {
+  //     const response = await getShopById(idShop);
+  //     setShop(response);
+  //     return response;
+  //   } catch (error) {
+  //     console.log(error);
+  //     return null
+  //   }
+  // };
 
   return (
     !isTypeSeller && (
@@ -65,8 +68,8 @@ const Shop = ({ isTypeSeller }) => {
               <div className="shop-page-info">
                 <img src={test} alt="Icon for logo" />
                 <div>
-                  <h2>{shop?.storeName}</h2>
-                  <p>{shop?.description}</p>
+                  <h2>{selectedShop?.storeName}</h2>
+                  <p>{selectedShop?.description}</p>
                 </div>
               </div>
               <div className="stats">
@@ -132,7 +135,7 @@ const Shop = ({ isTypeSeller }) => {
                 {products?.map((product) => (
                   <div className="shop-cards-container" key={product.id}>
                     <div className="card">
-                      <img src={product?.main-image} alt="" />
+                      <img src={product?.mainImage} alt="" />
                       <div>
                         <h4>{product?.name}</h4>
                         <div className="price">
