@@ -22,7 +22,8 @@ const SellerRegister = () => {
             logo: image,
             backgroundImage: "",
             description: "",
-            isSeller: true
+            isSeller: true,
+            deliveryPrice: ""
         }
         if(data.password.length < 6){
             Swal.fire(

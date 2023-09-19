@@ -26,28 +26,42 @@ import SellerRegister from "../pages/sellerRegister/SellerRegister";
 import ProfileSeller from "../pages/profileSeller/ProfileSeller";
 import Mapa from "../pages/mapa/Mapa";
 import { onAuthStateChanged } from "firebase/auth";
-import { getSellerActionFromCollection, getUserActionFromCollection } from "../redux/auth/authActions";
+import {
+  getSellerActionFromCollection,
+  getUserActionFromCollection,
+} from "../redux/auth/authActions";
 import { auth } from "../firebase/firebaseConfig";
-
 
 const Router = () => {
   const dispatch = useDispatch();
   const { isLogged, userLogged } = useSelector((store) => store.auth);
+  const userSession = JSON.parse(sessionStorage.getItem("user"));
+  const [ checking, setChecking ] = useState(true);
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
         const uid = user.uid;
         if (!userLogged?.id) {
-          dispatch(getUserActionFromCollection(uid));
-          dispatch(getSellerActionFromCollection(uid));
+          if (userSession?.isSeller) {
+            dispatch(getSellerActionFromCollection(uid));
+          } else {
+            dispatch(getUserActionFromCollection(uid));
+          }
         }
-      } 
+      }
+      setTimeout(() => {
+        setChecking(false);
+      }, 1500);
       //else {
       //   console.log("No hay sesión activa");
       // }
     });
   }, [dispatch, userLogged]);
+
+  if(checking){
+    return <h1>Cargando...</h1>
+  }
 
   return (
     <BrowserRouter>
@@ -70,7 +84,10 @@ const Router = () => {
           </Route>
 
           <Route element={<PrivateRouter isAuthenticate={isLogged} />}>
-            <Route path="mapa" element={<Mapa isTypeSeller={userLogged?.isSeller} />} />
+            <Route
+              path="mapa"
+              element={<Mapa isTypeSeller={userLogged?.isSeller} />}
+            />
             <Route
               path="homeseller"
               element={<HomeSeller isTypeSeller={userLogged?.isSeller} />}
@@ -83,7 +100,10 @@ const Router = () => {
               path="ventas"
               element={<SaleSeller isTypeSeller={userLogged?.isSeller} />}
             />
-            <Route path="perfil" element={<ProfileSeller isTypeSeller={userLogged?.isSeller} />} />
+            <Route
+              path="perfil"
+              element={<ProfileSeller isTypeSeller={userLogged?.isSeller} />}
+            />
             <Route
               path="home"
               element={<Home isTypeSeller={userLogged?.isSeller} />}
@@ -112,7 +132,6 @@ const Router = () => {
             <Route path="payment-methods" element={<Payment />} />
             <Route path="purchase-success" element={<Success />} />
             <Route path="favorites" element={<Favorites />} />
-
           </Route>
         </Route>
       </Routes>

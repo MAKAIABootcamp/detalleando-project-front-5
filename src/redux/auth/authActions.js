@@ -1,24 +1,52 @@
-import { GoogleAuthProvider, createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
+import {
+  GoogleAuthProvider,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signInWithPopup,
+  signOut,
+  updateProfile,
+} from "firebase/auth";
 import { auth } from "../../firebase/firebaseConfig";
 import { setError, setIsLogged, setUserLogged } from "./authReducer";
 import loginFromFirestore from "../../services/loginFromCollection";
-import { createAnUserInCollection, getUserFromCollection } from "../../services/getUser";
-import { createAnSellerUserInCollection, getSellerUserFromCollection } from "../../services/sellerUser";
+import {
+  createAnUserInCollection,
+  getUserFromCollection,
+} from "../../services/getUser";
+import {
+  createAnSellerUserInCollection,
+  getSellerUserFromCollection,
+} from "../../services/sellerUser";
 
 export const loginWithCode = (code) => {
   return async (dispatch) => {
     const confirmationResult = window.confirmationResult;
     try {
-      confirmationResult.confirm(code).then((result) => {
+      confirmationResult.confirm(code).then(async (result) => {
+        let userLogged = {};
         const user = result.user.auth.currentUser;
+        //Buscar el usuario en la colección por user.uid
+        //const userLogged = await getUserFromCollection(user.uid);
+        //if(userLogged?.id){
         const authUser = {
-          displayName: user.displayName,
+          name: user.displayName,
           photoURL: user.photoURL,
-          phoneNumber: user.phoneNumber,
+          phone: user.phoneNumber,
           accessToken: user.accessToken,
+          email: "",
+          isSeller: false,
+          password: "",
+          favoritesShops: [],
+          favoritesProducts: [],
+          address: [],
+          payment: [],
         };
+        //userLogged = await createAnUserInCollection(user.uid, authUser)
+        //}
+
         console.log(user);
         dispatch(setUserLogged(authUser));
+        //dispatch(setUserLogged(userLogged));
         dispatch(setIsLogged(true));
         dispatch(setError(false));
       });
@@ -72,6 +100,7 @@ export const logout = () => {
   return async (dispatch) => {
     try {
       await signOut(auth);
+      sessionStorage.removeItem('user');
       dispatch(setUserLogged(null));
       dispatch(setIsLogged(false));
       dispatch(setError(false));
@@ -82,31 +111,46 @@ export const logout = () => {
 };
 
 export const loginWithEmailAndPassword = (loggedUser) => {
-    return async(dispatch) => {
-        try {
-            const { user } = await signInWithEmailAndPassword(auth, loggedUser.email, loggedUser.password)
-            const foundUser = await getUserFromCollection(user.uid);
-            // console.log("respuesta firebase", user);
-            console.log("respuesta firestore", foundUser);
-            dispatch(setUserLogged(foundUser));
-            dispatch(setIsLogged(true));
-            dispatch(setError(false));
-        } catch (error) {
-            console.log(error);
-            dispatch(setError({
-                error: true,
-                code: error.code,
-                message: error.message
-            }))
-        }
+  return async (dispatch) => {
+    try {
+      const { user } = await signInWithEmailAndPassword(
+        auth,
+        loggedUser.email,
+        loggedUser.password
+      );
+      const foundUser = await getUserFromCollection(user.uid);
+      // console.log("respuesta firebase", user);
+      const userLogged ={
+        id: foundUser.id,
+        isSeller: foundUser.isSeller
+      }
+      sessionStorage.setItem('user', JSON.stringify(userLogged));
+      console.log("respuesta firestore", foundUser);
+      dispatch(setUserLogged(foundUser));
+      dispatch(setIsLogged(true));
+      dispatch(setError(false));
+    } catch (error) {
+      console.log(error);
+      dispatch(
+        setError({
+          error: true,
+          code: error.code,
+          message: error.message,
+        })
+      );
     }
-}
+  };
+};
 
 export const createAnUser = (newUser) => {
   return async (dispatch) => {
     try {
-      const { user } = await createUserWithEmailAndPassword(auth, newUser.email, newUser.password)
-      await updateProfile(auth.currentUser,{
+      const { user } = await createUserWithEmailAndPassword(
+        auth,
+        newUser.email,
+        newUser.password
+      );
+      await updateProfile(auth.currentUser, {
         displayName: newUser.displayName,
         photoURL: newUser.photoURL,
       });
@@ -114,62 +158,82 @@ export const createAnUser = (newUser) => {
       dispatch(setUserLogged(createdUser));
       dispatch(setIsLogged(true));
       dispatch(setError(false));
-      
     } catch (error) {
       console.log(error);
-      dispatch(setError({
-        error: true,
-        code: error.code,
-        message: error.message
-      }))
+      dispatch(
+        setError({
+          error: true,
+          code: error.code,
+          message: error.message,
+        })
+      );
     }
-  }
-}
+  };
+};
 
 export const loginSellerWithEmailAndPassword = (loggedUser) => {
-  return async(dispatch) => {
-      try {
-          const { user } = await signInWithEmailAndPassword(auth, loggedUser.email, loggedUser.password)
-          const foundUser = await getSellerUserFromCollection(user.uid);
-          // console.log("respuesta firebase", user);
-          // console.log("respuesta firestore", foundUser);
-          dispatch(setUserLogged(foundUser));
-          dispatch(setIsLogged(true));
-          dispatch(setError(false));
-      } catch (error) {
-          console.log(error);
-          dispatch(setError({
-              error: true,
-              code: error.code,
-              message: error.message
-          }))
+  return async (dispatch) => {
+    try {
+      const { user } = await signInWithEmailAndPassword(
+        auth,
+        loggedUser.email,
+        loggedUser.password
+      );
+      const foundUser = await getSellerUserFromCollection(user.uid);
+      // console.log("respuesta firebase", user);
+      // console.log("respuesta firestore", foundUser);
+      const userLogged ={
+        id: foundUser.id,
+        isSeller: foundUser.isSeller
       }
-  }
-}
+      sessionStorage.setItem('user', JSON.stringify(userLogged));
+      dispatch(setUserLogged(foundUser));
+      dispatch(setIsLogged(true));
+      dispatch(setError(false));
+    } catch (error) {
+      console.log(error);
+      dispatch(
+        setError({
+          error: true,
+          code: error.code,
+          message: error.message,
+        })
+      );
+    }
+  };
+};
 
 export const createAnSellerUser = (newUser) => {
   return async (dispatch) => {
     try {
-      const { user } = await createUserWithEmailAndPassword(auth, newUser.email, newUser.password)
-      await updateProfile(auth.currentUser,{
+      const { user } = await createUserWithEmailAndPassword(
+        auth,
+        newUser.email,
+        newUser.password
+      );
+      await updateProfile(auth.currentUser, {
         displayName: newUser.displayName,
         photoURL: newUser.photoURL,
       });
-      const createdSellerUser = createAnSellerUserInCollection(user.uid, newUser);
+      const createdSellerUser = createAnSellerUserInCollection(
+        user.uid,
+        newUser
+      );
       dispatch(setUserLogged(createAnSellerUser));
       dispatch(setIsLogged(true));
       dispatch(setError(false));
-      
     } catch (error) {
       console.log(error);
-      dispatch(setError({
-        error: true,
-        code: error.code,
-        message: error.message
-      }))
+      dispatch(
+        setError({
+          error: true,
+          code: error.code,
+          message: error.message,
+        })
+      );
     }
-  }
-}
+  };
+};
 
 export const getUserActionFromCollection = (uid) => {
   return async (dispatch) => {

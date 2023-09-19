@@ -27,6 +27,10 @@ const Home = ({ isTypeSeller }) => {
     dispatch(fillShopsFromCollection());
   }, []);
 
+  const handleSaveShop = (idShop) => {
+    console.log(idShop)
+  }
+
   return (
     !isTypeSeller && (
       <>
@@ -103,7 +107,7 @@ const Home = ({ isTypeSeller }) => {
               {shops?.map((shop) => (
                 <div className="shop-card" onClick={() => navigate(`/${shop.id}`)} key={shop.id}>
                   <img src={shop?.backgroundImage} alt="" />
-                  <figure className="like">
+                  <figure className="like" onClick={() => handleSaveShop(shop.id)}>
                     <img src={heartWhite} alt="Icon for like" />
                   </figure>
                   <div className="shop-price">
@@ -117,7 +121,7 @@ const Home = ({ isTypeSeller }) => {
                     <div>
                       <div className="shop-stats">
                         <img src={delivery} alt="Icon for delivery" />
-                        <span>$ 2.5</span>
+                        <span>$ {shop?.deliveryPrice}</span>
                       </div>
                       <div className="shop-stats raiting">
                         <img src={star} alt="Icon for raiting" />

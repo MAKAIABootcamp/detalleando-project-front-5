@@ -15,6 +15,15 @@ const firebaseConfig = {
   appId: "1:1005473691499:web:ba5370fbe8c2a0315a3e2e"
 };
 
+// const firebaseConfig = {
+//   apiKey: "AIzaSyC7kQ-F_aCQAaX_Z8CKhxLvjznO5109oAE",
+//   authDomain: "detalleandopro.firebaseapp.com",
+//   projectId: "detalleandopro",
+//   storageBucket: "detalleandopro.appspot.com",
+//   messagingSenderId: "694788880687",
+//   appId: "1:694788880687:web:e6acce9401a64107fb49da"
+// };
+
 // Initialize Firebase
 export const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
