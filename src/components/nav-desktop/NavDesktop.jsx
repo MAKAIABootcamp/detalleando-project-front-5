@@ -4,10 +4,11 @@ import search from "/icons/search.svg"
 import { NavLink, useLocation } from 'react-router-dom'
 import cart from "/icons/cart.svg"
 import profile from "/icons/user-circle.svg"
+import trash from "/icons/trash-bin.svg";
 import "./nav.scss"
 import Address from '../address/Address'
 
-const NavDesktop = () => {
+const NavDesktop = ({searchProductsHome}) => {
 
     const location = useLocation()
 
@@ -18,8 +19,9 @@ const NavDesktop = () => {
         {
             location.pathname === "/home" ? 
         <div className='search'>
-            <input type="search" name="" id="" placeholder='Buscar'/>
+            <input type="search" placeholder='Buscar' onChange={searchProductsHome}/>
             <img src={search} alt="Icon for search" className='search-icon'/>
+            <img src={trash} alt="Icon for delete" className="clear-icon" onClick={()=>setActiveSearch(false)}/>
         </div> :
         <Address/>
         }

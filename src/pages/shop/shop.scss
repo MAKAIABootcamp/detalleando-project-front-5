@@ -106,6 +106,7 @@ main, .shop-main {
         }
         .shop-cards-container {
             display: flex;
+            flex-wrap: wrap;
             gap: 1rem;
             .card {
                 border-radius: 10px;
@@ -163,7 +164,7 @@ main, .shop-main {
 
 @media (min-width: 700px) {
     header {
-        display: inline-block;
+        display: flex;
     }
     .shop-main {
         padding: 1rem;

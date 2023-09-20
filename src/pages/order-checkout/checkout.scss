@@ -1,6 +1,10 @@
 @import "../../assets/styles/variables.scss";
 
+header {
+    display: none;
+}
 .checkout-main {
+    padding: 1rem 1rem 5rem 1rem;
     h1 {
         font-family: $font-primary;
         font-size: 2rem;
@@ -133,5 +137,29 @@
         border-radius: 10px;
         border: none;
         margin: 10px 0 0 30%;
+    }
+}
+
+@media (min-width: 700px) {
+    header {
+        display: flex;
+    }
+    .checkout-main {
+    .desktop-checkout-container {
+        .order-details {
+            width: 40%;
+        }
+        .payment-details {
+            width: 40%;
+        }
+        display: flex;
+        justify-content: space-around;
+    }
+    .checkout-button {
+        margin: 2rem 0 0 45%;
+    }
+}
+    .checkout-nav {
+        display: none;
     }
 }

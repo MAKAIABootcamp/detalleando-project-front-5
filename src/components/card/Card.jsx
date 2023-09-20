@@ -10,7 +10,7 @@ import { useNavigate } from "react-router";
 const Card = () => {
   const navigate = useNavigate();
   const handleOrder = () => {
-    navigate("/orderempty");
+    navigate("/checkout");
   };
   return (
     <div className="orders-cards-container">

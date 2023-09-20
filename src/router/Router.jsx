@@ -47,7 +47,7 @@ const Router = () => {
       //   console.log("No hay sesión activa");
       // }
     });
-  }, [dispatch, userLogged]);
+  }, []);
 
   return (
     <BrowserRouter>
@@ -93,7 +93,7 @@ const Router = () => {
               element={<Shop isTypeSeller={userLogged?.isSeller} />}
             />
             <Route
-              path="product"
+              path=":idProduct"
               element={<Product isTypeSeller={userLogged?.isSeller} />}
             />
             <Route

@@ -9,10 +9,10 @@ import "./nav.scss"
 const NavMobile = () => {
   return (
     <nav className='nav-mobile'>
-        <NavLink to={'/'}>
+        <NavLink to={'/home'}>
             <img src={home} alt="Icon for home" />
         </NavLink>
-        <NavLink to={'/favorite'}>
+        <NavLink to={'/favorites'}>
             <img src={favorite} alt="Icon for favorite" />
         </NavLink>
         <NavLink to={'/cart'}>

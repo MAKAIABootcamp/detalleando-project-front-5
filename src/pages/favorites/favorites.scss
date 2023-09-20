@@ -1,5 +1,8 @@
 @import "../../assets/styles/variables.scss";
 
+header {
+    display: none;
+}
 .favorites-main {
     min-height: 100vh;
     padding: 1rem 1rem 5rem 1rem;
@@ -133,3 +136,84 @@
         }
     }
 }
+
+@media (min-width: 500px) {
+    .favorites-main {
+        .favorite-shop-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            .shop-card .shop-price .shop-info {
+                margin-top: 0;
+            }
+        }
+    .favorite-product-container {
+        grid-template-columns: repeat(1, 1fr);
+        padding-left: 20%;
+    
+    .card {
+        display: flex;
+            width: 300px;
+            height: 150px;
+            p {
+                margin-top: 10px;
+            }
+            img {
+                height: 100%;
+                width: 50%;
+                border-radius: 10px 0 0 10px;
+            }
+            .price {
+                flex-direction: column;
+                gap: 30px;
+                margin-top: 10px;
+            }
+            .like {
+                bottom: 5px;
+            }
+    }}}
+}
+
+@media (min-width: 700px) {
+    header {
+        display: flex;
+    }
+    .favorites-main {
+        padding: 1rem;
+        .desktop-favorites-container {
+            display: flex;
+        .favorites-navigation {
+            flex-direction: column;
+            justify-content: flex-start;
+            gap: 2rem;
+            border-bottom: none;
+            border-right: 1px solid $font-light;
+            padding: 1rem 2rem;
+            height: fit-content;
+            font-size: 24px;
+        }}
+        .favorite-shop-container {
+            margin-left: 2rem;
+        }
+    .navigate-back {
+        padding: 1rem 0 2rem 45%;
+    .arrow-back {
+        display: none;
+    }}}
+    .nav-mobile-favorites {
+        display: none;
+    }
+}
+
+@media (min-width: 850px) {
+    .favorites-main .favorite-product-container {
+        grid-template-columns: repeat(2, 1fr);
+        padding-left: 2rem;
+        gap: 1rem;
+    }}
+
+    @media (min-width: 1200px) {
+        .favorites-main .favorite-product-container {
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }}

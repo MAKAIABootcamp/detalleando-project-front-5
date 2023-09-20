@@ -7,12 +7,21 @@ import master from "/icons/mastercard.svg"
 import Address from '../../components/address/Address'
 import Time from '../../components/time/Time'
 import "./checkout.scss"
+import NavDesktop from '../../components/nav-desktop/NavDesktop'
+import { useNavigate } from 'react-router-dom'
 
 const Checkout = ({ isTypeSeller }) => {
+
+    const navigate = useNavigate();
+
   return !isTypeSeller && (
     <>
+    <header>
+        <NavDesktop />
+    </header>
     <main className='checkout-main'>
         <h1>Proceso del pago</h1>
+        <div className='desktop-checkout-container'>
         <div className='order-details'>
             <h2>Detalles del orden</h2>
             <div className='product-info'>
@@ -44,7 +53,7 @@ const Checkout = ({ isTypeSeller }) => {
         <div className='payment-details'>
             <h2>Detalles del pago</h2>
             <div className='payment-method'>
-                <p>Cambiar metodo del pago</p>
+                <p onClick={() => navigate("/payment-methods")}>Cambiar metodo del pago</p>
                 <div className='method'>
                     <img src={master} alt="" />
                     <span>4950 **** **** 3826</span>
@@ -77,9 +86,12 @@ const Checkout = ({ isTypeSeller }) => {
                 </div>
             </div>
         </div>
-        <button className='checkout-button'>Ir al pago</button>
+        </div>
+        <button className='checkout-button' onClick={() => navigate("/purchase-success")}>Ir al pago</button>
     </main>
-    <NavMobile/>
+    <div className='checkout-nav'>
+        <NavMobile/>
+    </div>
     </>
   )
 }
