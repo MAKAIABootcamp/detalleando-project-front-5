@@ -137,8 +137,8 @@ const Shop = ({ isTypeSeller }) => {
               <div className="shop-page-info">
                 <img src={shop?.logo} alt="Icon for logo" />
                 <div>
-                  <h2>{selectedShop?.storeName}</h2>
-                  <p>{selectedShop?.description}</p>
+                  <h2>{shop?.storeName}</h2>
+                  <p>{shop?.description}</p>
                 </div>
               </div>
               <div className="stats">

@@ -125,7 +125,7 @@ export const loginWithEmailAndPassword = (loggedUser) => {
         isSeller: foundUser.isSeller
       }
       sessionStorage.setItem('user', JSON.stringify(userLogged));
-      console.log("respuesta firestore", foundUser);
+      // console.log("respuesta firestore", foundUser);
       dispatch(setUserLogged(foundUser));
       dispatch(setIsLogged(true));
       dispatch(setError(false));
