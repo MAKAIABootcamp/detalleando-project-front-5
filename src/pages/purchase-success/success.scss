@@ -1,6 +1,10 @@
 @import "../../assets/styles/variables.scss";
 
-main {
+main, .success-main {
+    background-color: white;
+    padding: 1rem 1rem 5rem 1rem;
+    font-family: $font-secondary;
+    color: $font-dark;
     .success-message {
         display: flex;
         flex-direction: column;

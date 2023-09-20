@@ -33,14 +33,14 @@ import NavMobile from "../../components/nav-mobile/NavMobile";
 import "./shop.scss";
 import NavDesktop from "../../components/nav-desktop/NavDesktop";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { getShopById } from "../../services/shopsService";
 import { getShopProductFromCollection } from "../../redux/products/productsActions";
 import { searchProducts } from "../../redux/products/productsReducer";
 
 const Shop = ({ isTypeSeller }) => {
 
-
+  const navigate = useNavigate()
   const dispatch = useDispatch();
   const { idShop } = useParams();
   const [shop, setShop] = useState('');
@@ -56,7 +56,7 @@ const Shop = ({ isTypeSeller }) => {
     setShop(shops.find(shop => shop.id == idShop))
     setShopProducts(products.filter(product => product.shopId == idShop))
     getCategories()
-  }, []);
+  }, [shop]);
 
   const searchProductsHome = (e) => {
     const searchParam = e.target.value;
@@ -144,7 +144,7 @@ const Shop = ({ isTypeSeller }) => {
               <div className="stats">
                 <div className="shop-stats">
                   <img src={delivery} alt="Icon for delivery" />
-                  <span>$ {shop?.delivery}</span>
+                  <span>$ {shop?.deliveryPrice}</span>
                 </div>
                 <div className="shop-stats raiting">
                   <img src={star} alt="Icon for raiting" />
@@ -190,7 +190,7 @@ const Shop = ({ isTypeSeller }) => {
                 {
                   search.map((item) => (
                     <div className="card">
-                    <img src={item.image} alt={item.name} />
+                    <img src={item.mainImage} alt={item.name} />
                     <div>
                       <h4>{item.name}</h4>
                       <div className="price">
@@ -224,11 +224,12 @@ const Shop = ({ isTypeSeller }) => {
                 </div>
               </div>
               <div className="shop-section">
-                <h2>Tortas</h2>
+                <h2>Productos</h2>
+                <div className="shop-cards-container" >
                 {shopProducts?.map((product) => (
-                  <div className="shop-cards-container" key={product.id} onClick={() => navigate(`/${product.id}`)}>
-                    <div className="card">
-                      <img src={product?.main-image} alt="" />
+                  
+                    <div className="card" key={product.id} onClick={() => navigate(`/product/${product.id}`)}>
+                      <img src={product?.mainImage} alt={product?.name} />
                       <div>
                         <h4>{product?.name}</h4>
                         <div className="price">
@@ -239,8 +240,9 @@ const Shop = ({ isTypeSeller }) => {
                         <img src={heartWhite} alt="Icon for like" />
                       </figure>
                     </div>
-                  </div>
+                  
                 ))}
+                </div>
               </div>
               </>}
             </div>
