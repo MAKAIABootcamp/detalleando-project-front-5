@@ -1,14 +1,15 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import test from "/test.jfif";
 import heartWhite from "/icons/heart-white.svg";
 import arrow from "/icons/arrow-down.svg";
 import "./product.scss";
 import NavDesktop from "../../components/nav-desktop/NavDesktop";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 const Product = ({ isTypeSeller }) => {
 
+  const navigate = useNavigate()
   const { idProduct } = useParams();
   const { products } = useSelector((store) => store.products);
   const { shops } = useSelector((store) => store.shops);
@@ -19,8 +20,8 @@ const Product = ({ isTypeSeller }) => {
   useEffect(() => {
     setProduct(products.find(item => item.id == idProduct))
     setShop(shops.find(shop => shop.id == product.shopId))
-    setShopProducts(products.filter(product => product.shopId == idShop))
-  }, []);
+    // setShopProducts(products.filter(item => item.shopId == shop.id))
+  }, [product]);
 
   return (
     !isTypeSeller && (
@@ -33,7 +34,7 @@ const Product = ({ isTypeSeller }) => {
             <div className="main-image">
               <img src={product?.mainImage} alt={product?.name} className="main-product-image" />
               <figure className="back">
-                <img src={arrow} alt="Icon for arrow" />
+                <img src={arrow} alt="Icon for arrow" onClick={() => navigate(-1)}/>
               </figure>
               <figure className="like">
                 <img src={heartWhite} alt="Icon for like" />
@@ -41,7 +42,7 @@ const Product = ({ isTypeSeller }) => {
             </div>
             <div className="secondary-images">
               {
-                product?.secondaryImages.map((image) => (
+                product?.secondaryImages?.map((image) => (
                   <img src={image} alt={product?.name} />
                 ))
               }
@@ -63,10 +64,10 @@ const Product = ({ isTypeSeller }) => {
                 </div>
               </div>
               <div className="desktop-shop-info">
-                <p className="delivery">Delivery fee: ${shop?.delivery}</p>
+                <p className="delivery">Delivery fee: ${shop?.deliveryPrice}</p>
                 <div className="shop-info">
-                  <img src={shop?.logo} alt={shop?.name} />
-                  <h3>{shop?.name}</h3>
+                  <img src={shop?.logo} alt={shop?.storeName} />
+                  <h3>{shop?.storeName}</h3>
                 </div>
               </div>
               <p className="description">Descripción del producto</p>

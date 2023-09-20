@@ -9,7 +9,7 @@ import "./success.scss"
 const Success = ({ isTypeSeller }) => {
   return !isTypeSeller && (
     <>
-    <main>
+    <main className='success-main'>
         <div className='success-message'>
             <h2>Gracias por su compra!</h2>
             <img src={test} alt="" />

@@ -65,6 +65,12 @@ main, .shop-main {
                 left: 10px;
                 width: 25px;
             }
+            .clear-icon {
+                position: absolute;
+                top: 10px;
+                right: 10px;
+                width: 25px;
+            }
         }
         .favorite {
             background-color: $main-pink;
