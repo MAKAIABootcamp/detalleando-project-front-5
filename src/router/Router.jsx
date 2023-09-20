@@ -53,9 +53,6 @@ const Router = () => {
       setTimeout(() => {
         setChecking(false);
       }, 1500);
-      //else {
-      //   console.log("No hay sesión activa");
-      // }
     });
   }, [dispatch, userLogged]);
 
