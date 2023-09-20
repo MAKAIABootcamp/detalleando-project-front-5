@@ -3,7 +3,9 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
     isLogged: false,
     userLogged: null,
-    error: null
+    error: null,
+    favoritesShops: [],
+    favoritesProducts: []
 };
   
 const authSlice = createSlice({
@@ -18,6 +20,12 @@ const authSlice = createSlice({
         },
         setError: (state, action) => {
             state.error = action.payload;
+        },
+        setFavoritesShops: (state, action) => {
+            state.favoritesShops = action.payload
+        },
+        setFavoritesProducts: (state, action) => {
+            state.favoritesProducts = action.payload
         }
     }
 })

@@ -24,7 +24,9 @@ const Registro = () => {
         address: [],
         phone: "",
         payment: [],
-        isSeller: false
+        isSeller: false,
+        favoritesProducts: [],
+        favoritesShops: [],
       }
       dispatch(createAnUser(newUser));
       Swal.fire(
