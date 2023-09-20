@@ -1,11 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
 import test from "/test.jfif";
 import heartWhite from "/icons/heart-white.svg";
 import arrow from "/icons/arrow-down.svg";
 import "./product.scss";
 import NavDesktop from "../../components/nav-desktop/NavDesktop";
+import { useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Product = ({ isTypeSeller }) => {
+
+  const { idProduct } = useParams();
+  const { products } = useSelector((store) => store.products);
+  const { shops } = useSelector((store) => store.shops);
+  const [product, setProduct] = useState('')
+  const [shop, setShop] = useState('');
+  const [shopProducts, setShopProducts] = useState([]);
+
+  useEffect(() => {
+    setProduct(products.find(item => item.id == idProduct))
+    setShop(shops.find(shop => shop.id == product.shopId))
+    setShopProducts(products.filter(product => product.shopId == idShop))
+  }, []);
+
   return (
     !isTypeSeller && (
       <>
@@ -15,7 +31,7 @@ const Product = ({ isTypeSeller }) => {
         <main className="product-main">
           <div className="desktop-product-container">
             <div className="main-image">
-              <img src={test} alt="" className="main-product-image" />
+              <img src={product?.mainImage} alt={product?.name} className="main-product-image" />
               <figure className="back">
                 <img src={arrow} alt="Icon for arrow" />
               </figure>
@@ -24,16 +40,18 @@ const Product = ({ isTypeSeller }) => {
               </figure>
             </div>
             <div className="secondary-images">
-              <img src={test} alt="" />
-              <img src={test} alt="" />
-              <img src={test} alt="" />
+              {
+                product?.secondaryImages.map((image) => (
+                  <img src={image} alt={product?.name} />
+                ))
+              }
             </div>
             <div className="product-info">
                 <div>
               <p className="availability">En stock</p>
-              <h2>Cupcakes with cream cheese</h2>
+              <h2>{product?.name}</h2>
               <div className="desktop-price">
-                <span>$ 14</span>
+                <span>$ {product?.price}</span>
                 <div className="desktop-quantity">
                   <label>Quantity</label>
                   <select name="quantity">
@@ -45,16 +63,15 @@ const Product = ({ isTypeSeller }) => {
                 </div>
               </div>
               <div className="desktop-shop-info">
-                <p className="delivery">Delivery fee: $2.5</p>
+                <p className="delivery">Delivery fee: ${shop?.delivery}</p>
                 <div className="shop-info">
-                  <img src={test} alt="" />
-                  <h3>Shop name</h3>
+                  <img src={shop?.logo} alt={shop?.name} />
+                  <h3>{shop?.name}</h3>
                 </div>
               </div>
               <p className="description">Descripción del producto</p>
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut vel
-                dui risus. Pellentesque eros leo,
+              {product?.description}
               </p>
               </div>
               <button className="desktop-add-button">Add to order</button>
@@ -62,20 +79,25 @@ const Product = ({ isTypeSeller }) => {
             
           </div>
           <div className="more-products">
-            <h4>Mas de esa tienda</h4>
+            <h4>Más de esa tienda</h4>
             <div className="shop-cards-container">
-              <div className="card">
-                <img src={test} alt="" />
+              {
+                shopProducts.map((item) => (
+                  <div className="card">
+                <img src={item.mainImage} alt={item.name} />
                 <div>
-                  <h4>Cupcakes with cream cheese</h4>
+                  <h4>{item.name}</h4>
                   <div className="price">
-                    <span>$ 14</span>
+                    <span>$ {item.price}</span>
                   </div>
                 </div>
                 <figure className="like">
                   <img src={heartWhite} alt="Icon for like" />
                 </figure>
               </div>
+                ))
+              }
+              
             </div>
           </div>
           <div className="product-footer">
@@ -86,7 +108,7 @@ const Product = ({ isTypeSeller }) => {
             </div>
             <div className="product-add">
               <h4>Add to order</h4>
-              <span>$14</span>
+              <span>$ {product?.price}</span>
             </div>
           </div>
         </main>

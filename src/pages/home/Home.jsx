@@ -1,7 +1,7 @@
 import React, { useState , useEffect } from "react";
 import Address from "../../components/address/Address";
 import calendar from "/icons/calendar.svg";
-import search from "/icons/search.svg";
+import searchIcon from "/icons/search.svg";
 import bouquet from "/icons/bouquet.svg";
 import cake from "/icons/cake.svg";
 import arte from "/icons/manualidades.svg";
@@ -11,6 +11,7 @@ import test from "/test.jfif";
 import heartWhite from "/icons/heart-white.svg";
 import delivery from "/icons/delivery.svg";
 import star from "/icons/star.svg";
+import trash from "/icons/trash-bin.svg";
 import NavMobile from "../../components/nav-mobile/NavMobile";
 import "./home.scss";
 import NavDesktop from "../../components/nav-desktop/NavDesktop";
@@ -18,31 +19,40 @@ import Banner from "../../components/home-banner/Banner";
 import { useNavigate } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { fillShopsFromCollection } from "../../redux/shops/shopsActions";
+import { fillProductsFromCollection } from "../../redux/products/productsActions";
+import { searchProducts } from "../../redux/products/productsReducer";
 
 const Home = ({ isTypeSeller }) => {
 
     const [selectedCategory, setSelectedCategory] = useState("All");
-    const [searchValue, setSearchValue] = useState("");
-    const [filteredShops, setFilteredShops] = useState([]);
+    // const [searchValue, setSearchValue] = useState("");
+    // const [filteredProducts, setFilteredProducts] = useState([]);
+    const [activeSearch, setActiveSearch] = useState(false);
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const { shops } = useSelector((store) => store.shops);
+    const { products, search } = useSelector((store) => store.products);
 
   useEffect(() => {
     dispatch(fillShopsFromCollection());
+    dispatch(fillProductsFromCollection())
   }, []);
-    // useEffect(() => 
-    //     { 
-    //       setFilteredShops(shops.filter(shop => shop.name.toLowerCase().includes(searchValue.toLowerCase())) );
 
-    //     }, [searchValue, shops])
-  
+  const searchProductsHome = (e) => {
+    const searchParam = e.target.value;
+
+    if (searchParam.length > 1) {
+        setActiveSearch(true);
+        const filter = products?.filter(product => product.name.toLowerCase().includes(searchParam.toLowerCase()))
+        dispatch(searchProducts(filter));
+    }
+}
 
   return (
     !isTypeSeller && (
       <>
         <header>
-          <NavDesktop />
+          <NavDesktop searchProductsHome={searchProductsHome}/>
           <Banner />
         </header>
         <main className="main-home">
@@ -51,9 +61,30 @@ const Home = ({ isTypeSeller }) => {
             <img src={calendar} alt="Icon for events" className="calendar" />
           </div>
           <div className="search">
-            <input type="search" name="" id="" placeholder="Buscar" />
-            <img src={search} alt="Icon for search" className="search-icon" />
+            <input type="search" placeholder="Buscar" onChange={searchProductsHome}/>
+            <img src={searchIcon} alt="Icon for search" className="search-icon" />
+            <img src={trash} alt="Icon for delete" className="clear-icon" onClick={()=>setActiveSearch(false)}/>
           </div>
+          { activeSearch && search?.length > 0 ? 
+          <div className="section">
+          <div className="cards-container">
+            {
+            search.map((item) => (
+            <div className="card">
+              <img src={item.mainImage} alt={item.name} />
+              <div>
+                <p>{item.name}</p>
+                <div className="price">
+                  <h4>Shop name</h4>
+                  <span>$ {item.price}</span>
+                </div>
+              </div>
+              <figure className="like">
+                <img src={heartWhite} alt="Icon for like" />
+              </figure>
+            </div>))}
+          </div>
+        </div> : <>
           <div className="categories">
             <div className="category category-blue" onClick={() => setSelectedCategory("Bouquets y arreglos")}>
               <p>Bouquets y arreglos</p>
@@ -155,7 +186,7 @@ const Home = ({ isTypeSeller }) => {
                 </div>
               )}})}
             </div>
-          </div>
+          </div></>}
         </main>
         <div className="mobile-navbar">
           <NavMobile />

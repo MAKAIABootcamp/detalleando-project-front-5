@@ -6,6 +6,7 @@ import heartPink from "/icons/heart-pink.svg"
 import delivery from "/icons/delivery.svg"
 import star from "/icons/star.svg"
 import "./favorites.scss"
+import NavDesktop from '../../components/nav-desktop/NavDesktop'
 
 const Favorites = ({ isTypeSeller }) => {
 
@@ -24,11 +25,15 @@ const Favorites = ({ isTypeSeller }) => {
     }
   return !isTypeSeller && (
     <>
+    <header>
+        <NavDesktop />
+    </header>
     <main className='favorites-main'>
         <div className='navigate-back'>
-            <img src={arrow} alt="Icon for go back" />
+            <img src={arrow} alt="Icon for go back" className='arrow-back'/>
             <h3>Favoritos</h3>
         </div>
+        <div className='desktop-favorites-container'>
         <div className='favorites-navigation'>
             <p onClick={handleClick} className={likedProducts? 'chosen' : ''}>Productos</p>
             <p onClick={handleClick} className={likedShops? 'chosen' : ''}>Tiendas</p>
@@ -97,8 +102,11 @@ const Favorites = ({ isTypeSeller }) => {
                 </div>
         </div>
         }
+        </div>
     </main>
-    <NavMobile/>
+    <div className='nav-mobile-favorites'>
+        <NavMobile/>
+    </div>
     </>
   )
 }

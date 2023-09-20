@@ -61,7 +61,7 @@ const Profile = ({ isTypeSeller }) => {
 
           <section className="profile-section">
             <hr className="button-divider" />
-            <div className="order-section">
+            <div className="order-section" onClick={() => navigate('/cart')}>
               <h3>Ordenes</h3>
               <figure className="arrow-right">
                 <img src={arrowB} alt="Arrow right" />
@@ -103,7 +103,7 @@ const Profile = ({ isTypeSeller }) => {
             </div>
           </div>
           <section className="main-profile-desktop__filter">
-            <div className="main-profile-desktop__filter__card">
+            <div className="main-profile-desktop__filter__card" onClick={() => navigate('/cart')}>
               <img src={regalo} />
               <span>Ordenes</span>
             </div>

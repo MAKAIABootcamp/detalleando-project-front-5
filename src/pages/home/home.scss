@@ -31,6 +31,12 @@ header {
             left: 10px;
             width: 25px;
         }
+        .clear-icon {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 25px;
+        }
     }
     .categories {
         display: grid;
@@ -186,7 +192,8 @@ header {
 
 @media (min-width: 700px) {
     header {
-        display: inline-block;
+        display: flex;
+        flex-direction: column;
     }
     .main-home {
         .choose-address {
@@ -238,9 +245,9 @@ header {
     }
 }
 
-@media (min-width: 1000px) {
+@media (min-width: 1050px) {
     .main-home {
-        padding: 1rem 10%;
+        padding: 1rem;
         .categories {
             justify-content: space-around;
             margin: 10px 0;
@@ -260,3 +267,8 @@ header {
         }
     }
 }
+
+@media (min-width: 1300px) {
+    .main-home {
+        padding: 1rem 10%;
+    }}
