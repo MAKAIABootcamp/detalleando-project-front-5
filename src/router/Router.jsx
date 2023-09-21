@@ -57,9 +57,9 @@ const Router = () => {
     });
   }, [dispatch, userLogged]);
 
-  if(checking){
-    return <Loader />
-  }
+  // if(checking){
+  //   return <Loader />
+  // }
 
   return (
     <BrowserRouter>
