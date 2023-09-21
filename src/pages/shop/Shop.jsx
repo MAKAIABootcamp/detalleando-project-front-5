@@ -238,7 +238,7 @@ const Shop = ({ isTypeSeller }) => {
                         </div>
                       </div>
                       <figure className="like">
-                        <CardFavoritesProducts id={product?.id} />
+                        <CardFavoritesProducts idProduct={product?.id} />
                       </figure>
                     </div>
                   

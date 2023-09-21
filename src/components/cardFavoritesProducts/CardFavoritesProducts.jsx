@@ -4,7 +4,7 @@ import heartPink from "/icons/heart-pink.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { updateFavoritesProducts } from "../../redux/auth/authActions";
 
-const CardFavoritesProducts = ({ id }) => {
+const CardFavoritesProducts = ({ idProduct }) => {
   const [favorite, setFavorite] = useState(false);
   const dispatch = useDispatch();
   const { favoritesProducts, userLogged } = useSelector((store) => store.auth);
@@ -14,7 +14,7 @@ const CardFavoritesProducts = ({ id }) => {
   }, []);
 
   const validateFavoriteProduct = () => {
-    const filter = favoritesProducts.find(item => item == id);
+    const filter = favoritesProducts.find(item => item == idProduct);
     if(filter != null){
         setFavorite(true)
     }else{
@@ -22,13 +22,13 @@ const CardFavoritesProducts = ({ id }) => {
     }
   };
 
-  const handleSaveProduct = (idProduct) => {
+  const handleSaveProduct = (id) => {
     let arrayFavorites = [];
-    if (favoritesProducts.includes(idProduct)) {
-      arrayFavorites = favoritesProducts.filter((item) => item !== idProduct);
+    if (favoritesProducts.includes(id)) {
+      arrayFavorites = favoritesProducts.filter((item) => item !== id);
       setFavorite(false);
     } else {
-      arrayFavorites = [...favoritesProducts, idProduct];
+      arrayFavorites = [...favoritesProducts, id];
       setFavorite(true)
     }
     dispatch(
