@@ -9,6 +9,7 @@ import dress from "/icons/dress.svg";
 import gift from "/icons/gift.svg";
 import test from "/test.jfif";
 import heartWhite from "/icons/heart-white.svg";
+import heartPink from "/icons/heart-pink.svg";
 import delivery from "/icons/delivery.svg";
 import star from "/icons/star.svg";
 import trash from "/icons/trash-bin.svg";
@@ -21,6 +22,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { fillShopsFromCollection } from "../../redux/shops/shopsActions";
 import { fillProductsFromCollection } from "../../redux/products/productsActions";
 import { searchProducts } from "../../redux/products/productsReducer";
+import { updateFavoritesShops } from "../../redux/auth/authActions";
+import CardSaveFavorites from "../../components/cardSaveFavorites/CardSaveFavorites";
 
 const Home = ({ isTypeSeller }) => {
 
@@ -32,6 +35,7 @@ const Home = ({ isTypeSeller }) => {
     const dispatch = useDispatch();
     const { shops } = useSelector((store) => store.shops);
     const { products, search } = useSelector((store) => store.products);
+    const { favoritesShops, userLogged } = useSelector(store => store.auth);
 
   useEffect(() => {
     dispatch(fillShopsFromCollection());
@@ -50,9 +54,6 @@ const Home = ({ isTypeSeller }) => {
       setActiveSearch(false);
     }
 }
-  const handleSaveShop = (idShop) => {
-    console.log(idShop)
-  }
 
   return (
     !isTypeSeller && (
@@ -165,12 +166,12 @@ const Home = ({ isTypeSeller }) => {
                     shop.category === selectedCategory)
                 ) {
                   return (
-                <div className="shop-card" onClick={() => navigate(`/${shop.id}`)} key={shop.id}>
-                  <img src={shop?.backgroundImage} alt="" />
-                  <figure className="like" onClick={() => handleSaveShop(shop.id)}>
-                    <img src={heartWhite} alt="Icon for like" />
+                <div className="shop-card" key={shop.id}>
+                  <img src={shop?.backgroundImage} alt="" onClick={() => navigate(`/${shop.id}`)} />
+                  <figure className="like">
+                  <CardSaveFavorites id = {shop?.id} />
                   </figure>
-                  <div className="shop-price">
+                  <div className="shop-price" onClick={() => navigate(`/${shop.id}`)}>
                     <div className="shop-info">
                       <img src={shop?.logo} alt="Icon for logo" />
                       <div>

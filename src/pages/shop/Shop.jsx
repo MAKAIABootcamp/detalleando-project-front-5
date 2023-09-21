@@ -34,9 +34,9 @@ import "./shop.scss";
 import NavDesktop from "../../components/nav-desktop/NavDesktop";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import { getShopById } from "../../services/shopsService";
-import { getShopProductFromCollection } from "../../redux/products/productsActions";
 import { searchProducts } from "../../redux/products/productsReducer";
+import { updateFavoritesProducts } from "../../redux/auth/authActions";
+import CardFavoritesProducts from "../../components/cardFavoritesProducts/CardFavoritesProducts";
 
 const Shop = ({ isTypeSeller }) => {
   const navigate = useNavigate();
@@ -49,6 +49,7 @@ const Shop = ({ isTypeSeller }) => {
   const { products, search } = useSelector((store) => store.products);
   const { shops } = useSelector((store) => store.shops);
   
+
   
 
   useEffect(() => {

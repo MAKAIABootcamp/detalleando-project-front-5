@@ -6,8 +6,8 @@ import {
   signOut,
   updateProfile,
 } from "firebase/auth";
-import { auth } from "../../firebase/firebaseConfig";
-import { setError, setIsLogged, setUserLogged } from "./authReducer";
+import { auth, fireStore } from "../../firebase/firebaseConfig";
+import { setError, setFavoritesProducts, setFavoritesShops, setIsLogged, setUserLogged } from "./authReducer";
 import loginFromFirestore from "../../services/loginFromCollection";
 import {
   createAnUserInCollection,
@@ -17,6 +17,7 @@ import {
   createAnSellerUserInCollection,
   getSellerUserFromCollection,
 } from "../../services/sellerUser";
+import { doc, updateDoc } from "firebase/firestore";
 
 export const loginWithCode = (code) => {
   return async (dispatch) => {
@@ -102,6 +103,8 @@ export const logout = () => {
       await signOut(auth);
       sessionStorage.removeItem('user');
       dispatch(setUserLogged(null));
+      dispatch(setFavoritesShops([]));
+      dispatch(setFavoritesProducts([]));
       dispatch(setIsLogged(false));
       dispatch(setError(false));
     } catch (error) {
@@ -240,6 +243,8 @@ export const getUserActionFromCollection = (uid) => {
     try {
       const userLogged = await getUserFromCollection(uid);
       dispatch(setUserLogged(userLogged));
+      dispatch(setFavoritesShops(userLogged.favoritesShops));
+      dispatch(setFavoritesProducts(userLogged.favoritesProducts));
       dispatch(setIsLogged(true));
       dispatch(setError(false));
     } catch (error) {
@@ -275,3 +280,41 @@ export const getSellerActionFromCollection = (uid) => {
     }
   };
 };
+
+export const updateFavoritesShops = (idUser, favoritesShops) => {
+  return async (dispatch) => {
+    try {
+      const userRef = doc(fireStore, 'users', idUser);
+      const response = await updateDoc(userRef, favoritesShops);
+      dispatch(setFavoritesShops(favoritesShops.favoritesShops));
+    } catch (error) {
+      console.log(error);
+      dispatch(
+        setError({
+          error: true,
+          code: error.code,
+          message: error.message,
+        })
+      );
+    }
+  }
+};
+
+export const updateFavoritesProducts = (idUser, favoritesProducts) => {
+  return async (dispatch) => {
+    try {
+      const userRef = doc(fireStore, 'users', idUser);
+      const response = await updateDoc(userRef, favoritesProducts);
+      dispatch(setFavoritesProducts(favoritesProducts.favoritesProducts));
+    } catch (error) {
+      console.log(error);
+      dispatch(
+        setError({
+          error: true,
+          code: error.code,
+          message: error.message,
+        })
+      );
+    }
+  }
+}
