@@ -39,35 +39,47 @@ import { updateFavoritesProducts } from "../../redux/auth/authActions";
 import CardFavoritesProducts from "../../components/cardFavoritesProducts/CardFavoritesProducts";
 
 const Shop = ({ isTypeSeller }) => {
-
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const { idShop } = useParams();
-  const [shop, setShop] = useState('');
+  const [shop, setShop] = useState("");
   const [shopProducts, setShopProducts] = useState([]);
-  const [categoriesShop, setCategoriesShop] = useState([])
+  const [categoriesShop, setCategoriesShop] = useState([]);
   const [activeSearch, setActiveSearch] = useState(false);
   const { products, search } = useSelector((store) => store.products);
   const { shops } = useSelector((store) => store.shops);
+  
 
+  
 
   useEffect(() => {
     // dispatch(getShopProductFromCollection(idShop));
     // getShop();
-    setShop(shops.find(shop => shop.id == idShop))
-    setShopProducts(products.filter(product => product.shopId == idShop))
-    getCategories()
+    setShop(shops.find((shop) => shop.id == idShop));
+    setShopProducts(products.filter((product) => product.shopId == idShop));
+    getCategories();
   }, [shop]);
+
+  const categoryProducts = (category) => {
+    
+    const chosenProducts = shopProducts.filter((product) => product.category == category)
+    return chosenProducts;
+  }
 
   const searchProductsHome = (e) => {
     const searchParam = e.target.value;
 
     if (searchParam.length > 1) {
-        setActiveSearch(true);
-        const filter = shopProducts?.filter(product => product.name.toLowerCase().includes(searchParam.toLowerCase()))
-        dispatch(searchProducts(filter));
+      setActiveSearch(true);
+      const filter = shopProducts?.filter((product) =>
+        product.name.toLowerCase().includes(searchParam.toLowerCase())
+      );
+      dispatch(searchProducts(filter));
     }
-}
+    if (!searchParam.length) {
+      setActiveSearch(false);
+    }
+  };
 
   const getCategories = () => {
     if (shop.category === "Bouquets y arreglos") {
@@ -77,17 +89,16 @@ const Shop = ({ isTypeSeller }) => {
         { name: "Plantas de interior", image: potted },
         { name: "Terrarios", image: terrarium },
         { name: "Más flores", image: flowers },
-      ])
-    }
-    else if (shop.category === "Pasteleria y confeteria") {
+      ]);
+    } else if (shop.category === "Pastelería y confetería") {
       setCategoriesShop([
         { name: "Tortas", image: cake },
         { name: "Chocolate", image: choco },
         { name: "Cupcakes", image: cupcake },
         { name: "Panadería", image: croissant },
         { name: "Más dulces", image: chocoBox },
-      ])}
-    else if (shop.category === "Artesanias") {
+      ]);
+    } else if (shop.category === "Artesanías") {
       setCategoriesShop([
         { name: "Juguetes", image: toy },
         { name: "Arte", image: art },
@@ -95,9 +106,8 @@ const Shop = ({ isTypeSeller }) => {
         { name: "Para la casa", image: home },
         { name: "Para la cocina", image: kitchen },
         { name: "Más artesanias", image: otherArt },
-      ])
-    }
-    else if (shop.category === "Ropa y accesorios") {
+      ]);
+    } else if (shop.category === "Ropa y accesorios") {
       setCategoriesShop([
         { name: "Relojes", image: watch },
         { name: "Anillos", image: ring },
@@ -106,9 +116,9 @@ const Shop = ({ isTypeSeller }) => {
         { name: "Ropa para hombre", image: shirt },
         { name: "Ropa para niño", image: child },
         { name: "Más articulos", image: mirror },
-      ])
+      ]);
     }
-}
+  };
   // const getShop = async () => {
   //   try {
   //     const response = await getShopById(idShop);
@@ -166,7 +176,12 @@ const Shop = ({ isTypeSeller }) => {
                     alt="Icon for search"
                     className="search-icon"
                   />
-                  <img src={trash} alt="Icon for delete" className="clear-icon" onClick={()=>setActiveSearch(false)}/>
+                  <img
+                    src={trash}
+                    alt="Icon for delete"
+                    className="clear-icon"
+                    onClick={() => setActiveSearch(false)}
+                  />
                 </div>
                 <div className="favorite">
                   <img src={heartWhite} alt="Icon for like" />
@@ -185,67 +200,79 @@ const Shop = ({ isTypeSeller }) => {
               ))}
             </div>
             <div>
-              { activeSearch && search?.length > 0 ? 
-              <div className="shop-section">
-                <div className="shop-cards-container">
-                {
-                  search.map((item) => (
-                    <div className="card">
-                    <img src={item.mainImage} alt={item.name} />
-                    <div>
-                      <h4>{item.name}</h4>
-                      <div className="price">
-                        <span>$ {item.price}</span>
+              {activeSearch && search?.length > 0 ? (
+                <div className="shop-section">
+                  <div className="shop-cards-container">
+                    {search.map((item) => (
+                      <div className="card">
+                        <img src={item.mainImage} alt={item.name} />
+                        <div>
+                          <h4>{item.name}</h4>
+                          <div className="price">
+                            <span>$ {item.price}</span>
+                          </div>
+                        </div>
+                        <figure className="like">
+                          <img src={heartWhite} alt="Icon for like" />
+                        </figure>
                       </div>
-                    </div>
-                    <figure className="like">
-                      <img src={heartWhite} alt="Icon for like" />
-                    </figure>
-                  </div>
-                  ))
-                }
-              </div>
-              </div>
-             : <>
-              <div className="shop-section">
-                <h2>Los mas vendidos</h2>
-                <div className="shop-cards-container">
-                  <div className="card">
-                    <img src={test} alt="" />
-                    <div>
-                      <h4>Cupcakes with cream cheese</h4>
-                      <div className="price">
-                        <span>$ 14</span>
-                      </div>
-                    </div>
-                    <figure className="like">
-                      <img src={heartWhite} alt="Icon for like"/>
-                    </figure>
+                    ))}
                   </div>
                 </div>
-              </div>
-              <div className="shop-section">
-                <h2>Productos</h2>
-                <div className="shop-cards-container" >
-                {shopProducts?.map((product) => (
-                  
-                    <div className="card" key={product.id} >
-                      <img src={product?.mainImage} alt={product?.name} onClick={() => navigate(`/product/${product.id}`)} />
-                      <div>
-                        <h4 onClick={() => navigate(`/product/${product.id}`)}>{product?.name}</h4>
-                        <div className="price">
-                          <span>$ {product?.price}</span>
+              ) : (
+                <>
+                  <div className="shop-section">
+                    <h2>Los mas vendidos</h2>
+                    <div className="shop-cards-container">
+                      <div className="card">
+                        <img src={test} alt="" />
+                        <div>
+                          <h4>Cupcakes with cream cheese</h4>
+                          <div className="price">
+                            <span>$ 14</span>
+                          </div>
                         </div>
+                        <figure className="like">
+                          <img src={heartWhite} alt="Icon for like" />
+                        </figure>
                       </div>
+
                       <figure className="like">
                         <CardFavoritesProducts idProduct={product?.id} />
                       </figure>
+
                     </div>
-                  
-                ))}
-                </div>
-              </div>
-              </>}
+                  </div>
+
+                  {categoriesShop.map((category, index) => 
+                    (categoryProducts(category.name).length ? 
+                    <div className="shop-section" key={index}>
+                      <h2>{category.name}</h2>
+                      <div className="shop-cards-container">
+                        { categoryProducts(category.name)?.map((product) => (
+                          <div
+                            className="card"
+                            key={product.id}
+                            onClick={() => navigate(`/product/${product.id}`)}
+                          >
+                            <img src={product?.mainImage} alt={product?.name} />
+                            <div>
+                              <h4>{product?.name}</h4>
+                              <div className="price">
+                                <span>$ {product?.price}</span>
+                              </div>
+                            </div>
+                            <figure className="like">
+                              <img src={heartWhite} alt="Icon for like" />
+                            </figure>
+                          </div>
+                        ))}
+                      </div>
+                    </div> : <div></div>
+                  )
+                  )}
+                </>
+              )}
             </div>
           </div>
         </main>

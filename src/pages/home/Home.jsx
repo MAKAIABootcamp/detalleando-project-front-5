@@ -57,6 +57,10 @@ const Home = ({ isTypeSeller }) => {
       );
       dispatch(searchProducts(filter));
     }
+    if (!searchParam.length) {
+      setActiveSearch(false);
+    }
+    }
   };
   const favoritesProductsUser = () => {
     if (favoritesProducts.length && products.length) {
@@ -70,11 +74,12 @@ const Home = ({ isTypeSeller }) => {
     }
   };
 
+
   return (
     !isTypeSeller && (
       <>
         <header>
-          <NavDesktop searchProductsHome={searchProductsHome} />
+          <NavDesktop searchProductsHome={searchProductsHome} setActiveSearch={setActiveSearch}/>
           <Banner />
         </header>
         <main className="main-home">
@@ -119,6 +124,29 @@ const Home = ({ isTypeSeller }) => {
                   </div>
                 ))}
               </div>
+              <figure className="like">
+                <img src={heartWhite} alt="Icon for like" />
+              </figure>
+            </div>))}
+          </div>
+        </div> : <>
+          <div className="categories">
+            <div className="category category-blue" onClick={() => setSelectedCategory("Bouquets y arreglos")}>
+              <p>Bouquets y arreglos</p>
+              <img src={bouquet} alt="Icon for bouquets" />
+            </div>
+            <div className='category category-pink' onClick={() => setSelectedCategory("Pastelería y confetería")}>
+                <p>Pasteleria y confeteria</p>
+                <img src={cake} alt="Icon for pasteleria" />
+            </div>
+            <div className='category category-pink' onClick={() => setSelectedCategory("Artesanías")}>
+                <p>Artesanias</p>
+                <img src={arte} alt="Icon for artesanias" />
+            </div>
+            <div className='category category-blue' onClick={() => setSelectedCategory("Ropa y accesorios")}>
+                <p>Ropa y accesorios</p>
+                <img src={dress} alt="Icon for ropa" />
+
             </div>
           ) : (
             <>

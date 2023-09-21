@@ -8,7 +8,7 @@ import trash from "/icons/trash-bin.svg";
 import "./nav.scss"
 import Address from '../address/Address'
 
-const NavDesktop = ({searchProductsHome}) => {
+const NavDesktop = ({searchProductsHome, setActiveSearch}) => {
 
     const location = useLocation()
 
