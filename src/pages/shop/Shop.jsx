@@ -34,9 +34,9 @@ import "./shop.scss";
 import NavDesktop from "../../components/nav-desktop/NavDesktop";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import { getShopById } from "../../services/shopsService";
-import { getShopProductFromCollection } from "../../redux/products/productsActions";
 import { searchProducts } from "../../redux/products/productsReducer";
+import { updateFavoritesProducts } from "../../redux/auth/authActions";
+import CardFavoritesProducts from "../../components/cardFavoritesProducts/CardFavoritesProducts";
 
 const Shop = ({ isTypeSeller }) => {
 
@@ -49,6 +49,7 @@ const Shop = ({ isTypeSeller }) => {
   const [activeSearch, setActiveSearch] = useState(false);
   const { products, search } = useSelector((store) => store.products);
   const { shops } = useSelector((store) => store.shops);
+
 
   useEffect(() => {
     // dispatch(getShopProductFromCollection(idShop));
@@ -218,7 +219,7 @@ const Shop = ({ isTypeSeller }) => {
                       </div>
                     </div>
                     <figure className="like">
-                      <img src={heartWhite} alt="Icon for like" />
+                      <img src={heartWhite} alt="Icon for like"/>
                     </figure>
                   </div>
                 </div>
@@ -228,16 +229,16 @@ const Shop = ({ isTypeSeller }) => {
                 <div className="shop-cards-container" >
                 {shopProducts?.map((product) => (
                   
-                    <div className="card" key={product.id} onClick={() => navigate(`/product/${product.id}`)}>
-                      <img src={product?.mainImage} alt={product?.name} />
+                    <div className="card" key={product.id} >
+                      <img src={product?.mainImage} alt={product?.name} onClick={() => navigate(`/product/${product.id}`)} />
                       <div>
-                        <h4>{product?.name}</h4>
+                        <h4 onClick={() => navigate(`/product/${product.id}`)}>{product?.name}</h4>
                         <div className="price">
                           <span>$ {product?.price}</span>
                         </div>
                       </div>
                       <figure className="like">
-                        <img src={heartWhite} alt="Icon for like" />
+                        <CardFavoritesProducts id={product?.id} />
                       </figure>
                     </div>
                   
