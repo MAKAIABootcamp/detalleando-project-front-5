@@ -236,6 +236,11 @@ const Shop = ({ isTypeSeller }) => {
                           <img src={heartWhite} alt="Icon for like" />
                         </figure>
                       </div>
+
+                      <figure className="like">
+                        <CardFavoritesProducts idProduct={product?.id} />
+                      </figure>
+
                     </div>
                   </div>
 
