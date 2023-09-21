@@ -46,6 +46,9 @@ const Home = ({ isTypeSeller }) => {
         const filter = products?.filter(product => product.name.toLowerCase().includes(searchParam.toLowerCase()))
         dispatch(searchProducts(filter));
     }
+    if (!searchParam.length) {
+      setActiveSearch(false);
+    }
 }
   const handleSaveShop = (idShop) => {
     console.log(idShop)
@@ -55,7 +58,7 @@ const Home = ({ isTypeSeller }) => {
     !isTypeSeller && (
       <>
         <header>
-          <NavDesktop searchProductsHome={searchProductsHome}/>
+          <NavDesktop searchProductsHome={searchProductsHome} setActiveSearch={setActiveSearch}/>
           <Banner />
         </header>
         <main className="main-home">
@@ -93,11 +96,11 @@ const Home = ({ isTypeSeller }) => {
               <p>Bouquets y arreglos</p>
               <img src={bouquet} alt="Icon for bouquets" />
             </div>
-            <div className='category category-pink' onClick={() => setSelectedCategory("Pasteleria y confeteria")}>
+            <div className='category category-pink' onClick={() => setSelectedCategory("Pastelería y confetería")}>
                 <p>Pasteleria y confeteria</p>
                 <img src={cake} alt="Icon for pasteleria" />
             </div>
-            <div className='category category-pink' onClick={() => setSelectedCategory("Artesanias")}>
+            <div className='category category-pink' onClick={() => setSelectedCategory("Artesanías")}>
                 <p>Artesanias</p>
                 <img src={arte} alt="Icon for artesanias" />
             </div>
