@@ -50,8 +50,6 @@ const Shop = ({ isTypeSeller }) => {
   const { shops } = useSelector((store) => store.shops);
   
 
-  
-
   useEffect(() => {
     // dispatch(getShopProductFromCollection(idShop));
     // getShop();
@@ -82,7 +80,7 @@ const Shop = ({ isTypeSeller }) => {
   };
 
   const getCategories = () => {
-    if (shop.category === "Bouquets y arreglos") {
+    if (shop?.category === "Bouquets y arreglos") {
       setCategoriesShop([
         { name: "Ramos", image: bouquet },
         { name: "Ramos dulces", image: sweetBouquet },
@@ -90,7 +88,7 @@ const Shop = ({ isTypeSeller }) => {
         { name: "Terrarios", image: terrarium },
         { name: "Más flores", image: flowers },
       ]);
-    } else if (shop.category === "Pastelería y confetería") {
+    } else if (shop?.category === "Pastelería y confetería") {
       setCategoriesShop([
         { name: "Tortas", image: cake },
         { name: "Chocolate", image: choco },
@@ -98,7 +96,7 @@ const Shop = ({ isTypeSeller }) => {
         { name: "Panadería", image: croissant },
         { name: "Más dulces", image: chocoBox },
       ]);
-    } else if (shop.category === "Artesanías") {
+    } else if (shop?.category === "Artesanías") {
       setCategoriesShop([
         { name: "Juguetes", image: toy },
         { name: "Arte", image: art },
@@ -107,7 +105,7 @@ const Shop = ({ isTypeSeller }) => {
         { name: "Para la cocina", image: kitchen },
         { name: "Más artesanias", image: otherArt },
       ]);
-    } else if (shop.category === "Ropa y accesorios") {
+    } else if (shop?.category === "Ropa y accesorios") {
       setCategoriesShop([
         { name: "Relojes", image: watch },
         { name: "Anillos", image: ring },
@@ -238,7 +236,7 @@ const Shop = ({ isTypeSeller }) => {
                       </div>
 
                       <figure className="like">
-                        <CardFavoritesProducts idProduct={product?.id} />
+                        <img src={heartWhite} alt="Icon for like" />
                       </figure>
 
                     </div>
@@ -263,7 +261,7 @@ const Shop = ({ isTypeSeller }) => {
                               </div>
                             </div>
                             <figure className="like">
-                              <img src={heartWhite} alt="Icon for like" />
+                              <CardFavoritesProducts idProduct={product?.id} />
                             </figure>
                           </div>
                         ))}

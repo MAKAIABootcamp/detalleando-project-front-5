@@ -61,12 +61,12 @@ const Home = ({ isTypeSeller }) => {
       setActiveSearch(false);
     }
     }
-  };
+
   const favoritesProductsUser = () => {
-    if (favoritesProducts.length && products.length) {
+    if (favoritesProducts?.length && products?.length) {
       const favoriteProducts = [];
       favoritesProducts.forEach((item) => {
-        const favorite = products.find((element) => element.id == item);
+        const favorite = products?.find((element) => element.id == item);
         favoriteProducts.push(favorite);
       });
       console.log(favoriteProducts);
@@ -105,7 +105,7 @@ const Home = ({ isTypeSeller }) => {
               onClick={() => setActiveSearch(false)}
             />
           </div>
-          {activeSearch && search?.length > 0 ? (
+          {activeSearch && search?.length > 0 ? 
             <div className="section">
               <div className="cards-container">
                 {search.map((item) => (
@@ -127,29 +127,8 @@ const Home = ({ isTypeSeller }) => {
               <figure className="like">
                 <img src={heartWhite} alt="Icon for like" />
               </figure>
-            </div>))}
-          </div>
-        </div> : <>
-          <div className="categories">
-            <div className="category category-blue" onClick={() => setSelectedCategory("Bouquets y arreglos")}>
-              <p>Bouquets y arreglos</p>
-              <img src={bouquet} alt="Icon for bouquets" />
             </div>
-            <div className='category category-pink' onClick={() => setSelectedCategory("Pastelería y confetería")}>
-                <p>Pasteleria y confeteria</p>
-                <img src={cake} alt="Icon for pasteleria" />
-            </div>
-            <div className='category category-pink' onClick={() => setSelectedCategory("Artesanías")}>
-                <p>Artesanias</p>
-                <img src={arte} alt="Icon for artesanias" />
-            </div>
-            <div className='category category-blue' onClick={() => setSelectedCategory("Ropa y accesorios")}>
-                <p>Ropa y accesorios</p>
-                <img src={dress} alt="Icon for ropa" />
-
-            </div>
-          ) : (
-            <>
+            : <>
               <div className="categories">
                 <div
                   className="category category-blue"
@@ -179,7 +158,7 @@ const Home = ({ isTypeSeller }) => {
                   <p>Ropa y accesorios</p>
                   <img src={dress} alt="Icon for ropa" />
                 </div>
-                {selectedCategory !== "All" && (
+                {selectedCategory !== "All" && 
                   <div
                     className="category category-peach"
                     onClick={() => setSelectedCategory("All")}
@@ -187,9 +166,9 @@ const Home = ({ isTypeSeller }) => {
                     <p>Todas categorías</p>
                     <img src={gift} alt="Icon for gift" />
                   </div>
-                )}
+                }
               </div>
-              {selectedCategory === "All" && (
+              {selectedCategory === "All" && 
                 <>
                   <div className="section">
                     <h2>Repetir orden</h2>
@@ -209,7 +188,7 @@ const Home = ({ isTypeSeller }) => {
                       </div>
                     </div>
                   </div>
-                  {products.length > 0 ? (
+                  {products.length > 0 && favoritesProducts ? (
                     <div className="section">
                       <h2>Productos favoritos</h2>
                       <div className="cards-container">
@@ -238,14 +217,13 @@ const Home = ({ isTypeSeller }) => {
                     <div></div>
                   )}
                 </>
-              )}
+              }
               <div className="section">
-                {selectedCategory !== "All" ? (
+                {selectedCategory !== "All" ? 
                   <h2>{selectedCategory}</h2>
-                ) : (
+                 : 
                   <h2>Todas las tiendas</h2>
-                )}
-
+                }
                 <div className="shops-cards-container">
                   {shops?.map((shop) => {
                     if (
@@ -285,20 +263,20 @@ const Home = ({ isTypeSeller }) => {
                             </div>
                           </div>
                         </div>
-                      );
+                      )
                     }
                   })}
                 </div>
               </div>
             </>
-          )}
+          }
         </main>
         <div className="mobile-navbar">
           <NavMobile />
         </div>
       </>
     )
-  );
-};
+  )
+}
 
 export default Home;

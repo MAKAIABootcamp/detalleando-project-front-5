@@ -15,7 +15,7 @@ const CardSaveFavorites = ({ id }) => {
     },[])
 
     const validateFavoriteShop = () => {
-        const filter = favoritesShops.find(item => item == id)
+        const filter = favoritesShops?.find(item => item == id)
         if(filter != null){
             setFavorite(true)
         }else{
