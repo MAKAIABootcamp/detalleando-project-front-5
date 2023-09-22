@@ -37,6 +37,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { getShopById } from "../../services/shopsService";
 import { getShopProductFromCollection } from "../../redux/products/productsActions";
 import { searchProducts } from "../../redux/products/productsReducer";
+import { setShowAddress } from "../../redux/auth/authReducer";
 
 const Shop = ({ isTypeSeller }) => {
 
@@ -57,6 +58,11 @@ const Shop = ({ isTypeSeller }) => {
     setShopProducts(products.filter(product => product.shopId == idShop))
     getCategories()
   }, [shop]);
+
+  useEffect(() => {
+    dispatch(setShowAddress(true));
+    return () => dispatch(setShowAddress(false));
+  },[])
 
   const searchProductsHome = (e) => {
     const searchParam = e.target.value;
@@ -123,7 +129,7 @@ const Shop = ({ isTypeSeller }) => {
     !isTypeSeller && (
       <>
         <header>
-          <NavDesktop />
+          <NavDesktop/>
         </header>
         <main className="shop-main">
           <div className="shop-address">
@@ -207,7 +213,7 @@ const Shop = ({ isTypeSeller }) => {
               </div>
              : <>
               <div className="shop-section">
-                <h2>Los mas vendidos</h2>
+                <h2>Los más vendidos</h2>
                 <div className="shop-cards-container">
                   <div className="card">
                     <img src={test} alt="" />

@@ -19,13 +19,13 @@ const Banner = () => {
         </SwiperSlide>
         <SwiperSlide>
         <div className='swiper-banner peach'>
-            <h1>Un Mundo de Sorpresas te Espera Aquí</h1>
+            <h1>Un Mundo de sorpresas te espera aquí</h1>
             <img src={presentImage} alt="" />
           </div>
         </SwiperSlide>
         <SwiperSlide>
         <div className='swiper-banner blue'>
-            <h1>Las Tiendas de los Detalles que Importan</h1>
+            <h1>Las tiendas de los detalles que importan</h1>
             <img src={test} alt="" />
           </div>
         </SwiperSlide>

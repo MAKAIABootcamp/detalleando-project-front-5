@@ -64,7 +64,7 @@ const LoginVendedor = () => {
           <span className="form-register">
             ¿No tienes una cuenta?
             <br />
-            <Link to="/sellerRegister" className="text">Registrate</Link>
+            <Link to="/sellerRegister" className="text">Regístrate</Link>
           </span>
         </form>
       </section>

@@ -5,8 +5,8 @@ import arrow from "/icons/arrow-down.svg";
 import "./product.scss";
 import NavDesktop from "../../components/nav-desktop/NavDesktop";
 import { useNavigate, useParams } from "react-router-dom";
-import { useSelector } from "react-redux";
-
+import { useDispatch, useSelector } from "react-redux";
+import { setShowAddress } from "../../redux/auth/authReducer";
 const Product = ({ isTypeSeller }) => {
 
   const navigate = useNavigate()
@@ -16,12 +16,17 @@ const Product = ({ isTypeSeller }) => {
   const [product, setProduct] = useState('')
   const [shop, setShop] = useState('');
   const [shopProducts, setShopProducts] = useState([]);
-
+  const dispatch = useDispatch();
   useEffect(() => {
     setProduct(products.find(item => item.id == idProduct))
     setShop(shops.find(shop => shop.id == product.shopId))
     // setShopProducts(products.filter(item => item.shopId == shop.id))
   }, [product]);
+
+  useEffect(() => {
+    dispatch(setShowAddress(true));
+    return () => dispatch(setShowAddress(false));
+  },[])
 
   return (
     !isTypeSeller && (
@@ -42,8 +47,8 @@ const Product = ({ isTypeSeller }) => {
             </div>
             <div className="secondary-images">
               {
-                product?.secondaryImages?.map((image) => (
-                  <img src={image} alt={product?.name} />
+                product?.secondaryImages?.map((image, index) => (
+                  <img key={index} src={image} alt={product?.name} />
                 ))
               }
             </div>

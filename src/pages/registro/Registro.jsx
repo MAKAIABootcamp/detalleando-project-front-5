@@ -22,7 +22,6 @@ const Registro = () => {
         ...data,
         photoURL: avatar,
         address: [],
-        phone: "",
         payment: [],
         isSeller: false,
         favoritesProducts: [],
@@ -59,8 +58,8 @@ const Registro = () => {
             <input
               type="name"
               className="form-input"
-              name="name"
-              {...register("name", { required: true })}
+              name="displayName"
+              {...register("displayName", { required: true })}
             />
           </div>
 
@@ -93,10 +92,22 @@ const Registro = () => {
               <span>Número de celular</span>
             </label>
             <input
-              type="phone"
+              type="text"
               className="form-input"
               name="phone"
               {...register("phone", { required: true })}
+            />
+          </div>
+
+          <div className="form-div">
+            <label className="form-label">
+              <span>Fecha de nacimiento</span>
+            </label>
+            <input
+              type="text"
+              className="form-input"
+              name="birthday"
+              {...register("birthday", { required: true })}
             />
           </div>
 

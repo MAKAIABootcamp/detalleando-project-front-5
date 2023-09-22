@@ -99,6 +99,8 @@
     background-color: $background-grey;
     border-radius: 20px;
     margin: 20px;
+    font-family: $font-primary;
+    color: $font-dark;
     &__up {
       display: flex;
       border-radius: 10px;
@@ -163,11 +165,14 @@
         display: flex;
         flex-direction: column;
         align-items: flex-end;
+        span{
+          font-weight: 500;
+        }
       }
       .seller-left {
         .seller-description {
           overflow: hidden;
-          overflow: hidden;
+          font-weight: 500;
           display: -webkit-box;
           -webkit-line-clamp: 6; 
           -webkit-box-orient: vertical;

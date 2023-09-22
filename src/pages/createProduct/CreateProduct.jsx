@@ -27,7 +27,6 @@ const CreateProduct = ({ isTypeSeller }) => {
         className="create-new-product__form"
         onSubmit={handleSubmit(onSubmit)}
       >
-        <h2>Crear nuevo producto</h2>
         <div className="create-new-product__form-div">
           <label className="create-new-product__form-label">
             <span>Nombre</span>

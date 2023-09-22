@@ -94,11 +94,11 @@ const Home = ({ isTypeSeller }) => {
               <img src={bouquet} alt="Icon for bouquets" />
             </div>
             <div className='category category-pink' onClick={() => setSelectedCategory("Pasteleria y confeteria")}>
-                <p>Pasteleria y confeteria</p>
+                <p>Pastelería y confitería</p>
                 <img src={cake} alt="Icon for pasteleria" />
             </div>
             <div className='category category-pink' onClick={() => setSelectedCategory("Artesanias")}>
-                <p>Artesanias</p>
+                <p>Artesanías</p>
                 <img src={arte} alt="Icon for artesanias" />
             </div>
             <div className='category category-blue' onClick={() => setSelectedCategory("Ropa y accesorios")}>
@@ -107,7 +107,7 @@ const Home = ({ isTypeSeller }) => {
             </div>
             { selectedCategory !== "All" &&
             <div className='category category-peach' onClick={() => setSelectedCategory("All")}>
-              <p>Todas categorías</p>
+              <p>Todas las categorías</p>
             <img src={gift} alt="Icon for gift" />
         </div>
             }
