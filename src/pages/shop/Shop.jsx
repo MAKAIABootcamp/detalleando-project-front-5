@@ -38,6 +38,7 @@ import { getShopById } from "../../services/shopsService";
 import { getShopProductFromCollection } from "../../redux/products/productsActions";
 import { searchProducts } from "../../redux/products/productsReducer";
 import { setShowAddress } from "../../redux/auth/authReducer";
+import CardFavoritesProducts from "../../components/cardFavoritesProducts/CardFavoritesProducts";
 
 const Shop = ({ isTypeSeller }) => {
   const navigate = useNavigate();
@@ -257,17 +258,16 @@ const Shop = ({ isTypeSeller }) => {
                           <div
                             className="card"
                             key={product.id}
-                            onClick={() => navigate(`/product/${product.id}`)}
                           >
-                            <img src={product?.mainImage} alt={product?.name} />
+                            <img src={product?.mainImage} alt={product?.name} onClick={() => navigate(`/product/${product.id}`)} />
                             <div>
-                              <h4>{product?.name}</h4>
+                              <h4 onClick={() => navigate(`/product/${product.id}`)}>{product?.name}</h4>
                               <div className="price">
                                 <span>$ {product?.price}</span>
                               </div>
                             </div>
                             <figure className="like">
-                              <img src={heartWhite} alt="Icon for like" />
+                              <CardFavoritesProducts idProduct={product.id} />
                             </figure>
                           </div>
                         ))}

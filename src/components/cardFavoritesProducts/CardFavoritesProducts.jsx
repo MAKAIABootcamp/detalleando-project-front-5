@@ -41,9 +41,9 @@ const CardFavoritesProducts = ({ idProduct }) => {
   return (
     <>
         {favorite ? (
-        <img src={heartPink} alt="" onClick={() => handleSaveProduct(id)} />
+        <img src={heartPink} alt="" onClick={() => handleSaveProduct(idProduct)} />
       ) : (
-        <img src={heartWhite} alt="Icon for like" onClick={() => handleSaveProduct(id)} />
+        <img src={heartWhite} alt="Icon for like" onClick={() => handleSaveProduct(idProduct)} />
       )}
     </>
   );
