@@ -7,28 +7,10 @@ import logo from '/logo.svg'
 import NavSellerDekstop from '../../components/navSellerDekstop/NavSellerDekstop';
 
 const ProfileSeller = ({ isTypeSeller }) => {
-    const [widthMovile, setWidthMovile] = useState();
-
-  useEffect(() => {
-    handleResize();
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
-
-  const handleResize = () => {
-    const width = window.innerWidth;
-    if (width <= 768) {
-      setWidthMovile(true);
-    } else {
-      setWidthMovile(false);
-    }
-  };
+   
   return isTypeSeller && (
     <>
-    {widthMovile ? (
+   
       <main className='profile-seller-mobile'>
       <NavSeller/>
       <h3>Información de la tienda</h3>
@@ -78,7 +60,7 @@ const ProfileSeller = ({ isTypeSeller }) => {
         </div>
         <div className='profile-seller-mobile-section-div'>
             <div className='column'>
-                <h3>Categoria</h3>
+                <h3>Categoría</h3>
                 <p>Pastelería y confitería</p>
             </div>
             <figure className='iconedit'>
@@ -95,15 +77,25 @@ const ProfileSeller = ({ isTypeSeller }) => {
             </figure>
         </div>
       </section>
+      <div className='button'>
+      <button type="text" className="button-close">
+          Cerrar sesión
+        </button>
+      </div>
+      
       </main>
-    ) : (
-        <main className="profile-page-dekstop">
+    
+
+
+
+        <div className="profile-page-dekstop">
         <div className="profile-page-dekstop__logo">
         <figure>
           <img src={logo} alt="Logo" />
         </figure>
         <h1>Detalleando</h1>
       </div>
+      
       <div className="profile-page-dekstop__information">
       <NavSellerDekstop/>
       <div className="profile-page-dekstop__information-info">
@@ -145,6 +137,7 @@ const ProfileSeller = ({ isTypeSeller }) => {
         </div>
 
         <div className='profile-seller-mobile-section-div'>
+     
             <div className='column'>
                 <h3>Descripción de la tienda</h3>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
@@ -155,7 +148,7 @@ const ProfileSeller = ({ isTypeSeller }) => {
         </div>
         <div className='profile-seller-mobile-section-div'>
             <div className='column'>
-                <h3>Categoria</h3>
+                <h3>Categoría</h3>
                 <p>Pastelería y confitería</p>
             </div>
             <figure className='iconedit'>
@@ -172,11 +165,14 @@ const ProfileSeller = ({ isTypeSeller }) => {
             </figure>
         </div>
       </section>
+      <button type="text" className="button-close">
+          Cerrar sesión
+        </button>
       </div>
       
       </div>
-      </main>
-    )}
+      </div>
+   
   </>
   )
 }

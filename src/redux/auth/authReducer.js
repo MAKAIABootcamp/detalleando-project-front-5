@@ -5,7 +5,8 @@ const initialState = {
     userLogged: null,
     error: null,
     favoritesShops: [],
-    favoritesProducts: []
+    favoritesProducts: [],
+    showAddress: null
 };
   
 const authSlice = createSlice({
@@ -26,10 +27,15 @@ const authSlice = createSlice({
         },
         setFavoritesProducts: (state, action) => {
             state.favoritesProducts = action.payload
+        },
+        setShowAddress: (state, action) => {
+            state.showAddress = action.payload;
         }
     }
 })
 
-export const { setIsLogged, setUserLogged, setError, setFavoritesShops, setFavoritesProducts } = authSlice.actions;
+
+export const { setIsLogged, setUserLogged, setError, setFavoritesShops, setFavoritesProducts, setShowAddress } = authSlice.actions;
+
   
 export default authSlice.reducer;

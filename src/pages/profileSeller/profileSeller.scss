@@ -5,6 +5,8 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
+  padding: 0;
+
   h3 {
     text-align: center;
   }
@@ -56,49 +58,93 @@
       }
     }
   }
+  .button{
+    display: flex;
+    justify-content: center;
+    .button-close {
+      padding: 10px;
+      width: 180px;
+      background-color: #edc4d6;
+      color: #676662;
+      font-weight: 500;
+      font-size: 14px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  }
+  
+}
+.profile-page-dekstop {
+  display: none;
 }
 
-.profile-page-dekstop {
-  h3{
-    text-align: center;
+@media (min-width: 768px) {
+  .profile-seller-mobile {
+    display: none;
   }
-  &__logo {
-    display: flex;
-    align-items: center;
-    h1 {
-      font-family: $font-primary;
-      color: $main-pink;
-      font-weight: 600;
+  .profile-page-dekstop {
+    display: block;
+
+    h3 {
+      text-align: center;
+      font-family: $font-secondary;
+      color: $font-dark;
+      font-weight: 900;
     }
-  }
-  &__information {
-    display: flex;
-    justify-content: flex-start;
-    margin: 20px;
-    &-info {
-      width: 700px;
-      margin-left: 200px;
-     
+    &__logo {
+      display: flex;
+      align-items: center;
+      h1 {
+        font-family: $font-primary;
+        color: $main-pink;
+        font-weight: 600;
+      }
     }
-  }
-  .profile-seller-mobile-section{
-    &-div{
-      .column{
-        &-imga {
-          width: 500px;
-          height: 100px;
-          //  position: absolute;
-        
-          img {
-            width: 100%;
-            height: 100%;
-            border-radius: 20px;
-            object-fit: cover;
+    &__information {
+      display: flex;
+      justify-content: flex-start;
+      margin: 20px;
+      &-info {
+        width: 700px;
+        margin-left: 200px;
+      }
+    }
+    .profile-seller-mobile-section {
+      &-div {
+        .column {
+          span,
+          p {
+            font-size: 14px;
+            font-family: $font-secondary;
+            color: $font-dark;
+          }
+          &-imga {
+            width: 500px;
+            height: 100px;
+            //  position: absolute;
+
+            img {
+              width: 100%;
+              height: 100%;
+              border-radius: 20px;
+              object-fit: cover;
+            }
           }
         }
       }
     }
+    .button-close {
+      padding: 10px;
+      width: 180px;
+      background-color: #edc4d6;
+      color: #676662;
+      font-weight: 500;
+      font-size: 14px;
+      border: none;
+      border-radius: 5px;
+      margin-left: 450px;
+      cursor: pointer;
+    }
   }
 }
-
-

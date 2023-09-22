@@ -127,6 +127,7 @@ const Home = ({ isTypeSeller }) => {
               <figure className="like">
                 <img src={heartWhite} alt="Icon for like" />
               </figure>
+
             </div>
             : <>
               <div className="categories">
@@ -136,6 +137,7 @@ const Home = ({ isTypeSeller }) => {
                 >
                   <p>Bouquets y arreglos</p>
                   <img src={bouquet} alt="Icon for bouquets" />
+
                 </div>
                 <div
                   className="category category-pink"

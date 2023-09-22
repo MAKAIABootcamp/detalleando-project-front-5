@@ -1,6 +1,7 @@
 @import "./../../assets/styles/reset.scss";
 @import "./../../assets/styles/variables.scss";
-
+.home-seller-mobile{
+  padding: 0;
 .button-homeseller {
   position: fixed;
   bottom: 20px;
@@ -19,8 +20,17 @@
     margin-left: 300px;
   }
 }
-
+}
+.home-seller-dekstop{
+  display: none;
+}
+@media (min-width: 768px) {
+  .home-seller-mobile{
+    display: none;
+  }
 .home-seller-dekstop {
+  display: block;
+  padding: 0;
   &__logo {
     display: flex;
     align-items: center;
@@ -59,4 +69,5 @@
     }
   }
   
+}
 }

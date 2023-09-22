@@ -6,46 +6,89 @@ import { useNavigate } from "react-router";
 import OrderList from "../../components/orderList/OrderList";
 import NavDesktop from "../../components/nav-desktop/NavDesktop";
 import "./order.scss";
+import OrderEmpty from "../../components/orderEmpty/OrderEmpty";
 const Order = ({ isTypeSeller }) => {
   const navigate = useNavigate();
-  const [widthMovile, setWidthMovile] = useState();
+  const [clikedActual, setClikedActual] = useState(true);
+  const [clikedHistorial, setClikedHistorial] = useState(false);
 
-  useEffect(() => {
-    handleResize();
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
-
-  const handleResize = () => {
-    const width = window.innerWidth;
-    if (width <= 768) {
-      setWidthMovile(true);
-    } else {
-      setWidthMovile(false);
+  const handleClick = () => {
+    if (clikedActual) {
+      setClikedActual(false);
+      setClikedHistorial(true);
+    } else if (clikedHistorial) {
+      setClikedActual(true);
+      setClikedHistorial(false);
     }
   };
 
   return !isTypeSeller && (
     <>
-      {widthMovile ? (
+      
         <main className="orders-infor">
-          <OrderList />
-          <Card />
+        <div className="infoup">
+        <img src={arrowBack} alt="ArrowBack" onClick={() => navigate(-1)} />
+        <h2>Mis órdenes</h2>
+      </div>
+      <div className="historial">
+        <div className="status">
+          <span onClick={handleClick} className={clikedActual ? "chosen" : ""}>
+            Actual
+          </span>
+          <span
+            onClick={handleClick}
+            className={clikedHistorial ? "chosen" : ""}
+          >
+            Historial
+          </span>
+        </div>
+        <hr className="button-divider" />
+
+        {
+          clikedActual &&
+          <Card/>
+        }
+        {
+          clikedHistorial &&
+          <OrderEmpty/>
+        }
+      </div>
           <NavMobile />
         </main>
-      ) : (
-        <main className="main-order-dekstop">
-          <h2>Mis ordenes</h2>
-          <div className="main-order-historial">
-          <OrderList />
-          <Card />
-          </div>
+     
+
+
+        <div className="main-order-dekstop">
+          <NavDesktop/>
+          <h2>Mis órdenes</h2>
+      <div className="historial">
+        <div className="status">
+          <span onClick={handleClick} className={clikedActual ? "chosen" : ""}>
+            Actual
+          </span>
+          <span
+            onClick={handleClick}
+            className={clikedHistorial ? "chosen" : ""}
+          >
+            Historial
+          </span>
+        </div>
+        <hr className="button-divider" />
+
+        {
+          clikedActual &&
+          <Card/>
+        }
+        {
+          clikedHistorial &&
           
-        </main>
-      )}
+          <OrderEmpty/>
+        }
+      </div>
+          
+           
+        </div>
+      
     </>
   );
 };

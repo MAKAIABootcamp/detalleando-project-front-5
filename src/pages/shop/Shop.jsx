@@ -37,6 +37,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { getShopById } from "../../services/shopsService";
 import { getShopProductFromCollection } from "../../redux/products/productsActions";
 import { searchProducts } from "../../redux/products/productsReducer";
+import { setShowAddress } from "../../redux/auth/authReducer";
 
 const Shop = ({ isTypeSeller }) => {
   const navigate = useNavigate();
@@ -59,11 +60,18 @@ const Shop = ({ isTypeSeller }) => {
     getCategories();
   }, [shop]);
 
+
+  useEffect(() => {
+    dispatch(setShowAddress(true));
+    return () => dispatch(setShowAddress(false));
+  },[])
+
   const categoryProducts = (category) => {
     
     const chosenProducts = shopProducts.filter((product) => product.category == category)
     return chosenProducts;
   }
+
 
   const searchProductsHome = (e) => {
     const searchParam = e.target.value;
@@ -133,7 +141,7 @@ const Shop = ({ isTypeSeller }) => {
     !isTypeSeller && (
       <>
         <header>
-          <NavDesktop />
+          <NavDesktop/>
         </header>
         <main className="shop-main">
           <div className="shop-address">
@@ -199,6 +207,7 @@ const Shop = ({ isTypeSeller }) => {
               ))}
             </div>
             <div>
+
               {activeSearch && search?.length > 0 ? (
                 <div className="shop-section">
                   <div className="shop-cards-container">
@@ -214,6 +223,7 @@ const Shop = ({ isTypeSeller }) => {
                         <figure className="like">
                           <img src={heartWhite} alt="Icon for like" />
                         </figure>
+
                       </div>
                     ))}
                   </div>
