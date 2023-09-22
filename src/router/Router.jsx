@@ -31,6 +31,7 @@ import {
   getUserActionFromCollection,
 } from "../redux/auth/authActions";
 import { auth } from "../firebase/firebaseConfig";
+import Loader from "../pages/loader/Loader";
 
 const Router = () => {
   const dispatch = useDispatch();
@@ -55,6 +56,10 @@ const Router = () => {
       }, 1500);
     });
   }, [dispatch, userLogged]);
+
+  // if(checking){
+  //   return <Loader />
+  // }
 
   return (
     <BrowserRouter>

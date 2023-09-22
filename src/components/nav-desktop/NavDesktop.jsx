@@ -10,8 +10,11 @@ import Address from "../address/Address";
 import Shop from "../../pages/shop/Shop";
 import { useSelector } from "react-redux";
 
-const NavDesktop = ({ searchProductsHome }) => {
-  const location = useLocation();
+
+const NavDesktop = ({searchProductsHome, setActiveSearch}) => {
+
+    const location = useLocation()
+
 
   const { showAddress } = useSelector((state) => state.auth);
 

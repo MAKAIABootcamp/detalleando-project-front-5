@@ -20,8 +20,31 @@ const Product = ({ isTypeSeller }) => {
   useEffect(() => {
     setProduct(products.find(item => item.id == idProduct))
     setShop(shops.find(shop => shop.id == product.shopId))
-    // setShopProducts(products.filter(item => item.shopId == shop.id))
-  }, [product]);
+    setShopProducts(products.filter(item => (item.shopId == shop?.id && item?.id!= idProduct)))
+  }, [product, shop]);
+
+  // const initializeOrder = () => {
+  //   if (currentOrder) {
+  //     const updatedOrder = {
+  //       ...currentOrder,
+  //       products: [
+  //         ...currentOrder.products,
+  //         { ...productSelected[0], amount: quantity },
+  //       ],
+  //     };
+  //     dispatch(setCurrentOrder(updatedOrder));
+  //     // navigate('/order')
+  //   } else if (currentOrder === null) {
+  //     const order = {
+  //       products: [{ ...productSelected[0], amount: quantity }],
+  //       address: userLogged.address[0],
+  //       payment: userLogged.payment[0],
+  //       total: null,
+  //     };
+  //     dispatch(setCurrentOrder(order));
+  //     // navigate('/order')
+  //   }
+  // };
 
   useEffect(() => {
     dispatch(setShowAddress(true));
@@ -48,7 +71,9 @@ const Product = ({ isTypeSeller }) => {
             <div className="secondary-images">
               {
                 product?.secondaryImages?.map((image, index) => (
-                  <img key={index} src={image} alt={product?.name} />
+
+                  <img src={image} alt={product?.name} key={index}/>
+
                 ))
               }
             </div>
@@ -88,7 +113,7 @@ const Product = ({ isTypeSeller }) => {
             <h4>Más de esa tienda</h4>
             <div className="shop-cards-container">
               {
-                shopProducts.map((item) => (
+                shopProducts?.map((item) => (
                   <div className="card">
                 <img src={item.mainImage} alt={item.name} />
                 <div>
