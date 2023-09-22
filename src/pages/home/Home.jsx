@@ -69,7 +69,6 @@ const Home = ({ isTypeSeller }) => {
         const favorite = products?.find((element) => element.id == item);
         favoriteProducts.push(favorite);
       });
-      console.log(favoriteProducts);
       setWishedProducts(favoriteProducts);
     }
   };
@@ -197,13 +196,12 @@ const Home = ({ isTypeSeller }) => {
                         {wishedProducts?.map((element) => (
                           <div
                             className="card"
-                            onClick={() => navigate("/product")}
                             key={element?.id}
                           >
-                            <img src={element?.mainImage} alt="" />
+                            <img src={element?.mainImage} alt="" onClick={() => navigate(`/product/${element?.id}`)} />
                             <div>
-                              <p>{element?.name}</p>
-                              <div className="price">
+                              <p onClick={() => navigate(`/product/${element?.id}`)}>{element?.name}</p>
+                              <div className="price" onClick={() => navigate(`/product/${element?.id}`)}>
                                 <CardNameShop shop={element?.shopId} />
                                 <span>$ {element?.price}</span>
                               </div>
