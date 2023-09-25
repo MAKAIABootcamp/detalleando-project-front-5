@@ -111,7 +111,7 @@ const SellerRegister = () => {
             name="select-categor"
             {...register("category", { required: true })}
           >
-            <option>Seleccione una categoría</option>
+            <option>Selecciona una categoría</option>
             <option value="pateleriaConfiteria">Pastelería y confitería</option>
             <option value="flores">Flores</option>
           </select>
@@ -119,7 +119,7 @@ const SellerRegister = () => {
             className="main__register-seller__card__form__button"
             type="submit"
           >
-            Registrarse
+            Regístrate
           </button>
         </form>
       </section>

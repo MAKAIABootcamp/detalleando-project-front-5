@@ -10,79 +10,51 @@ const HomeSeller = ({ isTypeSeller }) => {
   const handleNewProduct = () => {
     navigate("/createproduct");
   };
-  const [widthMovile, setWidthMovile] = useState();
-
-  useEffect(() => {
-    handleResize();
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
-
-  const handleResize = () => {
-    const width = window.innerWidth;
-    if (width <= 768) {
-      setWidthMovile(true);
-    } else {
-      setWidthMovile(false);
-    }
-  };
-  return (
-    isTypeSeller ? (
-      <>
-      {widthMovile ? (
-      <main>
+  return isTypeSeller ? (
+    <>
+      <main className="home-seller-mobile">
         <NavSeller />
-          <CardSeller />
-          <CardSeller />
-          <CardSeller />
-          <CardSeller />
-          <CardSeller />
-          <div className="button-homeseller">
-            <button
-              className="button-homeseller-home"
-              onClick={handleNewProduct}
-            >
-              + Crear nuevo producto
-            </button>
-          </div>
-        </main>
-         ) : (
-          <main className="home-seller-dekstop">
-            <div className="home-seller-dekstop__logo">
-            <figure>
-              <img src={Logo} alt="Logo" />
-            </figure>
-            <h1>Detalleando</h1>
-          </div>
-          <div className="home-seller-dekstop__information">
-          <NavSellerDekstop/>
+        <CardSeller />
+        <CardSeller />
+        <CardSeller />
+        <CardSeller />
+        <CardSeller />
+        <div className="button-homeseller">
+          <button className="button-homeseller-home" onClick={handleNewProduct}>
+            + Crear nuevo producto
+          </button>
+        </div>
+      </main>
+
+      <div className="home-seller-dekstop">
+        <div className="home-seller-dekstop__logo">
+          <figure>
+            <img src={Logo} alt="Logo" />
+          </figure>
+          <h1>Detalleando</h1>
+        </div>
+        <div className="home-seller-dekstop__information">
+          <NavSellerDekstop />
           <div className="button-homeseller-dekstop">
             <button
               className="button-homeseller-dekstop-home"
               onClick={handleNewProduct}
             >
-              + 
+              +
             </button>
-            </div>
+          </div>
           <div className="home-seller-dekstop__information-cards">
-         
-          <CardSeller />
-          <CardSeller />
-          <CardSeller />
-          <CardSeller />
-          <CardSeller />
+            <CardSeller />
+            <CardSeller />
+            <CardSeller />
+            <CardSeller />
+            <CardSeller />
           </div>
-          
-          </div>
-          </main>
-          )}
-      </>
-    ) : (
-      navigate("/")
-    )
+        </div>
+      </div>
+    </>
+  ) : (
+    navigate("/")
   );
 };
 

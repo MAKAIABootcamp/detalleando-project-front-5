@@ -11,29 +11,12 @@ const OrderEmpty = () => {
   const navigate = useNavigate();
   const [widthMovile, setWidthMovile] = useState();
 
-  useEffect(() => {
-    handleResize();
-    window.addEventListener("resize", handleResize);
 
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
-
-  const handleResize = () => {
-    const width = window.innerWidth;
-    if (width <= 768) {
-      setWidthMovile(true);
-    } else {
-      setWidthMovile(false);
-    }
-  };
   return (
     <>
-      {widthMovile ? (
+      
         <main className="order-empty">
-          <OrderList />
-          <h3>Todavía no tienes ordenes actuales</h3>
+          <h3>Todavía no tienes órdenes actuales</h3>
 
           <figure className="not-order">
             <img src={notorder} alt="NotOrders" />
@@ -45,25 +28,25 @@ const OrderEmpty = () => {
 
           <NavMobile />
         </main>
-      ) : (
-        <main className="order-empty-dekstop">
-          <h2>Mis ordenes</h2>
+      
+        <div className="order-empty-dekstop">
           <div className="order-empty-dekstop__container">
             <div className="order-empty-dekstop__container-order">
-              <OrderList />
+              
+
             </div>
             <div className="order-empty-dekstop__container__info">
               <figure>
                 <img src={notorder} alt="NotOrders" />
               </figure>
-              <h3>Todavía no tienes ordenes actuales</h3>
+              <h3>Todavía no tienes órdenes actuales</h3>
               <Link
               className="text" 
               to="/">Ir a la tienda</Link>
             </div>
           </div>
-        </main>
-      )}
+        </div>
+     
     </>
   );
 };

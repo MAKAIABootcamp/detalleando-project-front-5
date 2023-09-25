@@ -3,40 +3,24 @@ import "./profileEdit.scss";
 import arrowBack from "/arrowback.svg";
 import { useNavigate } from "react-router-dom";
 import user from "/test.jfif";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../redux/auth/authActions";
-
+import NavDesktop from "../../components/nav-desktop/NavDesktop";
+import camera from "/camera.svg"
 const ProfileEdit = ({ isTypeSeller }) => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [widthMovile, setWidthMovile] = useState();
-
-  useEffect(() => {
-    handleResize();
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
-
-  const handleResize = () => {
-    const width = window.innerWidth;
-    if (width <= 768) {
-      setWidthMovile(true);
-    } else {
-      setWidthMovile(false);
-    }
-  };
-
+  const prods = useSelector((store) => store.auth);
+  // console.log(prods.userLogged)
+  const date = prods.userLogged
   const handleLogout = () => {
     dispatch(logout());
   }
 
   return !isTypeSeller && (
     <>
-      {widthMovile ? (
+      
         <main className="profileEdit">
           <div className="profileEdit-up">
             <img src={arrowBack} alt="ArrowBack" onClick={() => navigate(-1)} />
@@ -44,7 +28,10 @@ const ProfileEdit = ({ isTypeSeller }) => {
           </div>
           <div className="content-user">
             <figure className="photo-user">
-              <img src={user} alt="Photo" />
+              <img src={date.photoURL} alt="Photo" />
+            </figure>
+            <figure className="photo-camera">
+              <img src={camera} alt="Camera" />
             </figure>
           </div>
 
@@ -57,21 +44,21 @@ const ProfileEdit = ({ isTypeSeller }) => {
           </label>
           <input
             type="text"
-            class="edit-section-date__input"
-            placeholder="Anna"
+            className="edit-section-date__input"
+            defaultValue={date.displayName}
           />
         </div>
 
-        <div className="edit-section-date">
+        {/* <div className="edit-section-date">
           <label className="edit-section-date__label">
             <span>Tú correo</span>
           </label>
           <input
             type="email"
-            class="edit-section-date__input"
+            className="edit-section-date__input"
             placeholder="anna@gmail.com"
           />
-        </div>
+        </div> */}
         
 
         <div className="edit-section-date">
@@ -80,8 +67,8 @@ const ProfileEdit = ({ isTypeSeller }) => {
           </label>
           <input
             type="text"
-            class="edit-section-date__input"
-            placeholder="22/09/23"
+            className="edit-section-date__input"
+            defaultValue={date.birthday}
           />
         </div>
           
@@ -92,8 +79,8 @@ const ProfileEdit = ({ isTypeSeller }) => {
           </label>
           <input
             type="text"
-            class="edit-section-date__input"
-            placeholder="3011234567"
+            className="edit-section-date__input"
+            defaultValue={date.phone}
           />
         </div>
            
@@ -104,22 +91,24 @@ const ProfileEdit = ({ isTypeSeller }) => {
             <span className="close-sesion" onClick={handleLogout}>Cerrar sesión</span>
           </div>
         </main>
-      ) : (
-        <main className="profileEdit-desktop">
+  
+
+
+        <div className="profileEdit-desktop">
+          <NavDesktop/>
+          <div className="divpro">
           <section className="profileEdit-desktop__card">
             <h2>Información del perfil</h2>
             <figure className="profileEdit-desktop__card__figure">
-              <img src={user} alt="Photo" />
+              <img src={date.photoURL} alt="Photo" />
             </figure>
             <div className="profileEdit-desktop__card__info">
               <label>Tú nombre</label>
-              <input type="text" />
-              <label>Tú correo</label>
-              <input type="text" />
+              <input type="text" defaultValue={date.displayName}/>
               <label>Tú teléfono</label>
-              <input type="text" />
+              <input type="text"  defaultValue={date.phone}/>
               <label>Tú fecha de nacimiento</label>
-              <input type="text" />
+              <input type="text" defaultValue={date.birthday}/>
             </div>
             <div className="profileEdit-desktop__card__button">
               <button>Guardar</button>
@@ -128,8 +117,10 @@ const ProfileEdit = ({ isTypeSeller }) => {
           <div className="profileEdit-desktop__cerrar">
             <span onClick={handleLogout}>Cerrar sesión</span>
           </div>
-        </main>
-      )}
+          </div>
+         
+        </div>
+    
     </>
   );
 };

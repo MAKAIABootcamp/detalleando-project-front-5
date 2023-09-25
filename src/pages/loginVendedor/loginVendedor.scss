@@ -16,7 +16,7 @@
     display: flex;
     background-color: rgba($background-grey, 0.8);
     border-radius: 10px;
-    backdrop-filter: blur(0.5px);
+    backdrop-filter: blur(4px);
     padding: 40px;
     flex-direction: column;
     font-family: $font-primary;
@@ -59,7 +59,7 @@
         border: 1px solid $background-grey;
         border-radius: 5px;
         width: 250px;
-        background-color: $background-grey;
+        background-color: #fff;
         height: 40px;
         &:focus {
           border: 2px solid $main-pink;

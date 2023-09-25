@@ -8,7 +8,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { setCurrentOrder } from "../../redux/order/orderReducer";
 import Swal from "sweetalert2";
-
+import { setShowAddress } from "../../redux/auth/authReducer";
 const Product = ({ isTypeSeller }) => {
 
   const navigate = useNavigate()
@@ -104,7 +104,9 @@ const handleSelectChange = (event) => {
             <div className="secondary-images">
               {
                 product?.secondaryImages?.map((image, index) => (
+
                   <img src={image} alt={product?.name} key={index}/>
+
                 ))
               }
             </div>

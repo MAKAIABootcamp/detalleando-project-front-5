@@ -37,6 +37,8 @@ import { useNavigate, useParams } from "react-router-dom";
 import { getShopById } from "../../services/shopsService";
 import { getShopProductFromCollection } from "../../redux/products/productsActions";
 import { searchProducts } from "../../redux/products/productsReducer";
+import { setShowAddress } from "../../redux/auth/authReducer";
+import CardFavoritesProducts from "../../components/cardFavoritesProducts/CardFavoritesProducts";
 
 const Shop = ({ isTypeSeller }) => {
   const navigate = useNavigate();
@@ -59,11 +61,18 @@ const Shop = ({ isTypeSeller }) => {
     getCategories();
   }, [shop]);
 
+
+  useEffect(() => {
+    dispatch(setShowAddress(true));
+    return () => dispatch(setShowAddress(false));
+  },[])
+
   const categoryProducts = (category) => {
     
     const chosenProducts = shopProducts.filter((product) => product.category == category)
     return chosenProducts;
   }
+
 
   const searchProductsHome = (e) => {
     const searchParam = e.target.value;
@@ -133,7 +142,7 @@ const Shop = ({ isTypeSeller }) => {
     !isTypeSeller && (
       <>
         <header>
-          <NavDesktop />
+          <NavDesktop/>
         </header>
         <main className="shop-main">
           <div className="shop-address">
@@ -199,6 +208,7 @@ const Shop = ({ isTypeSeller }) => {
               ))}
             </div>
             <div>
+
               {activeSearch && search?.length > 0 ? (
                 <div className="shop-section">
                   <div className="shop-cards-container">
@@ -214,6 +224,7 @@ const Shop = ({ isTypeSeller }) => {
                         <figure className="like">
                           <img src={heartWhite} alt="Icon for like" />
                         </figure>
+
                       </div>
                     ))}
                   </div>
@@ -247,17 +258,16 @@ const Shop = ({ isTypeSeller }) => {
                           <div
                             className="card"
                             key={product.id}
-                            onClick={() => navigate(`/product/${product.id}`)}
                           >
-                            <img src={product?.mainImage} alt={product?.name} />
+                            <img src={product?.mainImage} alt={product?.name} onClick={() => navigate(`/product/${product.id}`)} />
                             <div>
-                              <h4>{product?.name}</h4>
+                              <h4 onClick={() => navigate(`/product/${product.id}`)}>{product?.name}</h4>
                               <div className="price">
                                 <span>$ {product?.price}</span>
                               </div>
                             </div>
                             <figure className="like">
-                              <img src={heartWhite} alt="Icon for like" />
+                              <CardFavoritesProducts idProduct={product.id} />
                             </figure>
                           </div>
                         ))}

@@ -10,28 +10,14 @@ import calendar from "/icons/calendar-color.svg";
 import language from "/icons/language.svg";
 import chat from "/icons/chat-conversation.svg";
 import heart from "/icons/heart-pink.svg";
+import NavDesktop from "../../components/nav-desktop/NavDesktop";
+import { useSelector } from "react-redux";
 
 const Profile = ({ isTypeSeller }) => {
   const navigate = useNavigate();
-  const [widthMovile, setWidthMovile] = useState();
 
-  useEffect(() => {
-    handleResize();
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
-
-  const handleResize = () => {
-    const width = window.innerWidth;
-    if (width <= 768) {
-      setWidthMovile(true);
-    } else {
-      setWidthMovile(false);
-    }
-  };
+  const prods = useSelector((store) => store.auth);
+  const date = prods.userLogged
 
   const handleProfileEdit = () => {
     navigate("/profileEdit");
@@ -39,7 +25,7 @@ const Profile = ({ isTypeSeller }) => {
 
   return !isTypeSeller && (
     <>
-      {widthMovile ? (
+      
         <main className="profile">
           <div className="profile-up">
             <img src={arrowBack} alt="ArrowBack" onClick={() => navigate(-1)} />
@@ -48,11 +34,11 @@ const Profile = ({ isTypeSeller }) => {
 
           <div className="profile-info">
             <figure className="photo">
-              <img src={user} alt="Photo" />
+              <img src={date.photoURL} alt="Photo" />
             </figure>
 
             <div className="date">
-              <h3>Anna</h3>
+              <h3>{date.displayName}</h3>
               <span className="view" onClick={handleProfileEdit}>
                 Ver perfil
               </span>
@@ -88,16 +74,19 @@ const Profile = ({ isTypeSeller }) => {
 
           <NavMobile />
         </main>
-      ) : (
-        <main className="main-profile-desktop">
+      
+
+
+        <div className="main-profile-desktop">
+        <NavDesktop/>
           <h2>Perfil</h2>
           <div>
             <div className="main-profile-desktop__info">
               <figure className="main-profile-desktop__info-photo">
-                <img src={user} alt="Photo" />
+                <img src={date.photoURL} alt="Photo" />
               </figure>
               <div className="main-profile-desktop__info-user">
-                <h3>Anna</h3>
+                <h3>{date.displayName}</h3>
                 <span onClick={handleProfileEdit}>Ver perfil</span>
               </div>
             </div>
@@ -124,8 +113,8 @@ const Profile = ({ isTypeSeller }) => {
               <span>Favoritos</span>
             </div>
           </section>
-        </main>
-      )}
+        </div>
+      
     </>
   );
 };

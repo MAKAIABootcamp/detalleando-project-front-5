@@ -8,30 +8,11 @@ import Logo from "/logo.svg";
 import NavSellerDekstop from "../../components/navSellerDekstop/NavSellerDekstop";
 const SaleSeller = ({ isTypeSeller }) => {
   const navigate = useNavigate();
-  const [widthMovile, setWidthMovile] = useState();
-
-  useEffect(() => {
-    handleResize();
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
-
-  const handleResize = () => {
-    const width = window.innerWidth;
-    if (width <= 768) {
-      setWidthMovile(true);
-    } else {
-      setWidthMovile(false);
-    }
-  };
+  
   return (
     isTypeSeller && (
       <>
-        {widthMovile ? (
-          <main>
+          <main className="sale-order-mobile">
             <NavSeller />
             <section className="sales-orders-details">
               <div className="sale-seller">
@@ -45,8 +26,10 @@ const SaleSeller = ({ isTypeSeller }) => {
               </div>
             </section>
           </main>
-        ) : (
-          <main className="sales-orders-dekstop">
+
+
+
+          <div className="sales-orders-dekstop">
             <div className="sales-orders-dekstop__logo">
               <figure>
                 <img src={Logo} alt="Logo" />
@@ -68,8 +51,7 @@ const SaleSeller = ({ isTypeSeller }) => {
                 </section>
               </div>
             </div>
-          </main>
-        )}
+          </div>
       </>
     )
   );
