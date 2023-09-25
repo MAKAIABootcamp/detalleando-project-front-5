@@ -5,7 +5,9 @@ import arrow from "/icons/arrow-down.svg";
 import "./product.scss";
 import NavDesktop from "../../components/nav-desktop/NavDesktop";
 import { useNavigate, useParams } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { setCurrentOrder } from "../../redux/order/orderReducer";
+import Swal from "sweetalert2";
 
 const Product = ({ isTypeSeller }) => {
 
@@ -16,6 +18,10 @@ const Product = ({ isTypeSeller }) => {
   const [product, setProduct] = useState('')
   const [shop, setShop] = useState('');
   const [shopProducts, setShopProducts] = useState([]);
+  const [quantity, setQuantity] = useState(1)
+  const { currentOrder } = useSelector(store => store.order);
+  const { userLogged } = useSelector(store => store.auth);
+  const dispatch = useDispatch()
 
   useEffect(() => {
     setProduct(products.find(item => item.id == idProduct))
@@ -23,28 +29,60 @@ const Product = ({ isTypeSeller }) => {
     setShopProducts(products.filter(item => (item.shopId == shop?.id && item?.id!= idProduct)))
   }, [product, shop]);
 
-  // const initializeOrder = () => {
-  //   if (currentOrder) {
-  //     const updatedOrder = {
-  //       ...currentOrder,
-  //       products: [
-  //         ...currentOrder.products,
-  //         { ...productSelected[0], amount: quantity },
-  //       ],
-  //     };
-  //     dispatch(setCurrentOrder(updatedOrder));
-  //     // navigate('/order')
-  //   } else if (currentOrder === null) {
-  //     const order = {
-  //       products: [{ ...productSelected[0], amount: quantity }],
-  //       address: userLogged.address[0],
-  //       payment: userLogged.payment[0],
-  //       total: null,
-  //     };
-  //     dispatch(setCurrentOrder(order));
-  //     // navigate('/order')
-  //   }
-  // };
+  const initializeOrder = () => {
+    if (currentOrder) {
+      const updatedOrder = {
+        ...currentOrder,
+        products: [
+          ...currentOrder.products,
+          { ...product, amount: quantity },
+        ],
+      };
+      dispatch(setCurrentOrder(updatedOrder));
+      Swal.fire({
+        icon: 'success',
+        title: 'Excelente!',
+        text: 'El producto fue añadido al carrito con éxito!',
+        footer: '<a href="/cart">Ir al carrito</a>'
+      })
+    } else if (currentOrder === null) {
+      const order = {
+        products: [{ ...product, amount: quantity }],
+        sendTo: {
+          direction: "",
+          name:'',
+          phone:'',
+          date:'',
+          time:'',
+          additional:''
+        },
+        paymentRef: "",
+        shopId: product.shopId,
+        state: 'para pagar'
+      };
+      dispatch(setCurrentOrder(order))
+      Swal.fire({
+        icon: 'success',
+        title: 'Excelente!',
+        text: 'El producto fue añadido al carrito con éxito!',
+        footer: '<a href="/cart">Ir al carrito</a>'
+      })
+    }
+  };
+
+  const increment = () => {
+    setQuantity(quantity + 1)
+}
+
+const decrement = () => {
+    if (quantity >1) {
+        setQuantity(quantity - 1)
+    }
+}
+
+const handleSelectChange = (event) => {
+  setQuantity(event.target.value);
+};
 
   return (
     !isTypeSeller && (
@@ -78,7 +116,7 @@ const Product = ({ isTypeSeller }) => {
                 <span>$ {product?.price}</span>
                 <div className="desktop-quantity">
                   <label>Quantity</label>
-                  <select name="quantity">
+                  <select name="quantity" value={quantity} onChange={handleSelectChange}>
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -98,7 +136,7 @@ const Product = ({ isTypeSeller }) => {
               {product?.description}
               </p>
               </div>
-              <button className="desktop-add-button">Add to order</button>
+              <button className="desktop-add-button" onClick={initializeOrder}>Add to order</button>
             </div>
             
           </div>
@@ -126,13 +164,13 @@ const Product = ({ isTypeSeller }) => {
           </div>
           <div className="product-footer">
             <div className="product-counter">
-              <span>-</span>
-              <p>1</p>
-              <span>+</span>
+              <span onClick={decrement}>-</span>
+              <p>{quantity}</p>
+              <span onClick={increment}>+</span>
             </div>
-            <div className="product-add">
+            <div className="product-add" onClick={initializeOrder}>
               <h4>Add to order</h4>
-              <span>$ {product?.price}</span>
+              <span>$ {product?.price * quantity}</span>
             </div>
           </div>
         </main>
