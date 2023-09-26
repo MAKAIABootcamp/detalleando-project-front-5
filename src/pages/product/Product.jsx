@@ -6,7 +6,12 @@ import "./product.scss";
 import NavDesktop from "../../components/nav-desktop/NavDesktop";
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { setCurrentOrder } from "../../redux/order/orderReducer";
+import Swal from "sweetalert2";
 import { setShowAddress } from "../../redux/auth/authReducer";
+import { v4 as uuidv4 } from 'uuid';
+import { Link } from "react-router-dom";
+
 const Product = ({ isTypeSeller }) => {
 
   const navigate = useNavigate()
@@ -16,40 +21,87 @@ const Product = ({ isTypeSeller }) => {
   const [product, setProduct] = useState('')
   const [shop, setShop] = useState('');
   const [shopProducts, setShopProducts] = useState([]);
-  const dispatch = useDispatch();
+  const [quantity, setQuantity] = useState(1)
+  const { currentOrder } = useSelector(store => store.order);
+  const { userLogged } = useSelector(store => store.auth);
+  const dispatch = useDispatch()
+
   useEffect(() => {
     setProduct(products.find(item => item.id == idProduct))
     setShop(shops.find(shop => shop.id == product.shopId))
     setShopProducts(products.filter(item => (item.shopId == shop?.id && item?.id!= idProduct)))
-  }, [product, shop]);
+  }, [product, shop, idProduct]);
 
-  // const initializeOrder = () => {
-  //   if (currentOrder) {
-  //     const updatedOrder = {
-  //       ...currentOrder,
-  //       products: [
-  //         ...currentOrder.products,
-  //         { ...productSelected[0], amount: quantity },
-  //       ],
-  //     };
-  //     dispatch(setCurrentOrder(updatedOrder));
-  //     // navigate('/order')
-  //   } else if (currentOrder === null) {
-  //     const order = {
-  //       products: [{ ...productSelected[0], amount: quantity }],
-  //       address: userLogged.address[0],
-  //       payment: userLogged.payment[0],
-  //       total: null,
-  //     };
-  //     dispatch(setCurrentOrder(order));
-  //     // navigate('/order')
-  //   }
-  // };
+  const handleGoToCart = () => {
+    navigate("/cart")
+  }
 
-  useEffect(() => {
-    dispatch(setShowAddress(true));
-    return () => dispatch(setShowAddress(false));
-  },[])
+  const initializeOrder = () => {
+    if (currentOrder) {
+      const updatedOrder = {
+        ...currentOrder,
+        products: [
+          ...currentOrder.products,
+          { ...product, amount: quantity },
+        ],
+      };
+      dispatch(setCurrentOrder(updatedOrder));
+      Swal.fire({
+        icon: 'success',
+        title: 'Excelente!',
+        text: 'El producto fue añadido al carrito con éxito!',
+      })
+    } else if (currentOrder === null) {
+      const order = {
+        products: [{ ...product, amount: quantity }],
+        sendTo: {
+          direction: "",
+          name:'',
+          phone:'',
+          date:'',
+          time: 8,
+          additional:''
+        },
+        paymentRef: uuidv4(),
+        paymentMethod: userLogged?.payment[0] || '',
+        shopId: product.shopId,
+        status: 'para pagar'
+      };
+      dispatch(setCurrentOrder(order))
+      
+      Swal.fire({
+        icon: 'success',
+        title: 'Excelente!',
+        text: 'El producto fue añadido al carrito con éxito!',
+      }).then(() => {
+        Swal.fire({
+        title: 'Quieres ir al carrito?',
+        showCancelButton: true,
+        confirmButtonText: 'Proceder',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          navigate('/cart')
+          // handleGoToCart()
+        }
+      })
+      })
+      
+    }
+  };
+
+  const increment = () => {
+    setQuantity(quantity + 1)
+}
+
+const decrement = () => {
+    if (quantity >1) {
+        setQuantity(quantity - 1)
+    }
+}
+
+const handleSelectChange = (event) => {
+  setQuantity(event.target.value);
+};
 
   return (
     !isTypeSeller && (
@@ -85,7 +137,7 @@ const Product = ({ isTypeSeller }) => {
                 <span>$ {product?.price}</span>
                 <div className="desktop-quantity">
                   <label>Quantity</label>
-                  <select name="quantity">
+                  <select name="quantity" value={quantity} onChange={handleSelectChange}>
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -105,7 +157,7 @@ const Product = ({ isTypeSeller }) => {
               {product?.description}
               </p>
               </div>
-              <button className="desktop-add-button">Add to order</button>
+              <button className="desktop-add-button" onClick={initializeOrder}>Add to order</button>
             </div>
             
           </div>
@@ -113,11 +165,11 @@ const Product = ({ isTypeSeller }) => {
             <h4>Más de esa tienda</h4>
             <div className="shop-cards-container">
               {
-                shopProducts?.map((item) => (
-                  <div className="card">
+                shopProducts?.map((item, index) => (
+                  <div className="card" key={index} onClick={() => navigate(`/product/${item.id}`)}>
                 <img src={item.mainImage} alt={item.name} />
                 <div>
-                  <h4>{item.name}</h4>
+                  <h4 onClick={() => navigate(`/product/${item.id}`)}>{item.name}</h4>
                   <div className="price">
                     <span>$ {item.price}</span>
                   </div>
@@ -133,13 +185,13 @@ const Product = ({ isTypeSeller }) => {
           </div>
           <div className="product-footer">
             <div className="product-counter">
-              <span>-</span>
-              <p>1</p>
-              <span>+</span>
+              <span onClick={decrement}>-</span>
+              <p>{quantity}</p>
+              <span onClick={increment}>+</span>
             </div>
-            <div className="product-add">
+            <div className="product-add" onClick={initializeOrder}>
               <h4>Add to order</h4>
-              <span>$ {product?.price}</span>
+              <span>$ {product?.price * quantity}</span>
             </div>
           </div>
         </main>

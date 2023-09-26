@@ -7,7 +7,7 @@ import notorder from "/not-orders.svg";
 import "./orderEmpty.scss";
 import { Link } from "react-router-dom";
 import OrderList from "../orderList/OrderList";
-const OrderEmpty = () => {
+const OrderEmpty = ({text}) => {
   const navigate = useNavigate();
   const [widthMovile, setWidthMovile] = useState();
 
@@ -16,13 +16,13 @@ const OrderEmpty = () => {
     <>
       
         <main className="order-empty">
-          <h3>Todavía no tienes órdenes actuales</h3>
+          <h3>{text}</h3>
 
           <figure className="not-order">
             <img src={notorder} alt="NotOrders" />
           </figure>
 
-          <Link to="/" className="texto">
+          <Link to="/home" className="texto">
             Ir a la tienda
           </Link>
 
@@ -42,7 +42,7 @@ const OrderEmpty = () => {
               <h3>Todavía no tienes órdenes actuales</h3>
               <Link
               className="text" 
-              to="/">Ir a la tienda</Link>
+              to="/home">Ir a la tienda</Link>
             </div>
           </div>
         </div>

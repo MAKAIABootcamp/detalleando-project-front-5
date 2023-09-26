@@ -27,7 +27,7 @@ header {
             gap: 10px;
             img {
                 width: 70px;
-                height: 70px;
+                height: 100px;
                 object-fit: cover;
             }
             .info-text {
@@ -35,6 +35,10 @@ header {
                 display: flex;
                 justify-content: space-between;
                 margin-bottom: 10px;
+                .price-amount {
+                    display: flex;
+                    flex-direction: column;
+                }
                 .icon {
                     width: 20px;
                     height: 20px;
@@ -58,6 +62,7 @@ header {
                 border-radius: 10px;
                 width: 100%;
                 margin-top: 5px;
+                padding: 10px;
             }
         }
     }
