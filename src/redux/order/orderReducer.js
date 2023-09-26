@@ -4,6 +4,7 @@ const initialState = {
     orders: [],
     currentOrder: null,
     orderInProcess: null,
+
     error: null
     
 };
@@ -47,7 +48,10 @@ const ordersSlice = createSlice({
             state.currentOrder.paymentMethod = action.payload;
         },
         setOrderInProcess: (state, action) => {
-            state.orderInProcess = action.payload;
+            state.orderInProcess = {
+                ...action.payload,
+                status: 'inicializado'
+            };
             state.currentOrder = null
         },
         setAddress: (state, action) => {

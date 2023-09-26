@@ -65,7 +65,7 @@ const Product = ({ isTypeSeller }) => {
         paymentRef: uuidv4(),
         paymentMethod: userLogged?.payment[0] || '',
         shopId: product.shopId,
-        state: 'para pagar'
+        status: 'para pagar'
       };
       dispatch(setCurrentOrder(order))
       
@@ -73,17 +73,19 @@ const Product = ({ isTypeSeller }) => {
         icon: 'success',
         title: 'Excelente!',
         text: 'El producto fue añadido al carrito con éxito!',
-      })
-      Swal.fire({
+      }).then(() => {
+        Swal.fire({
         title: 'Quieres ir al carrito?',
         showCancelButton: true,
         confirmButtonText: 'Proceder',
       }).then((result) => {
         if (result.isConfirmed) {
-          
-          handleGoToCart()
+          navigate('/cart')
+          // handleGoToCart()
         }
       })
+      })
+      
     }
   };
 

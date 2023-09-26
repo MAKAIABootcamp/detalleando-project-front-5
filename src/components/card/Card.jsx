@@ -69,7 +69,7 @@ const Card = () => {
           </div>
           <div className="order-right">
             <div className="order-stats">
-              <span className="process">{currentOrder?.state}</span>
+              <span className="process">{currentOrder?.status}</span>
             </div>
             <button className="order-button" onClick={handleOrder}>
               Ir a la orden

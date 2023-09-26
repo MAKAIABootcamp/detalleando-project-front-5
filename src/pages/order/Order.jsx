@@ -60,8 +60,8 @@ const Order = ({ isTypeSeller }) => {
 
         { 
           clikedActual &&
-          (currentOrder || orderInProcess? (currentOrder? <Card/> : <CardProcess/>) : <OrderEmpty text={'Todavía no tienes órdenes actuales'}/>)
-          
+    // (currentOrder || orderInProcess? (currentOrder? <Card/> : <CardProcess/>) : <OrderEmpty text={'Todavía no tienes órdenes actuales'}/>)
+        (currentOrder && orderInProcess?(<><Card/><CardProcess/></>):(currentOrder? <Card/> : orderInProcess?<CardProcess/>:<OrderEmpty text={'Todavía no tienes órdenes actuales'}/>))  
         }
         {
           clikedHistorial &&

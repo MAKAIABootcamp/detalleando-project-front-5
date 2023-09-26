@@ -39,7 +39,7 @@
     .order-price {
       display: flex;
       flex-direction: column;
-      padding: 10px;
+      padding: 0 10px 1rem 10px ;
       justify-content: space-between;
       align-items: center;
       .order-left {
@@ -56,6 +56,18 @@
             height: 40px;
             border-radius: 50%;
           }
+          
+        }
+        .address {
+            padding-bottom: 1rem;
+            p {
+                color: $font-light;
+                font-size: 12px;
+            }
+            h4 {
+                font-size: 14px;
+                font-family: $font-primary;
+            }
         }
       }
       .order-right {

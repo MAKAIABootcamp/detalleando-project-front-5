@@ -42,11 +42,14 @@ const CardProcess = () => {
                 <h4>{shop?.storeName}</h4>
               </div>
             </div>
-            <Address />
+            <div className='address'>
+              <p>Entregar a:</p>
+              <h4>{orderInProcess.sendTo.direction}, {orderInProcess.sendTo.name}</h4>
+            </div>
           </div>
           <div className="order-right">
             <div className="order-stats">
-              <span className="process">{orderInProcess?.state}</span>
+              <span className="process">{orderInProcess?.status}</span>
             </div>
           </div>
         </div>
