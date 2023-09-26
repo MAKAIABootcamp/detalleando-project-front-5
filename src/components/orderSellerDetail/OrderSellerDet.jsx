@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import "./orderSellerDet.scss";
 import arrowBack from "/arrowback.svg";
 import { useLocation, useNavigate } from "react-router-dom";
-import Address from "../address/Address";
 import Time from "../time/Time";
 import test from "/test.jfif";
 import NavMobile from "../nav-mobile/NavMobile";
@@ -39,8 +38,8 @@ const OrderSellerDet = () => {
             </div>
           </div>
           <div className="date">
-            <Address />
-            <Time />
+            
+            <p>direcciony time</p>
           </div>
           <div className="order-details-seller__det-status">
             {selectedTable === "saleCourse" ? (
@@ -85,8 +84,8 @@ const OrderSellerDet = () => {
               </div>
             </div>
             <div className="date">
-              <Address />
-              <Time />
+              
+              <p>direccion y time</p>
             </div>
             <div className="order-details-seller__det-status">
               {selectedTable === "saleCourse" ? (

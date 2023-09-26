@@ -140,16 +140,16 @@ const Home = ({ isTypeSeller }) => {
                 </div>
                 <div
                   className="category category-pink"
-                  onClick={() => setSelectedCategory("Pasteleria y confeteria")}
+                  onClick={() => setSelectedCategory("Pastelería y confitería")}
                 >
-                  <p>Pasteleria y confeteria</p>
+                  <p>Pastelería y confitería</p>
                   <img src={cake} alt="Icon for pasteleria" />
                 </div>
                 <div
                   className="category category-pink"
                   onClick={() => setSelectedCategory("Artesanias")}
                 >
-                  <p>Artesanias</p>
+                  <p>Artesanías</p>
                   <img src={arte} alt="Icon for artesanias" />
                 </div>
                 <div
@@ -164,7 +164,7 @@ const Home = ({ isTypeSeller }) => {
                     className="category category-peach"
                     onClick={() => setSelectedCategory("All")}
                   >
-                    <p>Todas categorías</p>
+                    <p>Todas las categorías</p>
                     <img src={gift} alt="Icon for gift" />
                   </div>
                 }
