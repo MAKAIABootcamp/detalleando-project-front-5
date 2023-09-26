@@ -64,7 +64,7 @@ const LoginByPhone = () => {
        <figure className="main-login-Phone-logo">
           <img src={logo} alt="Logo" />
         </figure>
-      <h5>Inicio de Sesión por número celular</h5>
+      <h5>Inicio de sesión por número celular</h5>
       <form
         className="main-login-Phone__form"
         onSubmit={handleSubmit(onSubmit)}

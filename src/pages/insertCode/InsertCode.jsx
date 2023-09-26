@@ -11,6 +11,7 @@ const InsertCode = () => {
 
   const login = (data) => {
     dispatch(loginWithCode(data.code));
+
   };
 
   return (
@@ -18,7 +19,7 @@ const InsertCode = () => {
       <figure className="main-insert-code-logo">
         <img src={logo} alt="Logo" />
       </figure>
-      <h3>Ingrese su código de verificación</h3>
+      <h3>Ingresa tu código de verificación</h3>
       <form className="main-insert-code__form" onSubmit={handleSubmit(login)}>
         <label className="main-insert-code__form-label">
           Código de verificación:
