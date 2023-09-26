@@ -56,7 +56,7 @@ const Shop = ({ isTypeSeller }) => {
   useEffect(() => {
     // dispatch(getShopProductFromCollection(idShop));
     // getShop();
-    setShop(shops.find((shop) => shop.id == idShop));
+    setShop(shops?.find((shop) => shop.id == idShop));
     setShopProducts(products.filter((product) => product.shopId == idShop));
     getCategories();
   }, [shop]);
@@ -231,24 +231,6 @@ const Shop = ({ isTypeSeller }) => {
                 </div>
               ) : (
                 <>
-                  <div className="shop-section">
-                    <h2>Los mas vendidos</h2>
-                    <div className="shop-cards-container">
-                      <div className="card">
-                        <img src={test} alt="" />
-                        <div>
-                          <h4>Cupcakes with cream cheese</h4>
-                          <div className="price">
-                            <span>$ 14</span>
-                          </div>
-                        </div>
-                        <figure className="like">
-                          <img src={heartWhite} alt="Icon for like" />
-                        </figure>
-                      </div>
-                    </div>
-                  </div>
-
                   {categoriesShop.map((category, index) => 
                     (categoryProducts(category.name).length ? 
                     <div className="shop-section" key={index}>

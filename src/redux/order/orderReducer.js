@@ -41,11 +41,14 @@ const ordersSlice = createSlice({
             state.currentOrder.products = state.currentOrder.products.filter(
                 (product) => product.id !== productIdToDelete
             );
-        }
+        },
+        setCode: (state, action) => {
+            state.currentOrder.paymentRef = action.payload.additional;
+        },
     }
 })
 
-export const { setOrders, addOrder, setCurrentOrder, setError, setAdditionalInfo, setAmountProduct, deleteOrder, deleteProduct } =
+export const { setOrders, addOrder, setCurrentOrder, setError, setAdditionalInfo, setAmountProduct, deleteOrder, deleteProduct, setCode } =
   ordersSlice.actions;
   
 export default ordersSlice.reducer;

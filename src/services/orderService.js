@@ -1,8 +1,8 @@
 import { addDoc, collection, getDocs } from "firebase/firestore";
-import { firestore } from "../firebase/firebaseConfig";
+import { fireStore } from "../firebase/firebaseConfig";
 
 const collectionName = "orders-history";
-const collectionRef = collection(firestore, collectionName)
+const collectionRef = collection(fireStore, collectionName)
 
 export const getOrdersFromCollection = async () => {
     const orders = [];

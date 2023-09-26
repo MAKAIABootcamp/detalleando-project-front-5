@@ -12,8 +12,10 @@ import "./checkout.scss"
 import NavDesktop from '../../components/nav-desktop/NavDesktop'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { deleteProduct, setAdditionalInfo, setAmountProduct } from '../../redux/order/orderReducer'
+import { deleteProduct, setAdditionalInfo, setAmountProduct, setCode, setCurrentOrder } from '../../redux/order/orderReducer'
 import Swal from 'sweetalert2'
+import { v4 as uuidv4 } from 'uuid';
+import { createAnOrderAction } from '../../redux/order/orderActions'
 
 const Checkout = ({ isTypeSeller }) => {
 
@@ -82,6 +84,37 @@ const Checkout = ({ isTypeSeller }) => {
             })
           }
 
+          const sendOrder = () => {
+            Swal.fire({
+              title: 'Quieres proceder al pago?',
+              showCancelButton: true,
+              confirmButtonText: 'Proceder',
+            }).then((result) => {
+              if (result.isConfirmed) {
+                const productArray = []
+            currentOrder?.products?.map((product) => {
+            const newProduct = {
+                amount: product.amount,
+                productId: product.id
+            }
+            productArray.push(newProduct)
+        })
+            const newOrder = {
+                shopId: shop.id,
+                userId: userLogged.id,
+                products: productArray,
+                state: 'inicializado',
+                sendTo: currentOrder.sendTo,
+                paymentRef: uuidv4()
+            }
+            dispatch(createAnOrderAction(newOrder))
+            dispatch(setCurrentOrder(newOrder))
+            navigate('/purchase-success')
+              } 
+            })
+            
+        }
+
   return !isTypeSeller && (
     <>
     <header>
@@ -103,6 +136,7 @@ const Checkout = ({ isTypeSeller }) => {
                     </div>
                     <div>
                         <p>{shop?.storeName}</p>
+                        <div className='price-amount'>
                         <div>
                             <img src={edit} alt="Icon for edit" className='icon' onClick={() => setEditAmount(!editAmount)}/>
                             { editAmount? <select name="quantity" value={product.amount} onChange={(e) => handleSelectChange(index, e)}>
@@ -114,6 +148,7 @@ const Checkout = ({ isTypeSeller }) => {
                             <span>x{product.amount}</span>}
                         </div>
                         <span className='price'>${product.price * product.amount}</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -126,7 +161,7 @@ const Checkout = ({ isTypeSeller }) => {
             </div>
             <div className='order-aditional'>
                 <p>Escribe informacion adicional</p>
-                <textarea cols="30" rows="5" placeholder='Escribe algo' onChange={(e) => addInfo(e)}></textarea>
+                <textarea cols="30" rows="3" placeholder='Escribe algo' onChange={(e) => addInfo(e)}></textarea>
             </div>
         </div>
         <div className='payment-details'>
@@ -171,7 +206,7 @@ const Checkout = ({ isTypeSeller }) => {
             </div>
         </div>
         </div>
-        <button className='checkout-button' onClick={() => navigate("/purchase-success")}>Ir al pago</button>
+        <button className='checkout-button' onClick={sendOrder}>Ir al pago</button>
     </main>
     <div className='checkout-nav'>
         <NavMobile/>
