@@ -10,11 +10,12 @@ import OrderEmpty from "../../components/orderEmpty/OrderEmpty";
 import { useDispatch, useSelector } from "react-redux";
 import OrderHistory from "../../components/orderHistory/OrderHistory";
 import { fillOrdersFromCollection } from "../../redux/order/orderActions";
+import CardProcess from "../../components/cardProcess/CardProcess";
 const Order = ({ isTypeSeller }) => {
   const navigate = useNavigate();
   const [clikedActual, setClikedActual] = useState(true);
   const [clikedHistorial, setClikedHistorial] = useState(false);
-  const { currentOrder } = useSelector(store => store.order);
+  const { currentOrder, orderInProcess } = useSelector(store => store.order);
   const [orderHistory, setOrderHistory] = useState([])
   const { orders } = useSelector(store => store.order);
   const { userLogged } = useSelector(store => store.auth);
@@ -59,7 +60,7 @@ const Order = ({ isTypeSeller }) => {
 
         { 
           clikedActual &&
-          (currentOrder? <Card/> : <OrderEmpty text={'Todavía no tienes órdenes actuales'}/>)
+          (currentOrder || orderInProcess? (currentOrder? <Card/> : <CardProcess/>) : <OrderEmpty text={'Todavía no tienes órdenes actuales'}/>)
           
         }
         {

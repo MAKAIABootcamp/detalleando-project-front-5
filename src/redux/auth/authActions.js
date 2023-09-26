@@ -13,6 +13,7 @@ import {
   setFavoritesShops,
   setIsLogged,
   setUserLogged,
+  setUserPayment,
 } from "./authReducer";
 import loginFromFirestore from "../../services/loginFromCollection";
 import {
@@ -327,3 +328,22 @@ export const updateFavoritesProducts = (idUser, favoritesProducts) => {
     }
   };
 };
+
+export const updateUserPayment = (idUser, paymentArray) => {
+  return async (dispatch) => {
+    try {
+      const userRef = doc(fireStore, "users", idUser);
+      const response = await updateDoc(userRef, paymentArray);
+      // dispatch(setUserPayment(paymentArray));
+    } catch (error) {
+      console.log(error);
+      dispatch(
+        setError({
+          error: true,
+          code: error.code,
+          message: error.message,
+        })
+      );
+    }
+  };
+}

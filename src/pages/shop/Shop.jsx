@@ -212,8 +212,8 @@ const Shop = ({ isTypeSeller }) => {
               {activeSearch && search?.length > 0 ? (
                 <div className="shop-section">
                   <div className="shop-cards-container">
-                    {search.map((item) => (
-                      <div className="card">
+                    {search.map((item, index) => (
+                      <div className="card" onClick={() => navigate(`/product/${item.id}`)} key={index}>
                         <img src={item.mainImage} alt={item.name} />
                         <div>
                           <h4>{item.name}</h4>

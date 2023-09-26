@@ -9,6 +9,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { setCurrentOrder } from "../../redux/order/orderReducer";
 import Swal from "sweetalert2";
 import { setShowAddress } from "../../redux/auth/authReducer";
+import { v4 as uuidv4 } from 'uuid';
+import { Link } from "react-router-dom";
+
 const Product = ({ isTypeSeller }) => {
 
   const navigate = useNavigate()
@@ -27,7 +30,11 @@ const Product = ({ isTypeSeller }) => {
     setProduct(products.find(item => item.id == idProduct))
     setShop(shops.find(shop => shop.id == product.shopId))
     setShopProducts(products.filter(item => (item.shopId == shop?.id && item?.id!= idProduct)))
-  }, [product, shop]);
+  }, [product, shop, idProduct]);
+
+  const handleGoToCart = () => {
+    navigate("/cart")
+  }
 
   const initializeOrder = () => {
     if (currentOrder) {
@@ -43,7 +50,6 @@ const Product = ({ isTypeSeller }) => {
         icon: 'success',
         title: 'Excelente!',
         text: 'El producto fue añadido al carrito con éxito!',
-        footer: '<a href="/cart">Ir al carrito</a>'
       })
     } else if (currentOrder === null) {
       const order = {
@@ -53,19 +59,30 @@ const Product = ({ isTypeSeller }) => {
           name:'',
           phone:'',
           date:'',
-          time:'',
+          time: 8,
           additional:''
         },
-        paymentRef: "",
+        paymentRef: uuidv4(),
+        paymentMethod: userLogged?.payment[0] || '',
         shopId: product.shopId,
         state: 'para pagar'
       };
       dispatch(setCurrentOrder(order))
+      
       Swal.fire({
         icon: 'success',
         title: 'Excelente!',
         text: 'El producto fue añadido al carrito con éxito!',
-        footer: '<a href="/cart">Ir al carrito</a>'
+      })
+      Swal.fire({
+        title: 'Quieres ir al carrito?',
+        showCancelButton: true,
+        confirmButtonText: 'Proceder',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          
+          handleGoToCart()
+        }
       })
     }
   };
@@ -146,11 +163,11 @@ const handleSelectChange = (event) => {
             <h4>Más de esa tienda</h4>
             <div className="shop-cards-container">
               {
-                shopProducts?.map((item) => (
-                  <div className="card">
+                shopProducts?.map((item, index) => (
+                  <div className="card" key={index} onClick={() => navigate(`/product/${item.id}`)}>
                 <img src={item.mainImage} alt={item.name} />
                 <div>
-                  <h4>{item.name}</h4>
+                  <h4 onClick={() => navigate(`/product/${item.id}`)}>{item.name}</h4>
                   <div className="price">
                     <span>$ {item.price}</span>
                   </div>

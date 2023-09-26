@@ -12,9 +12,8 @@ import "./checkout.scss"
 import NavDesktop from '../../components/nav-desktop/NavDesktop'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { deleteProduct, setAdditionalInfo, setAmountProduct, setCode, setCurrentOrder } from '../../redux/order/orderReducer'
+import { deleteProduct, setAdditionalInfo, setAmountProduct, setCurrentOrder, setOrderInProcess } from '../../redux/order/orderReducer'
 import Swal from 'sweetalert2'
-import { v4 as uuidv4 } from 'uuid';
 import { createAnOrderAction } from '../../redux/order/orderActions'
 
 const Checkout = ({ isTypeSeller }) => {
@@ -34,10 +33,11 @@ const Checkout = ({ isTypeSeller }) => {
             (acc, product) => acc + product.price * product.amount,
             0
           ))
-      }, [currentOrder.products])
+          console.log(currentOrder);
+      }, [currentOrder.products, currentOrder.paymentMethod])
 
       const getInfoCard = (cardNumber) => {
-        const lastNumbersCard = cardNumber.toString().slice(-4);
+        const lastNumbersCard = cardNumber?.toString().slice(-4);
         const lastNumbersToNumber = Number(lastNumbersCard);
         if (lastNumbersToNumber <= 3333) {
           return mastercard;
@@ -49,8 +49,8 @@ const Checkout = ({ isTypeSeller }) => {
       };
 
       const maskCardNumber = (cardNumber) => {
-        const firstFour = cardNumber.substring(0, 4);
-        const lastFour = cardNumber.substring(cardNumber.length - 4);
+        const firstFour = cardNumber?.substring(0, 4);
+        const lastFour = cardNumber?.substring(cardNumber.length - 4);
     
         const maskedMiddle = "*".repeat(8);
     
@@ -105,10 +105,10 @@ const Checkout = ({ isTypeSeller }) => {
                 products: productArray,
                 state: 'inicializado',
                 sendTo: currentOrder.sendTo,
-                paymentRef: uuidv4()
+                paymentRef: currentOrder.paymentRef
             }
             dispatch(createAnOrderAction(newOrder))
-            dispatch(setCurrentOrder(newOrder))
+            dispatch(setOrderInProcess(currentOrder))
             navigate('/purchase-success')
               } 
             })
@@ -169,12 +169,11 @@ const Checkout = ({ isTypeSeller }) => {
             <div className='payment-method'>
                 <p onClick={() => navigate("/payment-methods")}>{userLogged?.payment?.length > 0 ? 'Cambiar metodo del pago' : "Añadir nuevo metodo del pago"}</p>
                 { userLogged?.payment?.length > 0 &&
-                    userLogged.payment.map((method) => (
+                    
                         <div className='method'>
-                            <img src={getInfoCard(method)} alt="" />
-                            <span>{maskCardNumber(method)}</span>
+                            <img src={getInfoCard(currentOrder?.paymentMethod)} alt="" />
+                            <span>{maskCardNumber(currentOrder?.paymentMethod)}</span>
                         </div>
-                    ))
                 }
                 
             </div>
