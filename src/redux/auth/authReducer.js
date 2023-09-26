@@ -33,12 +33,15 @@ const authSlice = createSlice({
         },
         setUpdateUser: (state, action) => {
             state.userLogged = {...state.userLogged, ...action.payload};
+        setUserPayment: (state, action) => {
+            state.userLogged.payment = action.payload
+        },
+        setUserAddress: (state, action) => {
+            state.userLogged.address = action.payload
         }
     }
 })
 
+export const { setIsLogged, setUserLogged, setError, setFavoritesShops, setFavoritesProducts, setShowAddress, setUpdateUser, setUserPayment, setUserAddress } = authSlice.actions;
 
-export const { setIsLogged, setUserLogged, setError, setFavoritesShops, setFavoritesProducts, setShowAddress, setUpdateUser } = authSlice.actions;
-
-  
 export default authSlice.reducer;

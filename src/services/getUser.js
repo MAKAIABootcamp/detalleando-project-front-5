@@ -21,7 +21,7 @@ export const getUserFromCollection = async (uid) => {
       // console.log("Document data:", user.data());
       return {
         id: user.id,
-        ...user.data(),
+        ...user.data()
       };
     } else {
       // console.log("No such document!");

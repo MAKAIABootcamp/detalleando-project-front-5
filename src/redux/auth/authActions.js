@@ -7,7 +7,7 @@ import {
   updateProfile,
 } from "firebase/auth";
 import { auth, fireStore } from "../../firebase/firebaseConfig";
-import { setError, setFavoritesProducts, setFavoritesShops, setIsLogged, setUpdateUser, setUserLogged } from "./authReducer";
+import { setError, setFavoritesProducts, setFavoritesShops, setIsLogged, setUpdateUser, setUserLogged, setUserPayment } from "./authReducer";
 import loginFromFirestore from "../../services/loginFromCollection";
 import {
   createAnUserInCollection,
@@ -17,7 +17,7 @@ import {
   createAnSellerUserInCollection,
   getSellerUserFromCollection,
 } from "../../services/sellerUser";
-import { doc, updateDoc } from "firebase/firestore";
+import { Firestore, doc, setDoc, updateDoc } from "firebase/firestore";
 
 export const loginWithCode = (code) => {
   return async (dispatch) => {
@@ -28,27 +28,27 @@ export const loginWithCode = (code) => {
         const user = result.user.auth.currentUser;
         //Buscar el usuario en la colección por user.uid
         const userLogged = await getUserFromCollection(user.uid);
-        console.log(userLogged)
-        // if(!userLogged?.id){
-        // const authUser = {
-        //   name: user.displayName,
-        //   photoURL: user.photoURL,
-        //   phone: user.phoneNumber,
-        //   accessToken: user.accessToken,
-        //   email: "",
-        //   isSeller: false,
-        //   password: "",
-        //   favoritesShops: [],
-        //   favoritesProducts: [],
-        //   address: [],
-        //   payment: [],
-        // };
-        // userLogged = await createAnUserInCollection(user.uid, authUser)
-        // }
+        if (!userLogged) {
+          const authUser = {
+            displayName: "",
+            photoURL: "",
+            phone: user.phoneNumber,
+            accessToken: user.accessToken,
+            email: "",
+            isSeller: false,
+            favoritesShops: [],
+            favoritesProducts: [],
+            address: [],
+            payment: [],
+          };
+          await setDoc(doc(fireStore, "users", user.uid), authUser);
+          // userLogged = await createAnUserInCollection(user.uid, authUser)
+          dispatch(setUserLogged(authUser));
+        } else {
+          dispatch(setUserLogged(userLogged));
+        }
 
         // console.log(user);
-        // dispatch(setUserLogged(authUser));
-        dispatch(setUserLogged(userLogged));
         dispatch(setIsLogged(true));
         dispatch(setError(false));
       });
@@ -70,7 +70,7 @@ export const loginWithGoogle = () => {
   return async (dispatch) => {
     try {
       const userCredential = await signInWithPopup(auth, provider);
-      console.log("respuesta de google", userCredential);
+      // console.log("respuesta de google", userCredential);
       const { user } = userCredential;
       const { user: userLogged, error } = await loginFromFirestore(user);
       if (userLogged) {
@@ -102,7 +102,7 @@ export const logout = () => {
   return async (dispatch) => {
     try {
       await signOut(auth);
-      sessionStorage.removeItem('user');
+      sessionStorage.removeItem("user");
       dispatch(setUserLogged(null));
       dispatch(setFavoritesShops([]));
       dispatch(setFavoritesProducts([]));
@@ -124,11 +124,11 @@ export const loginWithEmailAndPassword = (loggedUser) => {
       );
       const foundUser = await getUserFromCollection(user.uid);
       // console.log("respuesta firebase", user);
-      const userLogged ={
+      const userLogged = {
         id: foundUser.id,
-        isSeller: foundUser.isSeller
-      }
-      sessionStorage.setItem('user', JSON.stringify(userLogged));
+        isSeller: foundUser.isSeller,
+      };
+      sessionStorage.setItem("user", JSON.stringify(userLogged));
       // console.log("respuesta firestore", foundUser);
       dispatch(setUserLogged(foundUser));
       dispatch(setIsLogged(true));
@@ -177,6 +177,7 @@ export const createAnUser = (newUser) => {
 
 export const loginSellerWithEmailAndPassword = (loggedUser) => {
   return async (dispatch) => {
+    console.log(loggedUser)
     try {
       const { user } = await signInWithEmailAndPassword(
         auth,
@@ -186,11 +187,11 @@ export const loginSellerWithEmailAndPassword = (loggedUser) => {
       const foundUser = await getSellerUserFromCollection(user.uid);
       // console.log("respuesta firebase", user);
       // console.log("respuesta firestore", foundUser);
-      const userLogged ={
+      const userLogged = {
         id: foundUser.id,
-        isSeller: foundUser.isSeller
-      }
-      sessionStorage.setItem('user', JSON.stringify(userLogged));
+        isSeller: foundUser.isSeller,
+      };
+      sessionStorage.setItem("user", JSON.stringify(userLogged));
       dispatch(setUserLogged(foundUser));
       dispatch(setIsLogged(true));
       dispatch(setError(false));
@@ -287,7 +288,7 @@ export const getSellerActionFromCollection = (uid) => {
 export const updateFavoritesShops = (idUser, favoritesShops) => {
   return async (dispatch) => {
     try {
-      const userRef = doc(fireStore, 'users', idUser);
+      const userRef = doc(fireStore, "users", idUser);
       const response = await updateDoc(userRef, favoritesShops);
       dispatch(setFavoritesShops(favoritesShops.favoritesShops));
     } catch (error) {
@@ -300,13 +301,13 @@ export const updateFavoritesShops = (idUser, favoritesShops) => {
         })
       );
     }
-  }
+  };
 };
 
 export const updateFavoritesProducts = (idUser, favoritesProducts) => {
   return async (dispatch) => {
     try {
-      const userRef = doc(fireStore, 'users', idUser);
+      const userRef = doc(fireStore, "users", idUser);
       const response = await updateDoc(userRef, favoritesProducts);
       dispatch(setFavoritesProducts(favoritesProducts.favoritesProducts));
     } catch (error) {
@@ -319,7 +320,26 @@ export const updateFavoritesProducts = (idUser, favoritesProducts) => {
         })
       );
     }
-  }
+  };
+};
+
+export const updateUserPayment = (idUser, paymentArray) => {
+  return async (dispatch) => {
+    try {
+      const userRef = doc(fireStore, "users", idUser);
+      const response = await updateDoc(userRef, paymentArray);
+      // dispatch(setUserPayment(paymentArray));
+    } catch (error) {
+      console.log(error);
+      dispatch(
+        setError({
+          error: true,
+          code: error.code,
+          message: error.message,
+        })
+      );
+    }
+  };
 }
 
 export const updateSellerUser = (idUser, updateInfo) => {

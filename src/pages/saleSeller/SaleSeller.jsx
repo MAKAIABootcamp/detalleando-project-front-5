@@ -8,7 +8,13 @@ import Logo from "/logo.svg";
 import NavSellerDekstop from "../../components/navSellerDekstop/NavSellerDekstop";
 const SaleSeller = ({ isTypeSeller }) => {
   const navigate = useNavigate();
-  
+
+  const [selectedTable, setSelectedTable] = useState(null);
+
+  const handleOrderDetSeller = (table) => {
+    setSelectedTable(table);
+    navigate(`/OrderDetailSeller?selectedTable=${table}`);// Navega a la página de detalles de la orden del vendedor con el valor de 'selectedTable' en la URL
+  };
   return (
     isTypeSeller && (
       <>
@@ -17,12 +23,12 @@ const SaleSeller = ({ isTypeSeller }) => {
             <section className="sales-orders-details">
               <div className="sale-seller">
                 <h3>Ventas en curso</h3>
-                <SaleCourse />
+                <SaleCourse handleOrderDetSeller={handleOrderDetSeller} />
               </div>
 
               <div className="sale-completed">
                 <h3>Ventas completadas</h3>
-                <SaleCompleted />
+                <SaleCompleted handleOrderDetSeller={handleOrderDetSeller}/>
               </div>
             </section>
           </main>
@@ -42,11 +48,11 @@ const SaleSeller = ({ isTypeSeller }) => {
                 <section className="sales-orders-dekstop__information-section">
                   <div className="sale-seller-dekstop">
                     <h3>Ventas en curso</h3>
-                    <SaleCourse />
+                    <SaleCourse handleOrderDetSeller={handleOrderDetSeller}/>
                   </div>
                   <div className="sale-completed-dekstop">
                     <h3>Ventas completadas</h3>
-                    <SaleCompleted />
+                    <SaleCompleted handleOrderDetSeller={handleOrderDetSeller}/>
                   </div>
                 </section>
               </div>
