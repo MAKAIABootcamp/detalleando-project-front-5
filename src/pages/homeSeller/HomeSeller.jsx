@@ -5,8 +5,32 @@ import CardSeller from "../../components/cardSeller/CardSeller";
 import { useNavigate } from "react-router-dom";
 import Logo from "/logo.svg";
 import NavSellerDekstop from "../../components/navSellerDekstop/NavSellerDekstop";
+import { useDispatch, useSelector } from "react-redux";
+import { deleteProductFronCollection, getShopProductFromCollection } from "../../redux/products/productsActions";
+import Swal from "sweetalert2";
 const HomeSeller = ({ isTypeSeller }) => {
+
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { userLogged } = useSelector(store => store.auth)
+
+  useEffect(() => {
+    dispatch(getShopProductFromCollection(userLogged.id))
+  },[dispatch]);
+  // console.log(userLogged);
+  // console.log(products);
+
+  // const handleDeleteProduct = (id, index) => {
+  //   console.log(index)
+  //   console.log(id)
+  //   dispatch(deleteProductFronCollection(id, index));
+  //   Swal.fire(
+  //     "Excelente!",
+  //     "El producto fue eliminado con exito",
+  //     "success"
+  //   )
+  // }
+  
   const handleNewProduct = () => {
     navigate("/createproduct");
   };
@@ -14,10 +38,6 @@ const HomeSeller = ({ isTypeSeller }) => {
     <>
       <main className="home-seller-mobile">
         <NavSeller />
-        <CardSeller />
-        <CardSeller />
-        <CardSeller />
-        <CardSeller />
         <CardSeller />
         <div className="button-homeseller">
           <button className="button-homeseller-home" onClick={handleNewProduct}>
@@ -44,10 +64,6 @@ const HomeSeller = ({ isTypeSeller }) => {
             </button>
           </div>
           <div className="home-seller-dekstop__information-cards">
-            <CardSeller />
-            <CardSeller />
-            <CardSeller />
-            <CardSeller />
             <CardSeller />
           </div>
         </div>

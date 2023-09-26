@@ -7,14 +7,7 @@ import {
   updateProfile,
 } from "firebase/auth";
 import { auth, fireStore } from "../../firebase/firebaseConfig";
-import {
-  setError,
-  setFavoritesProducts,
-  setFavoritesShops,
-  setIsLogged,
-  setUserLogged,
-  setUserPayment,
-} from "./authReducer";
+import { setError, setFavoritesProducts, setFavoritesShops, setIsLogged, setUpdateUser, setUserLogged, setUserPayment } from "./authReducer";
 import loginFromFirestore from "../../services/loginFromCollection";
 import {
   createAnUserInCollection,
@@ -56,7 +49,6 @@ export const loginWithCode = (code) => {
         }
 
         // console.log(user);
-
         dispatch(setIsLogged(true));
         dispatch(setError(false));
       });
@@ -276,6 +268,8 @@ export const getSellerActionFromCollection = (uid) => {
       const userLogged = await getSellerUserFromCollection(uid);
       // console.log(userLogged);
       dispatch(setUserLogged(userLogged));
+      dispatch(setFavoritesShops([]));
+      dispatch(setFavoritesProducts([]));
       dispatch(setIsLogged(true));
       dispatch(setError(false));
     } catch (error) {
@@ -346,4 +340,25 @@ export const updateUserPayment = (idUser, paymentArray) => {
       );
     }
   };
+}
+
+export const updateSellerUser = (idUser, updateInfo) => {
+  console.log(idUser)
+  console.log(updateInfo)
+  return async (dispatch) => {
+    try {
+      const userRef = doc(fireStore, 'sellersUsers', idUser);
+      const response =await updateDoc(userRef, updateInfo);
+      dispatch(setUpdateUser(updateInfo));
+    } catch (error) {
+      console.log(error);
+      dispatch(
+        setError({
+          error: true,
+          code: error.code,
+          message: error.message
+        })
+      )
+    }
+  }
 }

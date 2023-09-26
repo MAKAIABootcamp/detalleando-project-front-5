@@ -17,12 +17,18 @@ const productsSlice = createSlice({
         searchProducts: (state, action) => {
             state.search = action.payload
         },
+        addProduct: (state, action) => {
+            state.products = [...state.products, action.payload]
+        },
+        deleteProduct: (state, action) => {
+            state.products = state.products.filter((item, index) => index !== action.payload)
+        },
         setError: (state, action) => {
             state.error = action.payload;
         }
     }
 })
 
-export const { setProducts, setError, searchProducts } = productsSlice.actions;
+export const { setProducts,addProduct, searchProducts, deleteProduct, setError } = productsSlice.actions;
   
 export default  productsSlice.reducer;
