@@ -111,7 +111,7 @@
         position: relative;
         .seller-img {
           width: 230px;
-          height: 100%;
+          height: 200px;
           object-fit: cover;
           border-radius: 10px 10px 0 0;
         }
@@ -177,6 +177,7 @@
           -webkit-line-clamp: 6; 
           -webkit-box-orient: vertical;
           text-overflow: ellipsis;
+          text-align: justify;
         }
       }
     }

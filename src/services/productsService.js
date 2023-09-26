@@ -1,4 +1,4 @@
-import { collection, doc, getDoc, getDocs, query, where } from "firebase/firestore";
+import { addDoc, collection, doc, getDoc, getDocs, query, where } from "firebase/firestore";
 import { fireStore } from "../firebase/firebaseConfig";
 
 
@@ -49,5 +49,18 @@ export const getProductById = async(idProduct) => {
     } catch (error) {
         console.log(error);
         return null;
+    }
+}
+
+export const addProduct = async (product) => {
+    try {
+        const querySnapshot = await addDoc(collectionRef, product);
+        return {
+            ok: true,
+            product
+        }
+    } catch (error) {
+        console.log(error);
+        return false;
     }
 }
