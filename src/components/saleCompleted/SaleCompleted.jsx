@@ -2,7 +2,13 @@ import React from 'react'
 import './saleCompleted.scss'
 import Address from '../../components/address/Address'
 import arrow from '/arrow-right.svg'
-const SaleCompleted = () => {
+import { useNavigate } from 'react-router-dom'
+const SaleCompleted = ({ handleOrderDetSeller }) => {
+    const navigate = useNavigate()
+    // const handleOrderDetSeller = (table) => {
+    //     setSelectedTable(table);
+    //     navigate("/OrderDetailSeller");
+    // };
   return (
     <table className='table-sale-completed'> 
         <tr> 
@@ -17,21 +23,27 @@ const SaleCompleted = () => {
             <td>1 unidad</td>
             <td>$14</td>
             <td>Tunja, cll 12, Anna Bondarets</td>
-            <td><img src={arrow} alt="arrow" /></td>
+            <td><img src={arrow} alt="arrow" 
+            onClick={() => handleOrderDetSeller("saleCompleted")}
+            /></td>
         </tr>
         <tr> 
             <td>Cupcakes with cream cheese</td>
             <td>1 unidad</td>
             <td>$14</td>
             <td>Tunja, cll 12, Anna Bondarets</td>
-            <td><img src={arrow} alt="arrow" /></td>
+            <td><img src={arrow} alt="arrow" 
+            onClick={() => handleOrderDetSeller("saleCompleted")}
+            /></td>
         </tr>
         <tr> 
             <td>Cupcakes with cream cheese</td>
             <td>1 unidad</td>
             <td>$14</td>
             <td>Tunja, cll 12, Anna Bondarets</td>
-            <td><img src={arrow} alt="arrow" /></td>
+            <td><img src={arrow} alt="arrow" 
+            onClick={() => handleOrderDetSeller("saleCompleted")}
+            /></td>
         </tr>
     </table>
   )

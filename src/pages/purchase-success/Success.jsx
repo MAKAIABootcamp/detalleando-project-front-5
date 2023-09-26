@@ -61,8 +61,8 @@ const Success = ({ isTypeSeller }) => {
         <div className='success-message'>
             <h2>Gracias por su compra!</h2>
             <img src={test} alt="" />
-            <p>Va a recibir la confirmacion de su compra en su correo. En el dia de entrega el vendodor le va a mandar la foto del producto preparado. Si quiere conectarse con el vendedor,  
-                <span> escribele un mensaje</span>
+            <p>Vas a recibir la confirmación de tu compra en tu correo. El día de la entrega el vendodor te va a mandar la foto del producto preparado. Si quieres contactarte con el vendedor,  
+                <span> escríbele un mensaje</span>
             </p>
             
         </div>
