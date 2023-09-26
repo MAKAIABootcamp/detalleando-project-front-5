@@ -1,4 +1,3 @@
-@import "./../../assets/styles/reset.scss";
 @import "./../../assets/styles/variables.scss";
 
 .orders-cards-container {
@@ -40,7 +39,7 @@
     .order-price {
       display: flex;
       flex-direction: column;
-      padding: 10px;
+      padding: 0 10px 1rem 10px ;
       justify-content: space-between;
       align-items: center;
       .order-left {
@@ -57,6 +56,18 @@
             height: 40px;
             border-radius: 50%;
           }
+          
+        }
+        .address {
+            padding-bottom: 1rem;
+            p {
+                color: $font-light;
+                font-size: 12px;
+            }
+            h4 {
+                font-size: 14px;
+                font-family: $font-primary;
+            }
         }
       }
       .order-right {
@@ -101,17 +112,6 @@
       }
     }
 
-    .trash {
-      background-color: white;
-      border-radius: 50%;
-      padding: 5px 5px 0 5px;
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      img {
-        width: 25px;
-      }
-    }
   }
 }
 
@@ -190,17 +190,6 @@
         }
       }
 
-      .trash {
-        background-color: white;
-        border-radius: 50%;
-        padding: 5px 5px 0 5px;
-        position: absolute;
-        top: 0%;
-        margin-right: 95%;
-        img {
-          width: 20px;
-        }
-      }
     }
   }
 }

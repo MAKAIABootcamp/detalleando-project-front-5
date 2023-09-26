@@ -14,7 +14,7 @@ const CardFavoritesProducts = ({ idProduct }) => {
   }, []);
 
   const validateFavoriteProduct = () => {
-    const filter = favoritesProducts.find(item => item == idProduct);
+    const filter = favoritesProducts?.find(item => item == idProduct);
     if(filter != null){
         setFavorite(true)
     }else{
