@@ -19,7 +19,7 @@ const Banner = () => {
         </SwiperSlide>
         <SwiperSlide>
         <div className='swiper-banner peach'>
-            <h1>Un Mundo de sorpresas te espera aquí</h1>
+            <h1>Un mundo de sorpresas te espera aquí</h1>
             <img src={presentImage} alt="" />
           </div>
         </SwiperSlide>

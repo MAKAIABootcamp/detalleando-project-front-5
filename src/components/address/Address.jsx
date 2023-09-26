@@ -11,7 +11,7 @@ const Address = () => {
     <div className='address'>
         <p>Entregar a:</p>
         <div className='choice'>
-          {location.pathname === '/checkout' ? 
+          {location.pathname === '/checkout' || location.pathname === '/OrderDetailSeller'? 
           <div>
               <h4>Tunja, cll 12</h4>
               <h4>Anna Bondarets, +573042706787</h4>

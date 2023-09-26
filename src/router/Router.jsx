@@ -32,6 +32,7 @@ import {
 } from "../redux/auth/authActions";
 import { auth } from "../firebase/firebaseConfig";
 import Loader from "../pages/loader/Loader";
+import OrderSellerDet from "../components/orderSellerDetail/OrderSellerDet";
 
 const Router = () => {
   const dispatch = useDispatch();
@@ -97,6 +98,10 @@ const Router = () => {
             <Route
               path="ventas"
               element={<SaleSeller isTypeSeller={userLogged?.isSeller} />}
+            />
+            <Route
+              path="OrderDetailSeller"
+              element={<OrderSellerDet isTypeSeller={userLogged?.isSeller} />}
             />
             <Route
               path="perfil"
