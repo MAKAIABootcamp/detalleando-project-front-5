@@ -33,6 +33,7 @@ const authSlice = createSlice({
         },
         setUpdateUser: (state, action) => {
             state.userLogged = {...state.userLogged, ...action.payload};
+        },
         setUserPayment: (state, action) => {
             state.userLogged.payment = action.payload
         },
