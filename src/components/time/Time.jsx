@@ -32,7 +32,7 @@ const Time = () => {
     <div className='time'>
         <p>Entregar en:</p>
         <div className='choice'>
-            <h4 onClick={() => setOpenCalendar(!openCalendar)}>22.12.23</h4>
+            <h4 onClick={() => setOpenCalendar(!openCalendar)}>27.09.23</h4>
             <img src={arrow} alt="Icon for arrrow" />
             {
               openCalendar && 
