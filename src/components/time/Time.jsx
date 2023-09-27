@@ -4,6 +4,7 @@ import "./time.scss"
 import { useDispatch, useSelector } from 'react-redux';
 import { setAddress } from '../../redux/order/orderReducer';
 import Calendar from 'react-calendar';
+import 'react-calendar/dist/Calendar.css';
 
 const Time = () => {
 

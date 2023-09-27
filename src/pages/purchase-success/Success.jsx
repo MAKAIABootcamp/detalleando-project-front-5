@@ -91,7 +91,10 @@ const Success = ({ isTypeSeller }) => {
                   <p>Entregar a:</p>
                   <h4>{orderInProcess.sendTo.direction}, {orderInProcess.sendTo.name}</h4>
                 </div>
-                <Time/>
+                <div className='address'>
+                  <p>Entregar a:</p>
+                  <h4>27.09.23, {orderInProcess.sendTo.time}:00</h4>
+                </div>
             </div>
             <h2>Detalles del pago</h2>
             <div className='method'>

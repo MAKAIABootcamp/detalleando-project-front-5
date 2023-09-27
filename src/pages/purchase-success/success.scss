@@ -38,10 +38,12 @@ main, .success-main {
             p {
                 color: $font-light;
                 font-size: 12px;
+                margin-top: 5px;
             }
             h4 {
                 font-size: 14px;
                 font-family: $font-primary;
+                margin-bottom: 5px;
             }
         }
         .product-info {
