@@ -32,7 +32,8 @@ const authSlice = createSlice({
             state.showAddress = action.payload;
         },
         setUpdateUser: (state, action) => {
-            state.userLogged = {...state.userLogged, ...action.payload};
+            state.userLogged = {...state.userLogged, ...action.payload
+        }},
         setUserPayment: (state, action) => {
             state.userLogged.payment = action.payload
         },
