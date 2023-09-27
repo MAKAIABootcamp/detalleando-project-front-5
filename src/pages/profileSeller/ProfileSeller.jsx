@@ -79,21 +79,71 @@ const ProfileSeller = ({ isTypeSeller }) => {
             <div className="profile-seller-mobile-section-div">
               <div className="column">
                 <h3>Nombre de la tienda</h3>
-                <span>{userLogged.storeName}</span>
+                {edit.storeName ? (
+                  <>
+                    <input
+                      type="text"
+                      className="profile-seller-mobile-section-div__input"
+                      value={valueSeller.storeName}
+                      onChange={onChangeEditName}
+                      name="storeName"
+                    />
+                    <button
+                      className="profile-seller-mobile-section-div__input__button"
+                      onClick={handleEdit}
+                      name="storeName"
+                    >
+                      Guardar
+                    </button>
+                  </>
+                ) : (
+                  <div className="profile-seller-mobile-section-div-edit">
+                    <span>{userLogged.storeName}</span>
+                    <figure
+                      className="iconedit"
+                      name="storeName"
+                      onClick={editSellerUser}
+                    >
+                      <img src={editImage} alt="Lapiz" name="storeName" />
+                    </figure>
+                  </div>
+                )}
               </div>
-              <figure className="iconedit">
-                <img src={editImage} alt="Lapiz" />
-              </figure>
             </div>
 
             <div className="profile-seller-mobile-section-div">
               <div className="column">
                 <h3>Descripción de la tienda</h3>
-                <p>{userLogged.description}</p>
+                {edit.description ? (
+                  <>
+                    <input
+                      type="text"
+                      className="profile-seller-mobile-section-div__input"
+                      value={valueSeller.description}
+                      onChange={onChangeEditName}
+                      name="description"
+                    />
+                    <button
+                      className="profile-seller-mobile-section-div__input__button"
+                      onClick={handleEdit}
+                      name="description"
+                    >
+                      Guardar
+                    </button>
+                  </>
+                ) : (
+                  <div>
+                    <p>{userLogged.description}</p>
+                    <figure
+                      className="iconedit"
+                      name="description"
+                      onClick={editSellerUser}
+                    >
+                      <img src={editImage} alt="Lapiz" name="description" />
+                    </figure>
+                  </div>
+                )}
               </div>
-              <figure className="iconedit">
-                <img src={editImage} alt="Lapiz" />
-              </figure>
             </div>
             <div className="profile-seller-mobile-section-div">
               <div className="column">
@@ -104,11 +154,36 @@ const ProfileSeller = ({ isTypeSeller }) => {
             <div className="profile-seller-mobile-section-div">
               <div className="column">
                 <h3>Dirección de la tienda</h3>
-                <span>{userLogged.address}</span>
+                {edit.address ? (
+                  <>
+                    <input
+                      type="text"
+                      className="profile-seller-mobile-section-div__input"
+                      value={valueSeller.address}
+                      onChange={onChangeEditName}
+                      name="address"
+                    />
+                    <button
+                      className="profile-seller-mobile-section-div__input__button"
+                      onClick={handleEdit}
+                      name="address"
+                    >
+                      Guardar
+                    </button>
+                  </>
+                ) : (
+                  <div className="profile-seller-mobile-section-div-edit">
+                    <span>{userLogged.address}</span>
+                    <figure
+                      className="iconedit"
+                      name="address"
+                      onClick={editSellerUser}
+                    >
+                      <img src={editImage} alt="Lapiz" name="address" />
+                    </figure>
+                  </div>
+                )}
               </div>
-              <figure className="iconedit">
-                <img src={editImage} alt="Lapiz" />
-              </figure>
             </div>
           </section>
           <div className="button">
@@ -216,7 +291,7 @@ const ProfileSeller = ({ isTypeSeller }) => {
                         </button>
                       </>
                     ) : (
-                      <div className="profile-seller-mobile-section-div-edit">
+                      <div>
                         <p>{userLogged.description}</p>
                         <figure className="iconedit" onClick={editSellerUser}>
                           <img src={editImage} alt="Lapiz" name="description" />
@@ -239,7 +314,7 @@ const ProfileSeller = ({ isTypeSeller }) => {
                         <input
                           type="text"
                           className="profile-seller-mobile-section-div__input"
-                          value={valueSeller.description}
+                          value={valueSeller.address}
                           onChange={onChangeEditName}
                           name="address"
                         />
