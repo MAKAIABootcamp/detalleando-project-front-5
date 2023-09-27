@@ -323,8 +323,8 @@ export const updateFavoritesProducts = (idUser, favoritesProducts) => {
 }
 
 export const updateSellerUser = (idUser, updateInfo) => {
-  console.log(idUser)
-  console.log(updateInfo)
+  // console.log(idUser)
+  // console.log(updateInfo)
   return async (dispatch) => {
     try {
       const userRef = doc(fireStore, 'sellersUsers', idUser);
