@@ -6,6 +6,7 @@ import logo from "/logo.svg";
 import NavSellerDekstop from "../../components/navSellerDekstop/NavSellerDekstop";
 import { useDispatch, useSelector } from "react-redux";
 import { logout, updateSellerUser } from "../../redux/auth/authActions";
+import fileUpload from "../../services/fileUpload";
 
 const ProfileSeller = ({ isTypeSeller }) => {
   const dispatch = useDispatch();
@@ -25,18 +26,38 @@ const ProfileSeller = ({ isTypeSeller }) => {
     });
   };
 
-  const handleEdit = (event) => {
+  const handleEdit = async (event) => {
     // console.log(event.target.name);
     setEdit({
       ...edit,
       [event.target.name]: false,
     });
-    dispatch(updateSellerUser(userLogged.id, valueSeller));
+    // console.log(event.target.name)
+    // console.log(valueSeller);
+    if (event.target.name == "logo") {
+      const { logo } = valueSeller;
+      const imageFile = logo;
+      const image = await fileUpload(imageFile);
+      const value = {
+        logo: image,
+      };
+      dispatch(updateSellerUser(userLogged.id, value));
+    } else if (event.target.name == "backgroundImage") {
+      const { backgroundImage } = valueSeller;
+      const imageFile = backgroundImage;
+      const image = await fileUpload(imageFile);
+      const value = {
+        backgroundImage: image,
+      };
+      dispatch(updateSellerUser(userLogged.id, value));
+    } else {
+      dispatch(updateSellerUser(userLogged.id, valueSeller));
+    }
   };
 
   const onChangeEditName = (e) => {
-    // console.log(e.target.name)
-    // console.log(e.target.value)
+    // console.log(e.target.name);
+    // console.log(e.target.value);
     setValueSeller({
       [e.target.name]: e.target.value,
     });
@@ -52,28 +73,76 @@ const ProfileSeller = ({ isTypeSeller }) => {
             <div className="profile-seller-mobile-section-div">
               <div className="column">
                 <h3>Logo</h3>
-                <figure className="column-logo">
-                  <img src={userLogged.logo} alt="Logo de la tienda" />
-                </figure>
+                {edit.logo ? (
+                  <>
+                    <input
+                      type="file"
+                      className="profile-seller-mobile-section-div__input"
+                      onChange={onChangeEditName}
+                      name="logo"
+                    />
+                    <button
+                      className="profile-seller-mobile-section-div__input__button"
+                      onClick={handleEdit}
+                      name="logo"
+                    >
+                      Guardar
+                    </button>
+                  </>
+                ) : (
+                  <div className="profile-seller-mobile-section-div-edit">
+                    <figure className="column-logo">
+                      <img src={userLogged.logo} alt="Logo de la tienda" />
+                    </figure>
+                    <figure
+                      className="iconedit"
+                      name="logo"
+                      onClick={editSellerUser}
+                    >
+                      <img src={editImage} alt="Lapiz" name="logo" />
+                    </figure>
+                  </div>
+                )}
               </div>
-              <figure className="iconedit">
-                <img src={editImage} alt="Lapiz" onClick={editSellerUser} />
-              </figure>
             </div>
 
             <div className="profile-seller-mobile-section-div">
               <div className="column">
                 <h3>Imagen del fondo</h3>
-                <figure className="column-img">
-                  <img
-                    src={userLogged.backgroundImage}
-                    alt="Logo de la tienda"
-                  />
-                </figure>
+                {edit.backgroundImage ? (
+                  <>
+                    <input
+                      type="file"
+                      className="profile-seller-mobile-section-div__input"
+                      onChange={onChangeEditName}
+                      name="backgroundImage"
+                    />
+                    <button
+                      className="profile-seller-mobile-section-div__input__button"
+                      onClick={handleEdit}
+                      name="backgroundImage"
+                    >
+                      Guardar
+                    </button>
+                  </>
+                ) : (
+                  <div className="profile-seller-mobile-section-div-edit">
+                    <figure className="column-img">
+                      <img
+                        src={userLogged.backgroundImage}
+                        alt="Logo de la tienda"
+                      />
+                    </figure>
+                    <figure
+                      className="iconedit"
+                      name="backgroundImage"
+                      onClick={editSellerUser}
+                    >
+                      <img src={editImage} alt="Lapiz" name="backgroundImage" />
+                    </figure>
+                  </div>
+                )}
               </div>
-              <figure className="iconedit">
-                <img src={editImage} alt="Lapiz" />
-              </figure>
             </div>
 
             <div className="profile-seller-mobile-section-div">
@@ -209,28 +278,80 @@ const ProfileSeller = ({ isTypeSeller }) => {
                 <div className="profile-seller-mobile-section-div">
                   <div className="column">
                     <h3>Logo</h3>
-                    <figure className="column-logo">
-                      <img src={userLogged.logo} alt="Logo de la tienda" />
-                    </figure>
+                    {edit.logo ? (
+                      <>
+                        <input
+                          type="file"
+                          className="profile-seller-mobile-section-div__input"
+                          onChange={onChangeEditName}
+                          name="logo"
+                        />
+                        <button
+                          className="profile-seller-mobile-section-div__input__button"
+                          onClick={handleEdit}
+                          name="logo"
+                        >
+                          Guardar
+                        </button>
+                      </>
+                    ) : (
+                      <div className="profile-seller-mobile-section-div-edit">
+                        <figure className="column-logo">
+                          <img src={userLogged.logo} alt="Logo de la tienda" />
+                        </figure>
+                        <figure
+                          className="iconedit"
+                          name="logo"
+                          onClick={editSellerUser}
+                        >
+                          <img src={editImage} alt="Lapiz" name="logo" />
+                        </figure>
+                      </div>
+                    )}
                   </div>
-                  <figure className="iconedit">
-                    <img src={editImage} alt="Lapiz" />
-                  </figure>
                 </div>
 
                 <div className="profile-seller-mobile-section-div">
                   <div className="column">
                     <h3>Imagen del fondo</h3>
-                    <figure className="column-imga">
-                      <img
-                        src={userLogged.backgroundImage}
-                        alt="Logo de la tienda"
-                      />
-                    </figure>
+                    {edit.backgroundImage ? (
+                      <>
+                        <input
+                          type="file"
+                          className="profile-seller-mobile-section-div__input"
+                          onChange={onChangeEditName}
+                          name="backgroundImage"
+                        />
+                        <button
+                          className="profile-seller-mobile-section-div__input__button"
+                          onClick={handleEdit}
+                          name="backgroundImage"
+                        >
+                          Guardar
+                        </button>
+                      </>
+                    ) : (
+                      <div className="profile-seller-mobile-section-div-edit">
+                        <figure className="column-imga">
+                          <img
+                            src={userLogged.backgroundImage}
+                            alt="Logo de la tienda"
+                          />
+                        </figure>
+                        <figure
+                          className="iconedit"
+                          name="backgroundImage"
+                          onClick={editSellerUser}
+                        >
+                          <img
+                            src={editImage}
+                            alt="Lapiz"
+                            name="backgroundImage"
+                          />
+                        </figure>
+                      </div>
+                    )}
                   </div>
-                  <figure className="iconedit">
-                    <img src={editImage} alt="Lapiz" />
-                  </figure>
                 </div>
 
                 <div className="profile-seller-mobile-section-div">
