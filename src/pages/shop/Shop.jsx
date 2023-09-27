@@ -56,7 +56,7 @@ const Shop = ({ isTypeSeller }) => {
   useEffect(() => {
     // dispatch(getShopProductFromCollection(idShop));
     // getShop();
-    setShop(shops.find((shop) => shop.id == idShop));
+    setShop(shops?.find((shop) => shop.id == idShop));
     setShopProducts(products.filter((product) => product.shopId == idShop));
     getCategories();
   }, [shop]);
@@ -212,8 +212,8 @@ const Shop = ({ isTypeSeller }) => {
               {activeSearch && search?.length > 0 ? (
                 <div className="shop-section">
                   <div className="shop-cards-container">
-                    {search.map((item) => (
-                      <div className="card">
+                    {search.map((item, index) => (
+                      <div className="card" onClick={() => navigate(`/product/${item.id}`)} key={index}>
                         <img src={item.mainImage} alt={item.name} />
                         <div>
                           <h4>{item.name}</h4>
@@ -231,24 +231,6 @@ const Shop = ({ isTypeSeller }) => {
                 </div>
               ) : (
                 <>
-                  <div className="shop-section">
-                    <h2>Los mas vendidos</h2>
-                    <div className="shop-cards-container">
-                      <div className="card">
-                        <img src={test} alt="" />
-                        <div>
-                          <h4>Cupcakes with cream cheese</h4>
-                          <div className="price">
-                            <span>$ 14</span>
-                          </div>
-                        </div>
-                        <figure className="like">
-                          <img src={heartWhite} alt="Icon for like" />
-                        </figure>
-                      </div>
-                    </div>
-                  </div>
-
                   {categoriesShop.map((category, index) => 
                     (categoryProducts(category.name).length ? 
                     <div className="shop-section" key={index}>

@@ -1,0 +1,123 @@
+@import "./../../assets/styles/reset.scss";
+@import "./../../assets/styles/variables.scss";
+
+.order-details-seller {
+  padding: 0;
+
+  &__text {
+    display: flex;
+    padding: 20px;
+    gap: 10px;
+  }
+
+  &__det {
+    border: 1px solid $font-light;
+    // padding: 1rem;
+    border-radius: 10px;
+    margin: 0px 20px;
+    h2 {
+      color: $font-light;
+      font-size: 1rem;
+      font-weight: 500;
+      margin-bottom: 10px;
+    }
+    &-info {
+      // margin-top: 10px;
+      display: flex;
+      gap: 10px;
+      img {
+        width: 40%;
+        height: 100px;
+        object-fit: cover;
+        border-radius: 10px;
+      }
+      .info-text {
+        div {
+          display: flex;
+          justify-content: space-around;
+          align-items: center;
+          margin-bottom: 1rem;
+          h4 {
+            margin-top: 10px;
+          }
+          .price {
+            font-weight: 700;
+            font-size: 20px;
+          }
+        }
+      }
+    }
+    .date {
+      display: flex;
+      justify-content: space-between;
+      padding: 5px 10px;
+      font-family: "Roboto", sans-serif;
+      color: #676662;
+    //   Address {
+    //     display: flex;
+    //     flex-direction: column;
+    //   }
+    }
+    &-status {
+        padding:5px 20px;
+      select {
+        width: 240px;
+        height: 40px;
+        border-radius: 10px;
+        font-size: 16px;
+        font-family: $font-secondary;
+      }
+    }
+    .code{
+        padding: 20px;
+    }
+  }
+}
+.order-details-seller-dekstop{
+  display: none;
+}
+@media (min-width: 768px) {
+  .order-details-seller{
+    display: none;
+  }
+  .order-details-seller-dekstop{
+    display: flex;
+    flex-direction: column;
+  }
+  .content-div{
+    display: flex;
+    gap: 200px;
+    .order-details-seller__det{
+      display: flex;
+      gap: 20px;
+      flex-direction: column;
+      width: 600px;
+      h4{
+        font-family: $font-secondary;
+        color: $font-dark;
+      }
+      &-info{
+        .info-text {
+          div {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            font-family: $font-secondary;
+        color: $font-dark;
+            margin-bottom: 1rem;
+            h4 {
+              margin-top: 10px;
+            }
+            .price {
+              font-weight: 700;
+              font-size: 20px;
+            }
+          }
+        }
+      }
+      
+    }
+    
+  }
+  
+}
