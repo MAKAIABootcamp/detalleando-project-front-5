@@ -31,7 +31,7 @@ const LoginVendedor = () => {
         <figure className="logoD">
           <img src={mykitty} alt="Logo" />
         </figure>
-        <h2>Inicio de sesión como vendedor</h2>
+        <h2>Inicio de sesión</h2>
 
         <form className="form" onSubmit={handleSubmit(onSubmit)}>
           <div className="form-div">
