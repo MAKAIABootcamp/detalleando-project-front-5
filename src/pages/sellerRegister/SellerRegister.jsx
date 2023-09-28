@@ -15,6 +15,7 @@ const SellerRegister = () => {
 
   const onSubmit = async (data) => {
     try {
+      console.log(data)
         const imageFile = data.logo[0];
         const image = await fileUpload(imageFile);
         const newSeller ={
@@ -55,9 +56,6 @@ const SellerRegister = () => {
         <img src={loginV} alt="desktop" />
       </figure>
       <section className="main__register-seller__card">
-        {/* <figure className="main__register-seller__card-logo">
-          <img src={mykitty} alt="logo" />
-        </figure> */}
         <h2>Registro para vendedor</h2>
         <form
           className="main__register-seller__card__form"
@@ -112,8 +110,10 @@ const SellerRegister = () => {
             {...register("category", { required: true })}
           >
             <option>Selecciona una categoría</option>
-            <option value="pateleriaConfiteria">Pastelería y confitería</option>
-            <option value="flores">Flores</option>
+            <option value="Pastelería y confitería">Pastelería y confitería</option>
+            <option value="Ropa y accesorios">Ropa y accesorios</option>
+            <option value="Bouquets y arreglos">Bouquets y arreglos</option>
+            <option value="Artesanías">Artesanías</option>
           </select>
           <button
             className="main__register-seller__card__form__button"
