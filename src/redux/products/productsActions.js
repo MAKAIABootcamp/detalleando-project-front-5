@@ -1,9 +1,9 @@
-import { addDoc, collection, deleteDoc, doc } from "firebase/firestore";
+import { addDoc, collection, deleteDoc, doc, updateDoc } from "firebase/firestore";
 import {
   getProductsFromCollection,
   getStoreProducts,
 } from "../../services/productsService";
-import { addProduct, deleteProduct, setError, setProducts } from "./productsReducer";
+import { addProduct, deleteProduct, setError, setProducts, setUpdateProduct } from "./productsReducer";
 import { fireStore } from "../../firebase/firebaseConfig";
 
 export const fillProductsFromCollection = () => async (dispatch) => {
@@ -80,3 +80,22 @@ export const deleteProductFronCollection = (id, index) => {
     }
   };
 };
+
+export const updateProductFromCollection = (idProduct, updateInfo) => {
+  return async (dispatch) => {
+    try {
+      const productRef = doc(fireStore, 'products', idProduct);
+      const response = await updateDoc(productRef, updateInfo);
+      dispatch(setUpdateProduct({id: idProduct, data: updateInfo}));
+    } catch (error) {
+      console.log(error);
+      dispatch(
+        setError({
+          error: true,
+          code: error.code,
+          message: error.message
+        })
+      )
+    }
+  }
+}

@@ -33,6 +33,7 @@ import {
 import { auth } from "../firebase/firebaseConfig";
 import Loader from "../pages/loader/Loader";
 import OrderSellerDet from "../components/orderSellerDetail/OrderSellerDet";
+import EditProduct from "../pages/editProduct/EditProduct";
 
 const Router = () => {
   const dispatch = useDispatch();
@@ -135,6 +136,7 @@ const Router = () => {
             <Route path="payment-methods" element={<Payment isTypeSeller={userLogged?.isSeller} />} />
             <Route path="purchase-success" element={<Success isTypeSeller={userLogged?.isSeller} />} />
             <Route path="favorites" element={<Favorites isTypeSeller={userLogged?.isSeller} />} />
+            <Route path="editProduct/:idProduct" element={<EditProduct isTypeSeller={userLogged?.isSeller}/>}/>
 
           </Route>
         </Route>
