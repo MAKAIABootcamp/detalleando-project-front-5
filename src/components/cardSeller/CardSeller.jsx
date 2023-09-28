@@ -36,7 +36,7 @@ const CardSeller = () => {
                 <img src={trash} alt="Icon trash" />
               </figure>
               <figure className="pencil">
-                <img src={pencil} alt="Icon pencil" />
+                <img src={pencil} alt="Icon pencil" onClick={() => navigate(`/editProduct/${product.id}`)}/>
               </figure>
             </div>
             <figure className="seller-right-img">
