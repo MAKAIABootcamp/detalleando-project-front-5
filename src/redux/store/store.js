@@ -4,6 +4,7 @@ import thunk from "redux-thunk";
 import shopsReducer from "../shops/shopsReducer";
 import productsReducer from "../products/productsReducer";
 import orderReducer from "../order/orderReducer";
+import chatReducer from "../chat/chatReducer";
 
 
 const store = configureStore({
@@ -11,7 +12,8 @@ const store = configureStore({
         auth: authReducer,
         shops: shopsReducer,
         products: productsReducer,
-        order: orderReducer
+        order: orderReducer,
+        chat: chatReducer
     },
     middleware: [thunk]
 });

@@ -56,6 +56,9 @@ const Shop = ({ isTypeSeller }) => {
   useEffect(() => {
     // dispatch(getShopProductFromCollection(idShop));
     // getShop();
+    // if (!shops.length) {
+      
+    // }
     setShop(shops?.find((shop) => shop.id == idShop));
     setShopProducts(products.filter((product) => product.shopId == idShop));
     getCategories();
@@ -98,7 +101,7 @@ const Shop = ({ isTypeSeller }) => {
         { name: "Terrarios", image: terrarium },
         { name: "Más flores", image: flowers },
       ]);
-    } else if (shop.category === "Pastelería y confetería") {
+    } else if (shop.category === "Pastelería y confitería") {
       setCategoriesShop([
         { name: "Tortas", image: cake },
         { name: "Chocolate", image: choco },
