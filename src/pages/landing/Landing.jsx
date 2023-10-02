@@ -7,8 +7,10 @@ import choice from "/icons/happy-woman.svg";
 import payment from "/icons/online-shopping.svg";
 import easy from "/icons/delivery-man.svg";
 import ShowInterface from "/icons/shopping.svg";
-import image from "/imagenRegistro.jpg";
+import image from "/Presents.jpeg";
+import heart from "/icons/heart-white.svg"
 import { NavLink } from 'react-router-dom';
+import "./landing.scss"
 
 const Landing = () => {
 
@@ -31,9 +33,8 @@ const Landing = () => {
     }
     ]
   return (
-    <div>
-        <header>
-            <nav className='nav-landing'>
+    <div className='landing'>
+        <nav className='nav-landing'>
                 <div className='logo-name'>
                     <img src={logo} alt="Icon for logo" className="logo" />
                     <h4>Detalleando</h4>
@@ -43,9 +44,11 @@ const Landing = () => {
                     <img src={profile} alt="Icon for profile" />
                 </NavLink>
             </nav>
+        <header>
+            
             <Banner />
         </header>
-        <main>
+        <main className='main-landing'>
             <section className='cards-section'>
                 {
                     cards.map((card) => (
@@ -56,14 +59,18 @@ const Landing = () => {
                     ))
                 }
             </section>
-            <section>
+            <section className='about-us'>
                 <img src={image} alt="" />
-                <div>
+                <div className='about-us-description'>
                     <h2>¿Quiénes somos?</h2>
                     <p>Somos un Marketplace de tiendas de detalles, donde los compradores pueden fácilmente encontrar los detalles que quieren desde cualquier parte del mundo y los vendedores puedan tener visibilidad en el mercado.</p>
                 </div>
             </section>
         </main>
+        <footer>
+            <h4>Hecho con <img src={heart} alt="" /> por un equipo maravilloso</h4>
+            <a href="https://github.com/MAKAIABootcamp/detalleando-project-front-5">GitHub</a>
+        </footer>
   </div>
   )
 }

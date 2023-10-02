@@ -1,0 +1,182 @@
+@import "../../assets/styles/variables.scss";
+
+@mixin mobile {
+    @media screen and (max-width: 480px) {
+      @content;
+    }
+  }
+  @mixin tablet {
+    @media screen and (max-width: 768px) {
+      @content;
+    }
+  }
+  @mixin laptop {
+    @media screen and (max-width: 1200px) {
+      @content;
+    }
+  }
+
+.main-chat {
+    background-color: $background-peach;
+    height: 88vh;
+    display: flex;
+    padding: 0;
+  
+      .sidebar {
+        flex: 1;
+        background-color: rgb(237, 196, 214, 0.5);
+        position: relative;
+  
+        .userChat {
+          padding: 1rem;
+          display: flex;
+          align-items: center;
+          gap: 1rem;
+          color: white;
+          cursor: pointer;
+  
+          &:hover {
+            background-color: $main-pink;
+          }
+  
+          img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+          }
+  
+          .userChatInfo {
+            span {
+              font-size: 18px;
+              font-weight: 500;
+            }
+            p {
+              font-size: 14px;
+              color: $font-light;
+            }
+          }
+        }
+      }
+      .chat {
+        flex: 2;
+  
+        .chatInfo {
+          height: 50px;
+          background-color: rgb(237, 196, 214, 0.5);
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 10px;
+          color: $font-dark;
+        }
+  
+        .chatIcons {
+          display: flex;
+          gap: 10px;
+  
+          img {
+            height: 24px;
+            cursor: pointer;
+          }
+        }
+  
+        .messages {
+          background-color: $background-peach;
+          padding: 10px;
+          height: 70vh;
+          overflow: scroll;
+  
+          .message {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+  
+            .messageInfo {
+              display: flex;
+              flex-direction: column;
+              color: $font-dark;
+              font-weight: 300;
+  
+              img {
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                object-fit: cover;
+              }
+            }
+            .messageContent {
+              max-width: 80%;
+              display: flex;
+              flex-direction: column;
+              gap: 10px;
+  
+              p {
+                background-color: white;
+                padding: 10px 20px;
+                border-radius: 0px 10px 10px 10px;
+                max-width: max-content;
+              }
+  
+              img {
+                width: 50%;
+              }
+            }
+  
+            &.owner {
+              flex-direction: row-reverse;
+  
+              .messageContent {
+                align-items: flex-end;
+                p {
+                  background-color: white;
+                  color: $font-light;
+                  border-radius: 10px 0px 10px 10px;
+                }
+              }
+            }
+          }
+        }
+  
+        .input {
+          height: 70px;
+          background-color: white;
+          padding: 1rem;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+  
+          input {
+            width: 100%;
+            border: none;
+            outline: none;
+            color: #2f2d52;
+            font-size: 18px;
+  
+            &::placeholder {
+              color: $font-light;
+            }
+          }
+  
+          .send {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+  
+            img {
+              height: 24px;
+              cursor: pointer;
+            }
+  
+            button {
+              border: none;
+              border-radius: 10px;
+              padding: 10px 15px;
+              color: white;
+              background-color: $main-blue;
+              cursor: pointer;
+            }
+          }
+        }
+      }
+    }

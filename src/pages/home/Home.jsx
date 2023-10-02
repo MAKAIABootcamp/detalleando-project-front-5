@@ -143,14 +143,14 @@ const Home = ({ isTypeSeller }) => {
                   <img src={cake} alt="Icon for pasteleria" />
                 </div>
                 <div
-                  className="category category-pink"
+                  className="category category-blue"
                   onClick={() => setSelectedCategory("Artesanías")}
                 >
                   <p>Artesanías</p>
                   <img src={arte} alt="Icon for artesanias" />
                 </div>
                 <div
-                  className="category category-blue"
+                  className="category category-pink"
                   onClick={() => setSelectedCategory("Ropa y accesorios")}
                 >
                   <p>Ropa y accesorios</p>

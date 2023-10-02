@@ -26,6 +26,7 @@ main, .success-main {
         }
         span {
             text-decoration: underline;
+            cursor: pointer;
         }
     }
     .order-details {
@@ -94,6 +95,7 @@ main, .success-main {
         text-align: center;
         margin-top: 3rem;
         text-decoration: underline;
+        cursor: pointer;
     }
 }
 
@@ -102,10 +104,11 @@ main, .success-main {
         display: flex;
     }
     .success-main {
+        padding: 1rem;
         .desktop-container {
             display: flex;
         justify-content: space-around;
-        margin-top: 3rem;
+        margin: 1rem 0 6rem;
         height: 60vh;
         .success-message {
             max-width: 30vw;

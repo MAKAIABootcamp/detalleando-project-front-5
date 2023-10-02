@@ -36,16 +36,15 @@ const ProfileSeller = ({ isTypeSeller }) => {
     // console.log(valueSeller);
     if (event.target.name == "logo") {
       const { logo } = valueSeller;
-      const imageFile = logo;
-      const image = await fileUpload(imageFile);
+      const image = await fileUpload(logo);
+      // console.log(image)
       const value = {
         logo: image,
       };
       dispatch(updateSellerUser(userLogged.id, value));
     } else if (event.target.name == "backgroundImage") {
       const { backgroundImage } = valueSeller;
-      const imageFile = backgroundImage;
-      const image = await fileUpload(imageFile);
+      const image = await fileUpload(backgroundImage);
       const value = {
         backgroundImage: image,
       };
@@ -58,9 +57,16 @@ const ProfileSeller = ({ isTypeSeller }) => {
   const onChangeEditName = (e) => {
     // console.log(e.target.name);
     // console.log(e.target.value);
-    setValueSeller({
-      [e.target.name]: e.target.value,
-    });
+    if(e.target.name == "logo" || e.target.name == "backgroundImage"){
+      const selectedFile = e.target.files[0];
+      setValueSeller({
+        [e.target.name]: selectedFile,
+      })
+    }else{
+      setValueSeller({
+        [e.target.name]: e.target.value,
+      });
+    }
   };
 
   return (
@@ -75,6 +81,7 @@ const ProfileSeller = ({ isTypeSeller }) => {
                 <h3>Logo</h3>
                 {edit.logo ? (
                   <>
+                
                     <input
                       type="file"
                       className="profile-seller-mobile-section-div__input"
@@ -84,10 +91,12 @@ const ProfileSeller = ({ isTypeSeller }) => {
                     <button
                       className="profile-seller-mobile-section-div__input__button"
                       onClick={handleEdit}
+                      type="submit"
                       name="logo"
                     >
                       Guardar
                     </button>
+                    
                   </>
                 ) : (
                   <div className="profile-seller-mobile-section-div-edit">

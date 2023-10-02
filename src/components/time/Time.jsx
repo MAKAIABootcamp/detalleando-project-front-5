@@ -13,7 +13,7 @@ const Time = () => {
   const [openCalendar, setOpenCalendar] = useState(false)
   const dispatch = useDispatch()
   const { currentOrder } = useSelector(store => store.order);
-  const [value, onChange] = useState(new Date());
+  const [selectedDate, setSelectedDate] = useState(new Date());
 
   const handleSelectChange = (event) => {
     setChosenTime(event.target.value);
@@ -28,16 +28,29 @@ const Time = () => {
     dispatch(setAddress(newTime))
   };
 
+  const handleDateClick = (date) => {
+    setSelectedDate(date);
+    const newDate = {
+      direction: currentOrder.sendTo.direction,
+      name: currentOrder.sendTo.name,
+      phone: currentOrder.sendTo.phone,
+      date: date,
+      time: currentOrder.sendTo.time,
+      additional: currentOrder.sendTo.additional
+    }
+    dispatch(setAddress(newDate))
+  };
+
   return (
     <div className='time'>
         <p>Entregar en:</p>
         <div className='choice'>
-            <h4 onClick={() => setOpenCalendar(!openCalendar)}>27.09.23</h4>
+            <h4 onClick={() => setOpenCalendar(!openCalendar)}>{selectedDate.toDateString()}</h4>
             <img src={arrow} alt="Icon for arrrow" />
             {
               openCalendar && 
               <div className='opening-calendar'>
-              <Calendar onChange={onChange} value={value} />
+              <Calendar onClickDay={handleDateClick} value={selectedDate} />
             </div>
             }
             
