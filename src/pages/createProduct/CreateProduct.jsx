@@ -12,7 +12,6 @@ const CreateProduct = ({ isTypeSeller }) => {
 
   const navigate = useNavigate();
   const { register, handleSubmit } = useForm();
-  const categorias = ["Categoría 1", "Categoría 2", "Categoría 3"];
   const { userLogged } = useSelector(store => store.auth);
   const [categoriesShop, setCategoriesShop] = useState([]);
   const dispatch = useDispatch();

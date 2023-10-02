@@ -23,7 +23,7 @@ const Order = ({ isTypeSeller }) => {
 
   useEffect(() => {
     dispatch(fillOrdersFromCollection())
-    setOrderHistory(orders?.filter(order => order.userId == userLogged.id))
+    setOrderHistory(orders?.filter(order => order.userId == userLogged.id && order.state === "completado"))
 }, [orders])
 
   const handleClick = () => {
@@ -93,12 +93,12 @@ const Order = ({ isTypeSeller }) => {
 
         {
           clikedActual &&
-          <Card/>
+          (currentOrder && orderInProcess?(<><Card/><CardProcess/></>):(currentOrder? <Card/> : orderInProcess?<CardProcess/>:<OrderEmpty text={'Todavía no tienes órdenes actuales'}/>))  
         }
         {
           clikedHistorial &&
           
-          <OrderEmpty/>
+          (orderHistory && orderHistory.length > 0 ? <OrderHistory/> : <OrderEmpty text={'Todavía no completaste ningún órden'}/>)
         }
       </div>
           
