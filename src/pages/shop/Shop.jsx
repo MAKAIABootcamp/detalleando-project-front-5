@@ -98,7 +98,7 @@ const Shop = ({ isTypeSeller }) => {
         { name: "Terrarios", image: terrarium },
         { name: "Más flores", image: flowers },
       ]);
-    } else if (shop.category === "Pastelería y confetería") {
+    } else if (shop.category === "Pastelería y confitería") {
       setCategoriesShop([
         { name: "Tortas", image: cake },
         { name: "Chocolate", image: choco },
