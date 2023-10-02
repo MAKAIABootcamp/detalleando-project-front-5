@@ -9,6 +9,7 @@ import Time from '../../components/time/Time'
 import "./success.scss"
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router'
+import NavDesktop from '../../components/nav-desktop/NavDesktop';
 
 const Success = ({ isTypeSeller }) => {
 
@@ -57,7 +58,11 @@ const Success = ({ isTypeSeller }) => {
 
   return !isTypeSeller && (
     <>
+    <header>
+      <NavDesktop/>
+    </header>
     <main className='success-main'>
+      <div className='desktop-container'>
         <div className='success-message'>
             <h2>Gracias por su compra!</h2>
             <img src={test} alt="" />
@@ -66,6 +71,7 @@ const Success = ({ isTypeSeller }) => {
             </p>
             
         </div>
+        
         <div className='order-details'>
             <h2>Detalles del orden</h2>
             {
@@ -91,7 +97,10 @@ const Success = ({ isTypeSeller }) => {
                   <p>Entregar a:</p>
                   <h4>{orderInProcess.sendTo.direction}, {orderInProcess.sendTo.name}</h4>
                 </div>
-                <Time/>
+                <div className='address'>
+                  <p>Entregar a:</p>
+                  <h4>27.09.23, {orderInProcess.sendTo.time}:00</h4>
+                </div>
             </div>
             <h2>Detalles del pago</h2>
             <div className='method'>
@@ -100,9 +109,12 @@ const Success = ({ isTypeSeller }) => {
             </div>
             <p>Tu referencia de pago: <h4>{orderInProcess.paymentRef}</h4></p>
         </div>
+        </div>
         <h4 className='link-to-shop' onClick={() => navigate('/home')}>Seguir comprando</h4>
     </main>
+    <div className='nav-success'>
     <NavMobile/>
+    </div>
     </>
   )
 }
