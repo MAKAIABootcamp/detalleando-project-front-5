@@ -34,7 +34,7 @@
     .photo-camera {
       width: 35px;
       left: 54%;
-      bottom: 79%;
+      bottom: 76%;
       // filter: brightness(70%);
       position: absolute;
 
@@ -160,93 +160,94 @@
         color: $font-light;
         font-weight: 400;
       }
-    }
-    &__card {
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-      align-items: center;
-      width: 600px;
-      h2 {
-        text-align: center;
-        font-family: $font-secondary;
-        color: $font-dark;
-        font-weight: 900;
-      }
-      &__figure {
-        display: flex;
-        width: 70px;
-        height: 70px;
-        position: relative;
-
-        img {
-          width: 100%;
-          height: 100%;
-          border-radius: 50%;
-        }
-      }
-      .photo-camera {
-        width: 35px;
-        left: 45%;
-        bottom: 68%;
-        // filter: brightness(70%);
-        position: absolute;
-
-        img {
-          width: 100%;
-          object-fit: cover;
-          border-radius: 50%;
-        }
-      }
-
-      &__info {
+      .profileEdit-desktop__card {
         display: flex;
         flex-direction: column;
         gap: 15px;
-        width: 100%;
-
-        label {
-          font-family: $font-primary;
-          font-size: 16px;
-          font-weight: 600;
-          color: $font-light;
+        align-items: center;
+        width: 600px;
+        h2 {
+          text-align: center;
+          font-family: $font-secondary;
+          color: $font-dark;
+          font-weight: 900;
         }
-
-        input {
-          padding: 8px;
-          border-radius: 8px;
-          font-family: $font-primary;
-          border: none;
-          font-size: 14px;
-          border: 1px solid $font-dark;
-          box-shadow: 5px 0 5px -5px $font-dark, -5px 0 5px -5px $font-dark,
-            0 5px 5px -5px $font-dark;
-          &:focus {
-            border: 2px solid $main-pink;
-            outline: none;
-            box-shadow: 0px 0px 5px 2px $background-peach;
+        &__figure {
+          display: flex;
+          width: 70px;
+          height: 70px;
+          position: relative;
+  
+          img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+          }
+        }
+        .photo-camera {
+          width: 35px;
+          left: 46%;
+          bottom: 65%;
+          // filter: brightness(70%);
+          position: absolute;
+  
+          img {
+            width: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+          }
+        }
+  
+        &__info {
+          display: flex;
+          flex-direction: column;
+          gap: 15px;
+          width: 100%;
+  
+          label {
+            font-family: $font-primary;
+            font-size: 16px;
+            font-weight: 600;
+            color: $font-light;
+          }
+  
+          input {
+            padding: 8px;
+            border-radius: 8px;
+            font-family: $font-primary;
+            border: none;
+            font-size: 14px;
+            border: 1px solid $font-dark;
+            box-shadow: 5px 0 5px -5px $font-dark, -5px 0 5px -5px $font-dark,
+              0 5px 5px -5px $font-dark;
+            &:focus {
+              border: 2px solid $main-pink;
+              outline: none;
+              box-shadow: 0px 0px 5px 2px $background-peach;
+            }
+          }
+        }
+  
+        &__button {
+          display: flex;
+          padding: 10px 0;
+  
+          button {
+            padding: 10px;
+            width: 100px;
+            background-color: $main-pink;
+            color: $font-dark;
+            font-weight: 500;
+            font-size: 14px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-left: 500px;
           }
         }
       }
-
-      &__button {
-        display: flex;
-        padding: 10px 0;
-
-        button {
-          padding: 10px;
-          width: 100px;
-          background-color: $main-pink;
-          color: $font-dark;
-          font-weight: 500;
-          font-size: 14px;
-          border: none;
-          border-radius: 5px;
-          cursor: pointer;
-          margin-left: 500px;
-        }
-      }
     }
+   
 
     &__cerrar {
       display: flex;
