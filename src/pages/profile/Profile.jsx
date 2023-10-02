@@ -104,7 +104,7 @@ const Profile = ({ isTypeSeller }) => {
               <img src={language} />
               <span>Español</span>
             </div>
-            <div className="main-profile-desktop__filter__card">
+            <div className="main-profile-desktop__filter__card" onClick={() => navigate('/chat')}>
               <img src={chat} />
               <span>Mensajes</span>
             </div>

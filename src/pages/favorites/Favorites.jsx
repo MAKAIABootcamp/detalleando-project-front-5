@@ -27,7 +27,7 @@ const Favorites = ({ isTypeSeller }) => {
     useEffect(() => {
         favoritesProductsUser()
         favoritesShopsUser()
-    }, [])
+    }, [favoritesProducts])
 
     const handleClick = () => {
         if (likedProducts) {
@@ -84,12 +84,12 @@ const Favorites = ({ isTypeSeller }) => {
         <div className='favorite-product-container'>
             {wishedProducts?.map((product) => (
             <div className='card'>
-                <img src={product.mainImage} alt="" onClick={() => navigate(`/product/${product?.id}`)}/>
+                <img src={product?.mainImage} alt="" onClick={() => navigate(`/product/${product?.id}`)}/>
                 <div>
-                    <p>Cupcakes with cream cheese</p>
+                    <p>{product?.name}</p>
                     <div className='price'>
-                        <h4>{product.name}</h4>
-                        <span>$ {product.price}</span>
+                        <h4>{product?.name}</h4>
+                        <span>$ {product?.price}</span>
                     </div>
                 </div>
                 <figure className='like'>
@@ -107,22 +107,22 @@ const Favorites = ({ isTypeSeller }) => {
             {
                 wishedShops?.map((shop) => (
                 <div className='shop-card'>
-                    <img src={shop.backgroundImage} alt="" onClick={() => navigate(`/${shop?.id}`)}/>
+                    <img src={shop?.backgroundImage} alt="" onClick={() => navigate(`/${shop?.id}`)}/>
                     <figure className='like'>
                         <img src={heartPink} alt="Icon for like" />
                     </figure>
                     <div className='shop-price'>
                         <div className='shop-info'>
-                            <img src={shop.logo} alt="Icon for logo" />
+                            <img src={shop?.logo} alt="Icon for logo" />
                             <div>
-                                <h4 onClick={() => navigate(`/${shop?.id}`)}>{shop.storeName}</h4>
-                                <p>{shop.category}</p>
+                                <h4 onClick={() => navigate(`/${shop?.id}`)}>{shop?.storeName}</h4>
+                                <p>{shop?.category}</p>
                             </div>
                         </div>
                         <div>
                             <div className='shop-stats'> 
                                 <img src={delivery} alt="Icon for delivery" />
-                                <span>$ {shop.delivery}</span>
+                                <span>$ {shop?.delivery}</span>
                             </div>
                             <div className='shop-stats raiting'>
                                 <img src={star} alt="Icon for raiting" />

@@ -58,7 +58,7 @@ const Product = ({ isTypeSeller }) => {
           direction: "",
           name:'',
           phone:'',
-          date:'',
+          date:new Date(),
           time: 8,
           additional:''
         },

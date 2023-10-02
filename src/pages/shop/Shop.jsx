@@ -56,6 +56,9 @@ const Shop = ({ isTypeSeller }) => {
   useEffect(() => {
     // dispatch(getShopProductFromCollection(idShop));
     // getShop();
+    // if (!shops.length) {
+      
+    // }
     setShop(shops?.find((shop) => shop.id == idShop));
     setShopProducts(products.filter((product) => product.shopId == idShop));
     getCategories();

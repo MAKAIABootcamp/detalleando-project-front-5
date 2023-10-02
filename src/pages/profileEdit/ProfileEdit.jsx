@@ -181,7 +181,7 @@ const ProfileEdit = ({ isTypeSeller }) => {
               <input
                 type="text"
                 className="edit-section-date__input"
-                value={phone.trim() === "" ? "Sin número de teléfono" : phone}
+                value={phone?.trim() === "" ? "Sin número de teléfono" : phone}
                 onChange={(e) => setPhone(e.target.value)}
                 readOnly
               />
@@ -263,7 +263,7 @@ const ProfileEdit = ({ isTypeSeller }) => {
 
                 <label>Tú teléfono</label>
                 <input type="text" 
-                value={phone.trim() === "" ? "Sin número de teléfono" : phone}
+                value={phone?.trim() === "" ? "Sin número de teléfono" : phone}
                 onChange={(e) => setPhone(e.target.value)}
                 readOnly
                 />

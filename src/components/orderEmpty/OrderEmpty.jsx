@@ -39,7 +39,7 @@ const OrderEmpty = ({text}) => {
               <figure>
                 <img src={notorder} alt="NotOrders" />
               </figure>
-              <h3>Todavía no tienes órdenes actuales</h3>
+              <h3>{text}</h3>
               <Link
               className="text" 
               to="/home">Ir a la tienda</Link>

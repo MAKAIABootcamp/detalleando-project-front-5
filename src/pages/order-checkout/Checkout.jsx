@@ -15,6 +15,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { deleteProduct, setAdditionalInfo, setAmountProduct, setCurrentOrder, setOrderInProcess } from '../../redux/order/orderReducer'
 import Swal from 'sweetalert2'
 import { createAnOrderAction } from '../../redux/order/orderActions'
+import { fireStore } from '../../firebase/firebaseConfig'
+import { doc, getDoc, serverTimestamp, setDoc, updateDoc } from '@firebase/firestore'
 
 const Checkout = ({ isTypeSeller }) => {
 
@@ -109,11 +111,46 @@ const Checkout = ({ isTypeSeller }) => {
             }
             dispatch(createAnOrderAction(newOrder))
             dispatch(setOrderInProcess(currentOrder))
+            handleSelect()
             navigate('/purchase-success')
               } 
             })
             
         }
+
+        const handleSelect = async () => {
+          //check whether the group(chats in firestore) exists, if not create
+          const combinedId =userLogged.id + shop.id
+          try {
+            const res = await getDoc(doc(fireStore, "chats", combinedId));
+      
+            if (!res.exists()) {
+              //create a chat in chats collection
+              await setDoc(doc(fireStore, "chats", combinedId), { messages: [] });
+      
+              //create user chats
+              await updateDoc(doc(fireStore, "userChats", userLogged.id), {
+                [combinedId + ".userInfo"]: {
+                  uid: shop.id,
+                  displayName: shop.storeName,
+                  photoURL: shop.logo,
+                },
+                [combinedId + ".date"]: serverTimestamp(),
+              });
+      
+              await updateDoc(doc(fireStore, "userChats", shop.id), {
+                [combinedId + ".userInfo"]: {
+                  uid: userLogged.id,
+                  displayName: userLogged.displayName,
+                  photoURL: userLogged.photoURL,
+                },
+                [combinedId + ".date"]: serverTimestamp(),
+              });
+            }
+          } catch (err) {
+            console.log(err);
+          }
+        };
 
   return !isTypeSeller && (
     <>

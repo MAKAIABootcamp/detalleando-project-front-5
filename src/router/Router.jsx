@@ -34,6 +34,8 @@ import { auth } from "../firebase/firebaseConfig";
 import Loader from "../pages/loader/Loader";
 import OrderSellerDet from "../components/orderSellerDetail/OrderSellerDet";
 import EditProduct from "../pages/editProduct/EditProduct";
+import Chat from "../pages/chat/Chat";
+import Landing from "../pages/landing/Landing";
 
 const Router = () => {
   const dispatch = useDispatch();
@@ -76,6 +78,7 @@ const Router = () => {
             }
           >
             <Route index element={<Login />} />
+            <Route path="landing" element={<Landing />} />
             <Route path="registro" element={<Registro />} />
             <Route path="phoneAuthentication" element={<LoginByPhone />} />
             <Route path="insertcode" element={<InsertCode />} />
@@ -131,6 +134,10 @@ const Router = () => {
             <Route
               path="profileEdit"
               element={<ProfileEdit isTypeSeller={userLogged?.isSeller} />}
+            />
+            <Route
+              path="chat"
+              element={<Chat isTypeSeller={userLogged?.isSeller} />}
             />
             <Route path="checkout" element={<Checkout isTypeSeller={userLogged?.isSeller} />} />
             <Route path="payment-methods" element={<Payment isTypeSeller={userLogged?.isSeller} />} />

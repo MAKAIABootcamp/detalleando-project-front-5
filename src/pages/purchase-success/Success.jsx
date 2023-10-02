@@ -67,7 +67,7 @@ const Success = ({ isTypeSeller }) => {
             <h2>Gracias por su compra!</h2>
             <img src={test} alt="" />
             <p>Vas a recibir la confirmación de tu compra en tu correo. El día de la entrega el vendodor te va a mandar la foto del producto preparado. Si quieres contactarte con el vendedor,  
-                <span> escríbele un mensaje</span>
+                <span onClick={() => navigate('/chat')}> escríbele un mensaje</span>
             </p>
             
         </div>
@@ -99,7 +99,7 @@ const Success = ({ isTypeSeller }) => {
                 </div>
                 <div className='address'>
                   <p>Entregar a:</p>
-                  <h4>27.09.23, {orderInProcess.sendTo.time}:00</h4>
+                  <h4>{orderInProcess.sendTo.date.toDateString()}, {orderInProcess.sendTo.time}:00</h4>
                 </div>
             </div>
             <h2>Detalles del pago</h2>
