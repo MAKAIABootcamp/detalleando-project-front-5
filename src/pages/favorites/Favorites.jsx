@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import NavMobile from '../../components/nav-mobile/NavMobile'
 import arrow from "/icons/arrow-down.svg"
 import test from "/test.jfif"
@@ -7,11 +7,27 @@ import delivery from "/icons/delivery.svg"
 import star from "/icons/star.svg"
 import "./favorites.scss"
 import NavDesktop from '../../components/nav-desktop/NavDesktop'
+import { useNavigate } from 'react-router'
+import OrderEmpty from '../../components/orderEmpty/OrderEmpty'
+import { useSelector } from 'react-redux'
 
 const Favorites = ({ isTypeSeller }) => {
 
     const [likedProducts, seeLikedProducts] = useState(true)
     const [likedShops, seeLikedShops] = useState(false)
+    const [wishedProducts, setWishedProducts] = useState([]);
+    const [wishedShops, setWishedShops] = useState([]);
+    const navigate = useNavigate()
+    const { products } = useSelector((store) => store.products);
+    const { shops } = useSelector((store) => store.shops);
+    const { favoritesShops, userLogged, favoritesProducts } = useSelector(
+        (store) => store.auth
+      );
+
+    useEffect(() => {
+        favoritesProductsUser()
+        favoritesShopsUser()
+    }, [])
 
     const handleClick = () => {
         if (likedProducts) {
@@ -23,6 +39,29 @@ const Favorites = ({ isTypeSeller }) => {
             seeLikedShops(false)
         }
     }
+
+    const favoritesProductsUser = () => {
+        if (favoritesProducts?.length && products?.length) {
+          const favoriteProducts = [];
+          favoritesProducts.forEach((item) => {
+            const favorite = products?.find((element) => element.id == item);
+            favoriteProducts.push(favorite);
+          });
+          setWishedProducts(favoriteProducts);
+        }
+      };
+
+      const favoritesShopsUser = () => {
+        if (favoritesShops?.length && shops?.length) {
+          const favoriteShops = [];
+          favoritesShops.forEach((item) => {
+            const favorite = shops?.find((element) => element.id == item);
+            favoriteShops.push(favorite);
+          });
+          setWishedShops(favoriteShops);
+        }
+      };
+
   return !isTypeSeller && (
     <>
     <header>
@@ -39,58 +78,51 @@ const Favorites = ({ isTypeSeller }) => {
             <p onClick={handleClick} className={likedShops? 'chosen' : ''}>Tiendas</p>
         </div>
         {
-            likedProducts && 
+            likedProducts && (favoritesProducts && favoritesProducts?.length ? 
+            
         
         <div className='favorite-product-container'>
+            {wishedProducts?.map((product) => (
             <div className='card'>
-                <img src={test} alt="" />
+                <img src={product.mainImage} alt="" onClick={() => navigate(`/product/${product?.id}`)}/>
                 <div>
                     <p>Cupcakes with cream cheese</p>
                     <div className='price'>
-                        <h4>Shop name</h4>
-                        <span>$ 14</span>
+                        <h4>{product.name}</h4>
+                        <span>$ {product.price}</span>
                     </div>
                 </div>
                 <figure className='like'>
                     <img src={heartPink} alt="Icon for like" />
                 </figure>
             </div>
-            <div className='card'>
-                <img src={test} alt="" />
-                <div>
-                    <p>Cupcakes with cream cheese</p>
-                    <div className='price'>
-                        <h4>Shop name</h4>
-                        <span>$ 14</span>
-                    </div>
-                </div>
-                <figure className='like'>
-                    <img src={heartPink} alt="Icon for like" />
-                </figure>
-            </div>
-        </div>
-        }
+            ))}
+            
+        </div> :
+        <OrderEmpty text={'Todavía no tienes productos favoritos'}/>)}
         {
-            likedShops &&
+            likedShops && (favoritesShops && favoritesShops?.length ?
         
         <div className='favorite-shop-container'>
-        <div className='shop-card'>
-                    <img src={test} alt="" />
+            {
+                wishedShops?.map((shop) => (
+                <div className='shop-card'>
+                    <img src={shop.backgroundImage} alt="" onClick={() => navigate(`/${shop?.id}`)}/>
                     <figure className='like'>
                         <img src={heartPink} alt="Icon for like" />
                     </figure>
                     <div className='shop-price'>
                         <div className='shop-info'>
-                            <img src={test} alt="Icon for logo" />
+                            <img src={shop.logo} alt="Icon for logo" />
                             <div>
-                                <h4>Shop name</h4>
-                                <p>Category</p>
+                                <h4 onClick={() => navigate(`/${shop?.id}`)}>{shop.storeName}</h4>
+                                <p>{shop.category}</p>
                             </div>
                         </div>
                         <div>
                             <div className='shop-stats'> 
                                 <img src={delivery} alt="Icon for delivery" />
-                                <span>$ 2.5</span>
+                                <span>$ {shop.delivery}</span>
                             </div>
                             <div className='shop-stats raiting'>
                                 <img src={star} alt="Icon for raiting" />
@@ -100,8 +132,11 @@ const Favorites = ({ isTypeSeller }) => {
                     </div>
                     
                 </div>
-        </div>
-        }
+                ))
+            }
+        
+        </div> : <OrderEmpty text={'Todavía no tienes tiendas favoritas'}/>
+        )}
         </div>
     </main>
     <div className='nav-mobile-favorites'>

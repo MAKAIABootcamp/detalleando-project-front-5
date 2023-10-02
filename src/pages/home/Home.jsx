@@ -123,9 +123,6 @@ const Home = ({ isTypeSeller }) => {
                   </div>
                 ))}
               </div>
-              <figure className="like">
-                <img src={heartWhite} alt="Icon for like" />
-              </figure>
 
             </div>
             : <>
@@ -147,7 +144,7 @@ const Home = ({ isTypeSeller }) => {
                 </div>
                 <div
                   className="category category-pink"
-                  onClick={() => setSelectedCategory("Artesanias")}
+                  onClick={() => setSelectedCategory("Artesanías")}
                 >
                   <p>Artesanías</p>
                   <img src={arte} alt="Icon for artesanias" />
@@ -171,7 +168,7 @@ const Home = ({ isTypeSeller }) => {
               </div>
               {selectedCategory === "All" && 
                 <>
-                  <div className="section">
+                  {/* <div className="section">
                     <h2>Repetir orden</h2>
                     <div className="cards-container">
                       <div className="card">
@@ -188,7 +185,7 @@ const Home = ({ isTypeSeller }) => {
                         </figure>
                       </div>
                     </div>
-                  </div>
+                  </div> */}
                   {products.length > 0 && favoritesProducts ? (
                     <div className="section">
                       <h2>Productos favoritos</h2>

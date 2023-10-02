@@ -10,7 +10,7 @@ const OrderHistory = () => {
     const [orderHistory, setOrderHistory] = useState([])
 
     useEffect(() => {
-        setOrderHistory(orders?.filter(order => order.userId == userLogged.id))
+        setOrderHistory(orders?.filter(order => order.userId == userLogged.id && order.state === "completado"))
     }, [orders])
   return (
     <div>

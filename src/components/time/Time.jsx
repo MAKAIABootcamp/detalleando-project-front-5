@@ -4,6 +4,7 @@ import "./time.scss"
 import { useDispatch, useSelector } from 'react-redux';
 import { setAddress } from '../../redux/order/orderReducer';
 import Calendar from 'react-calendar';
+import 'react-calendar/dist/Calendar.css';
 
 const Time = () => {
 
@@ -31,7 +32,7 @@ const Time = () => {
     <div className='time'>
         <p>Entregar en:</p>
         <div className='choice'>
-            <h4 onClick={() => setOpenCalendar(!openCalendar)}>22.12.23</h4>
+            <h4 onClick={() => setOpenCalendar(!openCalendar)}>27.09.23</h4>
             <img src={arrow} alt="Icon for arrrow" />
             {
               openCalendar && 

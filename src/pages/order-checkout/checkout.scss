@@ -153,9 +153,41 @@ header {
     .desktop-checkout-container {
         .order-details {
             width: 40%;
+            .product-info {
+                margin-bottom: 1rem;
+                .info-text {
+                    div {
+                        width: 30vw;
+                        .price-amount {
+                            flex-direction: row;
+                            justify-content: center;
+                            gap: 4rem;
+                            align-items: center;
+                            margin-bottom: 0;
+                            div {
+                                width: 2rem;
+                                margin-bottom: 0;
+                            }
+                        }
+                    }
+                }
+                
+            }
+            .order-aditional {
+                    margin-top: 1rem;
+                }
         }
         .payment-details {
             width: 40%;
+            .payment-method {
+                margin: 1rem 0;
+                p {
+                    font-size: 14px;
+                }
+            }
+            .order-total {
+                margin-top: 1rem;
+            }
         }
         display: flex;
         justify-content: space-around;
