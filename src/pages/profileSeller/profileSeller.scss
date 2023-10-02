@@ -111,6 +111,7 @@
       color: #676662;
       font-weight: 500;
       font-size: 14px;
+      margin-bottom: 20px;
       border: none;
       border-radius: 5px;
       cursor: pointer;
@@ -156,7 +157,7 @@
 
       &-info {
         width: 700px;
-        margin-left: 200px;
+        margin-left: 20px;
       }
     }
 
@@ -196,8 +197,67 @@
       font-size: 14px;
       border: none;
       border-radius: 5px;
-      margin-left: 450px;
+      margin-left: 400px;
+      margin-bottom: 20px;
       cursor: pointer;
     }
   }
 }
+@media (min-width: 815px) {
+  .profile-seller-mobile {
+    display: none;
+  }
+
+  .profile-page-dekstop {
+    display: block;
+
+    &__information {
+     
+
+      &-info {
+        width: 700px;
+        margin-left: 50px;
+      }
+    }
+
+  }
+}
+@media (min-width: 870px) {
+  .profile-seller-mobile {
+    display: none;
+  }
+
+  .profile-page-dekstop {
+    display: block;
+
+    &__information {
+     
+
+      &-info {
+        width: 700px;
+        margin-left: 90px;
+      }
+    }
+
+  }
+}
+@media (min-width: 967px) {
+  .profile-seller-mobile {
+    display: none;
+  }
+
+  .profile-page-dekstop {
+    display: block;
+
+    &__information {
+     
+
+      &-info {
+        width: 700px;
+        margin-left: 200px;
+      }
+    }
+
+  }
+}
+
