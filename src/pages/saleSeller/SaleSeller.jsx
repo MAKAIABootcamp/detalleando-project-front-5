@@ -10,9 +10,7 @@ import { fillOrdersFromCollection } from "../../redux/order/orderActions";
 import { useDispatch, useSelector } from "react-redux";
 const SaleSeller = ({ isTypeSeller }) => {
 
-  const dispatch = useDispatch()
-  const navigate = useNavigate();
-  const [ selectedTable, setSelectedTable ] = useState(null);
+  const dispatch = useDispatch();
   const { orders } = useSelector(store => store.order);
   const { userLogged } = useSelector(store => store.auth);
   const [ orderInProgress, setOrderInProgress ] = useState([]);
@@ -20,8 +18,13 @@ const SaleSeller = ({ isTypeSeller }) => {
 
   useEffect(() => {
     dispatch(fillOrdersFromCollection());
-    filterOrders();
   },[])
+
+  useEffect(() => {
+    if(orders?.length > 0){
+      filterOrders();
+    }
+  },[orders])
 
   const filterOrders = () => {
     const filterOrdersSeller = orders?.filter(order => order.shopId === userLogged.id);
@@ -31,11 +34,6 @@ const SaleSeller = ({ isTypeSeller }) => {
     setOrderInProgress(filterOrderInProgress);
   }
 
-  const handleOrderDetSeller = (table) => {
-    // setSelectedTable(table);
-    // // Navega a la página de detalles de la orden del vendedor con el valor de 'selectedTable' en la URL
-    // navigate(`/OrderDetailSeller?selectedTable=${table}`);
-  };
   return (
     isTypeSeller && (
       <>
