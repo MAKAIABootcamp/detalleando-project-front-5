@@ -101,7 +101,7 @@ const Router = () => {
               element={<SaleSeller isTypeSeller={userLogged?.isSeller} />}
             />
             <Route
-              path="OrderDetailSeller"
+              path="OrderDetailSeller/:idOrder"
               element={<OrderSellerDet isTypeSeller={userLogged?.isSeller} />}
             />
             <Route
