@@ -28,7 +28,7 @@ const Chat = ({ isTypeSeller }) => {
       dispatch(setUserId(userLogged.id))
       console.log(user);
     };
-    console.log(messages.messages);
+    console.log(messages?.messages);
   
     useEffect(() => {
       dispatch(fillChatsFromCollection(chatId))
@@ -104,7 +104,7 @@ const Chat = ({ isTypeSeller }) => {
         <span>{user?.displayName}</span>
       </div>
       <div className="messages">
-      { messages && messages.messages.length && messages.messages.map((m) => (
+      { messages && messages?.messages?.length && messages.messages.map((m) => (
         <Message message={m} key={m?.id} />
       ))}
     </div>
