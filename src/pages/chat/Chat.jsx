@@ -101,6 +101,7 @@ const Chat = ({ isTypeSeller }) => {
     </div>
     <div className="chat">
       <div className="chatInfo">
+        <img src={user?.photoURL} alt="" />
         <span>{user?.displayName}</span>
       </div>
       <div className="messages">

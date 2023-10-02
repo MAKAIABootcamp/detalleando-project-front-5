@@ -88,7 +88,7 @@ const Favorites = ({ isTypeSeller }) => {
                 <div>
                     <p>{product?.name}</p>
                     <div className='price'>
-                        <h4>{product?.name}</h4>
+                        <h4>{product?.category}</h4>
                         <span>$ {product?.price}</span>
                     </div>
                 </div>
@@ -122,7 +122,7 @@ const Favorites = ({ isTypeSeller }) => {
                         <div>
                             <div className='shop-stats'> 
                                 <img src={delivery} alt="Icon for delivery" />
-                                <span>$ {shop?.delivery}</span>
+                                <span>$ {shop?.deliveryPrice}</span>
                             </div>
                             <div className='shop-stats raiting'>
                                 <img src={star} alt="Icon for raiting" />
