@@ -1,0 +1,27 @@
+@import "./../../assets/styles/reset.scss";
+@import "./../../assets/styles/variables.scss";
+
+.navseller {
+    background-color: $background-peach;
+    display: flex;
+    padding: 10px;
+    justify-content: space-around;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    left: 0;
+    // width: 100vw;
+    height: 50px;
+    z-index: 1;
+    &-span{
+            font-family: $font-secondary;
+            font-weight: 100;
+            color: $font-dark;
+            margin-left: 10px;
+          
+    }
+
+    .navlink-no-underline {
+        text-decoration: none ;
+      }
+}

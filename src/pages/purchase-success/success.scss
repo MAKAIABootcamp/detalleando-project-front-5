@@ -1,0 +1,144 @@
+@import "../../assets/styles/variables.scss";
+
+
+header {
+    display: none;
+}
+main, .success-main {
+    background-color: white;
+    padding: 1rem 1rem 5rem 1rem;
+    font-family: $font-secondary;
+    color: $font-dark;
+    .success-message {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        margin: 1rem;
+        text-align: center;
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            font-family: $font-primary;
+        }
+        img {
+            width: 150px;
+        }
+        span {
+            text-decoration: underline;
+            cursor: pointer;
+        }
+    }
+    .order-details {
+        border: 1px solid $font-light;
+        padding: 1rem;
+        border-radius: 10px;
+        h2 {
+            color: $font-light;
+            font-size: 1rem;
+            font-weight: 500;
+            margin-bottom: 10px;
+        }
+        .address {
+            p {
+                color: $font-light;
+                font-size: 12px;
+                margin-top: 5px;
+            }
+            h4 {
+                font-size: 14px;
+                font-family: $font-primary;
+                margin-bottom: 5px;
+            }
+        }
+        .product-info {
+            margin-top: 10px;
+            display: flex;
+            gap: 10px;
+            img {
+                width: 70px;
+                height: 70px;
+                object-fit: cover;
+            }
+            .info-text {
+                div {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 1rem;
+                .price {
+                    font-weight: 700;
+                    font-size: 20px;
+                }
+            }
+            }
+            
+        }
+        .method {
+            border: 1px solid $main-blue;
+            padding: 0 10px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            width: 100%;
+            margin-bottom: 1rem;
+            img {
+                width: 40px;
+            }
+        }
+    }
+    .link-to-shop {
+        font-weight: 600;
+        font-family: $font-primary;
+        font-size: 20px;
+        text-align: center;
+        margin-top: 3rem;
+        text-decoration: underline;
+        cursor: pointer;
+    }
+}
+
+@media (min-width: 700px) { 
+    header {
+        display: flex;
+    }
+    .success-main {
+        padding: 1rem;
+        .desktop-container {
+            display: flex;
+        justify-content: space-around;
+        margin: 1rem 0 6rem;
+        height: 60vh;
+        .success-message {
+            max-width: 30vw;
+            gap: 2rem;
+            font-size: 18px;
+            h2 {
+                font-size: 2rem;
+                color: $main-blue;
+            }
+            img {
+                width: 250px;
+            }
+            span {
+                color: $main-blue;
+            }
+        }
+        .order-details {
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            h2 {
+                font-size: 1.5rem;
+            }
+        }
+        }
+        
+        
+    }
+    .nav-success {
+        display: none;
+    }
+}

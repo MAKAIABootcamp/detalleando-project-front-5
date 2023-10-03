@@ -1,0 +1,92 @@
+@import "./../../assets/styles/reset.scss";
+@import "./../../assets/styles/variables.scss";
+
+.orders-infor {
+  padding: 1rem 1rem 5rem 1rem;
+  gap: 20px;
+  display: flex;
+  flex-direction: column;
+  .infoup {
+    display: flex;
+    gap: 10px;
+  }
+
+  .historial {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    .status {
+      display: flex;
+      gap: 2rem;
+      span {
+        color: $font-light;
+      }
+      .chosen {
+        color: $font-dark;
+        font-weight: 800;
+      }
+    }
+  }
+  .button-divider {
+    width: 100%;
+    border: none;
+    border-bottom: 2px solid $font-light;
+    margin: 10px auto;
+  }
+}
+.main-order-dekstop {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .orders-infor {
+    display: none;
+  }
+  .main-order-dekstop {
+    display: block;
+    flex-direction: column;
+    gap: 30px;
+    h2 {
+      text-align: center;
+      font-family: $font-secondary;
+      color: $font-dark;
+      font-weight: 900;
+      margin-top: 20px;
+    }
+    .main-order-historial {
+      display: flex;
+    }
+    .infoup {
+      display: none;
+    }
+    .historial {
+      display: flex;
+      flex-direction: row;
+      padding: 20px;
+      gap: 20px;
+      font-family: $font-secondary;
+      color: $font-dark;
+      font-weight: 400;
+      .status {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        span {
+          color: $font-light;
+        }
+        .chosen {
+          color: $font-dark;
+          font-weight: 800;
+        }
+      }
+      .button-divider {
+        width: 1px;
+        height: 100px;
+        background-color: $font-dark;
+        transform: rotate(0deg);
+        margin-top: 0px;
+      }
+     
+    }
+  }
+}

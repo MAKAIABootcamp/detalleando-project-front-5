@@ -1,0 +1,19 @@
+@import "../../assets/styles/variables.scss";
+
+.nav-mobile {
+    background-color: $background-peach;
+    display: flex;
+    padding: 10px;
+    justify-content: space-around;
+    align-items: center;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100vw;
+    img {
+        width: 40px;
+    }
+    .active {
+        filter: brightness(70%);
+    }
+}

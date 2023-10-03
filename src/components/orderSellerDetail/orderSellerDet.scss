@@ -1,0 +1,157 @@
+@import "./../../assets/styles/reset.scss";
+@import "./../../assets/styles/variables.scss";
+
+.order-details-seller {
+  padding: 0;
+
+  &__logo {
+    display: none;
+  }
+
+  &__navdekstop {
+    display: none;
+  }
+
+  &__text {
+    display: flex;
+    padding: 20px;
+    gap: 10px;
+  }
+
+  &__det {
+    border: 1px solid $font-light;
+    padding: 1rem;
+    border-radius: 10px;
+    margin: 0px 20px;
+
+    h2 {
+      color: $font-light;
+      font-size: 1rem;
+      font-weight: 500;
+      margin-bottom: 10px;
+    }
+
+    &-info {
+      // margin-top: 10px;
+      display: flex;
+      gap: 10px;
+
+      img {
+        width: 40%;
+        height: 100px;
+        object-fit: cover;
+        border-radius: 10px;
+      }
+
+      .info-text {
+        div {
+          display: flex;
+          justify-content: space-around;
+          align-items: center;
+          margin-bottom: 1rem;
+
+          h4 {
+            margin-top: 10px;
+          }
+
+          .price {
+            font-weight: 700;
+            font-size: 20px;
+          }
+        }
+      }
+    }
+
+    .date {
+      display: flex;
+      justify-content: space-between;
+      padding: 5px 10px;
+
+      p {
+        font-family: "Roboto", sans-serif;
+        color: #676662;
+      }
+
+      span {
+        font-family: $font-primary;
+        color: $font-dark;
+      }
+    }
+
+    &-status {
+      padding: 5px 20px;
+
+      select {
+        width: 240px;
+        height: 40px;
+        border-radius: 10px;
+        font-size: 16px;
+        font-family: $font-secondary;
+      }
+    }
+
+    .code {
+      padding: 20px;
+    }
+  }
+}
+
+.order-details-seller-dekstop {
+  display: none;
+}
+
+.change__status {
+  display: flex;
+  gap: 15px;
+
+  &__button {
+    padding: 5px;
+    background-color: $main-pink;
+    color: $font-dark;
+    font-weight: 500;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+}
+
+@media (min-width: 768px) {
+  .order-details-seller {
+    &__logo {
+      display: flex;
+      align-items: center;
+
+      h1 {
+        font-family: $font-primary;
+        color: $main-pink;
+        font-weight: 600;
+      }
+    }
+
+    &__navmobile {
+      display: none;
+    }
+
+    &__navdekstop {
+      display: flex;
+    }
+
+    &__text {
+      display: none;
+    }
+
+    &__div {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      margin: 20px;
+    }
+
+    &__det {
+      width: 600px;
+      margin-left: 200px;
+    }
+  }
+
+}

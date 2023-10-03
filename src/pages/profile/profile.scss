@@ -1,0 +1,159 @@
+@import "./../../assets/styles/reset.scss";
+@import "./../../assets/styles/variables.scss";
+
+.profile {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  .profile-up {
+    display: flex;
+    gap: 10px;
+  }
+
+  .profile-info {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+
+    .photo {
+      width: 80px;
+
+      img {
+        width: 100%;
+        object-fit: cover;
+        border-radius: 50%;
+      }
+    }
+
+    .date {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+
+      .view {
+        cursor: pointer;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+
+  .button-divider {
+    width: 100%;
+    border: none;
+    border-bottom: 2px solid $font-light;
+    margin: 10px auto;
+  }
+
+  .profile-section {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    .order-section {
+      display: flex;
+      justify-content: space-between;
+
+      .arrow-right {
+        width: 10px;
+
+        img {
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+.main-profile-desktop {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .profile {
+    display: none;
+  }
+  .main-profile-desktop {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    h2 {
+      text-align: center;
+      font-family: $font-secondary;
+      color: $font-dark;
+      font-weight: 900;
+      margin-top: 20px;
+    }
+    &__info {
+      display: flex;
+      padding: 20px 0;
+      gap: 15px;
+      align-items: center;
+
+      &-photo {
+        display: flex;
+        width: 100px;
+        height: 100px;
+
+        img {
+          width: 100%;
+          height: 100%;
+          border-radius: 50%;
+        }
+      }
+
+      &-user {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        justify-content: center;
+        h3 {
+          font-family: $font-secondary;
+          color: $font-dark;
+          font-weight: 900;
+        }
+        span {
+          font-family: $font-secondary;
+          color: $font-light;
+          font-weight: 400;
+          cursor: pointer;
+
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+
+    &__filter {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      justify-content: center;
+
+      &__card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        background-color: $background-peach;
+        padding: 20px 40px;
+        border-radius: 5px;
+        border: 1px solid $light-grey;
+        width: calc(33.33% - 20px);
+        margin-bottom: 20px;
+        font-family: $font-secondary;
+        color: $font-dark;
+        font-weight: 400;
+        box-shadow: 0px 4px 4px 0px rgba(0,0,0,0.4);
+        img {
+          width: 35px;
+          height: 35px;
+        }
+      }
+    }
+  }
+}

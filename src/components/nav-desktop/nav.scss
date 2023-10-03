@@ -1,0 +1,43 @@
+@import "../../assets/styles/variables.scss";
+
+.navbar-desktop {
+    background-color: rgb(255, 234, 229, 0.5);
+    display: flex;
+    padding: 10px 10%;
+    justify-content: space-between;
+    align-items: center;
+    width: 100vw;
+    position: static;
+    .logo {
+        width: 50px;
+        height: 50px;
+    }
+    .search {
+        position: relative;
+        input {
+            border: none;
+            border-radius: 10px;
+            width: 30vw;
+            padding: 15px 10px 15px 50px;
+        }
+        .search-icon {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            width: 25px;
+        }
+        .clear-icon {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 25px;
+        }
+    }
+    .navigation {
+        display: flex;
+        gap: 10px;
+        img {
+            width: 50px;
+        }
+    }
+}

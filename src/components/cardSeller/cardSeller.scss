@@ -1,0 +1,186 @@
+@import "./../../assets/styles/reset.scss";
+@import "./../../assets/styles/variables.scss";
+
+.seller-cards-container {
+  display: flex;
+  flex-direction: column;
+  font-size: 14px;
+  height: 340px;
+  // width: 350px;
+  background-color: $background-grey;
+  border-radius: 20px;
+  margin: 20px;
+  &__up {
+    display: flex;
+    border-radius: 10px;
+    background-color: $background-grey;
+    width: 100%;
+    height: 50%;
+    &-left {
+      position: relative;
+      .seller-img {
+        width: 230px;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 10px 10px 0 0;
+      }
+      .trash {
+        background-color: white;
+        border-radius: 50%;
+        padding: 5px 5px 0 5px;
+        position: absolute;
+        top: 0%;
+        margin-right: 95%;
+        img {
+          width: 20px;
+        }
+      }
+      .pencil {
+        background-color: white;
+        border-radius: 50%;
+        padding: 5px 5px 0 5px;
+        position: absolute;
+        top: 19%;
+        margin-right: 95%;
+        img {
+          width: 20px;
+        }
+      }
+    }
+    .seller-right-img {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-gap: 10px;
+      align-items: center;
+      width: 50%;
+      margin: 5px;
+      .seller-imgs {
+        max-width: 100%;
+        height: auto;
+        object-fit: cover;
+      }
+    }
+  }
+  .seller-down {
+    display: flex;
+    font-size: 13px;
+    .seller-left,
+    .seller-right {
+      flex: 1;
+      padding: 10px;
+      box-sizing: border-box;
+    }
+    .seller-right {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+    }
+    .seller-left {
+      .seller-description {
+        overflow: hidden;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 6; 
+        -webkit-box-orient: vertical;
+        text-overflow: ellipsis;
+      }
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .seller-cards-container {
+    display: grid;
+    // grid-template-columns: repeat(2, 1fr);
+    font-size: 14px;
+    height: 100%;
+    width: 100%;
+    max-width: 340px;
+    background-color: $background-grey;
+    border-radius: 20px;
+    margin: 20px;
+    font-family: $font-primary;
+    color: $font-dark;
+    &__up {
+      display: flex;
+      border-radius: 10px;
+      background-color: $background-grey;
+      width: 100%;
+      height: 100%;
+      &-left {
+        position: relative;
+        .seller-img {
+          width: 230px;
+          height: 200px;
+          object-fit: cover;
+          border-radius: 10px 10px 0 0;
+        }
+        .trash {
+          background-color: white;
+          border-radius: 50%;
+          padding: 5px 5px 0 5px;
+          position: absolute;
+          top: 0%;
+          margin-right: 95%;
+          img {
+            width: 20px;
+          }
+        }
+        .pencil {
+          background-color: white;
+          border-radius: 50%;
+          padding: 5px 5px 0 5px;
+          position: absolute;
+          top: 15%;
+          margin-right: 95%;
+          img {
+            width: 20px;
+          }
+        }
+      }
+      .seller-right-img {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 10px;
+        align-items: center;
+        width: 50%;
+        margin: 5px;
+        .seller-imgs {
+          max-width: 100%;
+          height: auto;
+          object-fit: cover;
+        }
+      }
+    }
+    .seller-down {
+      display: flex;
+      font-size: 13px;
+      .seller-left,
+      .seller-right {
+        flex: 1;
+        padding: 10px;
+        box-sizing: border-box;
+      }
+      .seller-right {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        span{
+          font-weight: 500;
+        }
+      }
+      .seller-left {
+        .seller-description {
+          overflow: hidden;
+          font-weight: 500;
+          display: -webkit-box;
+          -webkit-line-clamp: 6; 
+          -webkit-box-orient: vertical;
+          text-overflow: ellipsis;
+          text-align: justify;
+        }
+      }
+    }
+  }
+  
+}
