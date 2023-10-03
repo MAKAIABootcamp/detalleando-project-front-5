@@ -75,7 +75,7 @@ const OrderSellerDet = () => {
               </div>
               <div>
                 <p>Tiempo de entrega:</p>
-                <span>22.12.23 {selectedOrder[0]?.sendTo?.time}:00</span>
+                <span>{selectedOrder[0]?.sendTo?.date?.toDate().toLocaleDateString()} {selectedOrder[0]?.sendTo?.time}:00</span>
               </div>
             </div>
             <div className="order-details-seller__det-status">

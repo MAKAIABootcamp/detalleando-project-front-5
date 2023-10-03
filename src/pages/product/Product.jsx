@@ -157,7 +157,7 @@ const handleSelectChange = (event) => {
               {product?.description}
               </p>
               </div>
-              <button className="desktop-add-button" onClick={initializeOrder}>Añadir al orden</button>
+              <button className="desktop-add-button" onClick={initializeOrder}>Añadir a la orden</button>
             </div>
             
           </div>
@@ -190,7 +190,7 @@ const handleSelectChange = (event) => {
               <span onClick={increment}>+</span>
             </div>
             <div className="product-add" onClick={initializeOrder}>
-              <h4>Añadir al orden</h4>
+              <h4>Añadir a la orden</h4>
               <span>$ {product?.price * quantity}</span>
             </div>
           </div>
