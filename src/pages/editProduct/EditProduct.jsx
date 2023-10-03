@@ -14,11 +14,11 @@ const EditProduct = ({ isTypeSeller }) => {
   const productSelected = filter[0];
   const navigate = useNavigate();
   const [edit, setEdit] = useState({});
-  const [value, setValue] = useState({});
+  const [valueEdit, setValueEdit] = useState({...productSelected});
   const dispatch = useDispatch();
-  // console.log(productSelected);
+  console.log(productSelected);
 
-  const handleEdit = () => {
+  const handleEdit = (event) => {
     setEdit({
       ...edit,
       [event.target.name]: true,
@@ -27,11 +27,11 @@ const EditProduct = ({ isTypeSeller }) => {
 
   const handleEditProduct = async (event) => {
 
-    console.log(event.target.name);
-    console.log(value);
+    // console.log(event.target.name);
+    // console.log(value);
 
     if(event.target.name == "mainImage"){
-      const { mainImage } = value;
+      const { mainImage } = valueEdit;
       const image = await fileUpload(mainImage);
       const imageMain = {
         mainImage:image
@@ -39,7 +39,7 @@ const EditProduct = ({ isTypeSeller }) => {
       dispatch(updateProductFromCollection(productSelected.id, imageMain))
     }
     else{
-      dispatch(updateProductFromCollection(productSelected.id, value));
+      dispatch(updateProductFromCollection(productSelected.id, valueEdit));
     }
     setEdit({
       ...edit,
@@ -49,15 +49,15 @@ const EditProduct = ({ isTypeSeller }) => {
   };
 
   const onChangeEdit = (event) => {
-    console.log(event.target.name);
-    console.log(event.target.value)
+    // console.log(event.target.name);
+    // console.log(event.target.value)
     if (event.target.name == "mainImage") {
       const selectedFile = event.target.files[0];
-      setValue({
+      setValueEdit({
         [e.target.name]: selectedFile,
       });
     } else {
-      setValue({
+      setValueEdit({
         [event.target.name]: event.target.value,
       });
     }
@@ -80,7 +80,10 @@ const EditProduct = ({ isTypeSeller }) => {
             <h4>Logo</h4>
             {edit.mainImage ? (
               <>
-                <input type="file" onChange={onChangeEdit} name="mainImage" />
+                <input 
+                type="file" 
+                onChange={onChangeEdit} 
+                name="mainImage" />
                 <button
                   className="container__edit-product__container__card-button"
                   name="mainImage"
@@ -113,6 +116,7 @@ const EditProduct = ({ isTypeSeller }) => {
                   className="container__edit-product__container__card-input"
                   name="name"
                   onChange={onChangeEdit}
+                  value={valueEdit.name}
                 />
                 <button
                   className="container__edit-product__container__card-button"
@@ -140,6 +144,7 @@ const EditProduct = ({ isTypeSeller }) => {
                   className="container__edit-product__container__card-input"
                   name="price"
                   onChange={onChangeEdit}
+                  value={valueEdit.price}
                 />
                 <button
                   className="container__edit-product__container__card-button"
@@ -167,6 +172,7 @@ const EditProduct = ({ isTypeSeller }) => {
                   className="container__edit-product__container__card-input"
                   name="description"
                   onChange={onChangeEdit}
+                  value={valueEdit.description}
                 />
                 <button
                   className="container__edit-product__container__card-button"
