@@ -73,7 +73,7 @@ const Success = ({ isTypeSeller }) => {
         </div>
         
         <div className='order-details'>
-            <h2>Detalles del orden</h2>
+            <h2>Detalles de la orden</h2>
             {
                 orderInProcess.products?.map((product, index) => (
                     <div className='product-info' key={index}>
