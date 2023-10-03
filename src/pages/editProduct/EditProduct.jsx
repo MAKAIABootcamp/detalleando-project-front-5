@@ -116,7 +116,7 @@ const EditProduct = ({ isTypeSeller }) => {
                   className="container__edit-product__container__card-input"
                   name="name"
                   onChange={onChangeEdit}
-                  value={valueEdit.name}
+                  value={ valueEdit.name }
                 />
                 <button
                   className="container__edit-product__container__card-button"
@@ -144,7 +144,7 @@ const EditProduct = ({ isTypeSeller }) => {
                   className="container__edit-product__container__card-input"
                   name="price"
                   onChange={onChangeEdit}
-                  value={valueEdit.price}
+                  value={ valueEdit.price }
                 />
                 <button
                   className="container__edit-product__container__card-button"
@@ -172,7 +172,7 @@ const EditProduct = ({ isTypeSeller }) => {
                   className="container__edit-product__container__card-input"
                   name="description"
                   onChange={onChangeEdit}
-                  value={valueEdit.description}
+                  value={ valueEdit.description }
                 />
                 <button
                   className="container__edit-product__container__card-button"
