@@ -11,24 +11,25 @@ const saleCourse = ({ order }) => {
 
   return (
     <table className="table-sale-course">
-      <tr>
-        <th>Nombre</th>
-        <th>Cantidad</th>
-        <th>Estado</th>
-        <th>Enviar</th>
-        <th> </th>
-      </tr>
-      {order?.map((item) => (
-        <tr key={item?.id}>
-          <ItemCourse element={item}/>
-          <td onClick={() => navigate(`/OrderDetailSeller/${item?.id}`)}>
-            <img
-              src={arrow}
-              alt="arrow"
-            />
-          </td>
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Cantidad</th>
+          <th>Estado</th>
+          <th>Enviar</th>
+          <th> </th>
         </tr>
-      ))}
+      </thead>
+      <tbody>
+        {order?.map((item) => (
+          <tr key={item?.id}>
+            <ItemCourse element={item} />
+            <td onClick={() => navigate(`/OrderDetailSeller/${item?.id}`)}>
+              <img src={arrow} alt="arrow" />
+            </td>
+          </tr>
+        ))}
+      </tbody>
     </table>
   );
 };

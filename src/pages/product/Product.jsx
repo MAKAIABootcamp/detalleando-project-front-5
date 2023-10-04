@@ -136,7 +136,7 @@ const handleSelectChange = (event) => {
               <div className="desktop-price">
                 <span>$ {product?.price}</span>
                 <div className="desktop-quantity">
-                  <label>Quantity</label>
+                  <label>Cantidad</label>
                   <select name="quantity" value={quantity} onChange={handleSelectChange}>
                     <option value="1">1</option>
                     <option value="2">2</option>
@@ -146,7 +146,7 @@ const handleSelectChange = (event) => {
                 </div>
               </div>
               <div className="desktop-shop-info">
-                <p className="delivery">Delivery fee: ${shop?.deliveryPrice}</p>
+                <p className="delivery">Domicilio: ${shop?.deliveryPrice}</p>
                 <div className="shop-info">
                   <img src={shop?.logo} alt={shop?.storeName} />
                   <h3>{shop?.storeName}</h3>
@@ -157,7 +157,7 @@ const handleSelectChange = (event) => {
               {product?.description}
               </p>
               </div>
-              <button className="desktop-add-button" onClick={initializeOrder}>Add to order</button>
+              <button className="desktop-add-button" onClick={initializeOrder}>Añadir a la orden</button>
             </div>
             
           </div>
@@ -190,7 +190,7 @@ const handleSelectChange = (event) => {
               <span onClick={increment}>+</span>
             </div>
             <div className="product-add" onClick={initializeOrder}>
-              <h4>Add to order</h4>
+              <h4>Añadir a la orden</h4>
               <span>$ {product?.price * quantity}</span>
             </div>
           </div>

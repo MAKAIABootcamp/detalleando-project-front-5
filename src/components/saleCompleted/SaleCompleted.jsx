@@ -10,24 +10,25 @@ const SaleCompleted = ({ order }) => {
   
   return (
     <table className="table-sale-completed">
-      <tr>
-        <th>Nombre</th>
-        <th>Cantidad</th>
-        <th>Precio</th>
-        <th>Enviado</th>
-        <th> </th>
-      </tr>
-      {order?.map((item) => (
-        <tr key={item?.id}>
-            <ItemComplete element={item}/>
-          <td onClick={() => navigate(`/OrderDetailSeller/${item?.id}`)}>
-            <img
-              src={arrow}
-              alt="arrow"
-            />
-          </td>
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Cantidad</th>
+          <th>Precio</th>
+          <th>Enviado</th>
+          <th> </th>
         </tr>
-      ))}
+      </thead>
+      <tbody>
+        {order?.map((item) => (
+          <tr key={item?.id}>
+            <ItemComplete element={item} />
+            <td onClick={() => navigate(`/OrderDetailSeller/${item?.id}`)}>
+              <img src={arrow} alt="arrow" />
+            </td>
+          </tr>
+        ))}
+      </tbody>
     </table>
   );
 };

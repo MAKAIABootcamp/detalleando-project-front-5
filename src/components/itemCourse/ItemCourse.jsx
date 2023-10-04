@@ -23,7 +23,7 @@ const ItemCourse = ({ element }) => {
       <td>{element?.products[0]?.amount} unidad</td>
       <td>{element?.state}</td>
       <td>
-        {element?.sendTo?.direction}, {element?.sendTo?.date}{" "}
+        {element?.sendTo?.direction}, {element?.sendTo?.date?.toDate().toLocaleDateString()}{" "}
         {element?.sendTo?.time}:00
       </td>
     </>

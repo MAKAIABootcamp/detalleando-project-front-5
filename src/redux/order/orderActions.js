@@ -1,5 +1,16 @@
-import { createAnOrderInCollection, getOrdersFromCollection } from "../../services/orderService";
-import { setOrders, addOrder, setCurrentOrder, setError } from "../order/orderReducer"
+import { doc, updateDoc } from "firebase/firestore";
+import {
+  createAnOrderInCollection,
+  getOrdersFromCollection,
+} from "../../services/orderService";
+import {
+  setOrders,
+  addOrder,
+  setCurrentOrder,
+  setError,
+  setUpdateOrder,
+} from "../order/orderReducer";
+import { fireStore } from "../../firebase/firebaseConfig";
 
 export const fillOrdersFromCollection = () => async (dispatch) => {
     try {
@@ -30,3 +41,22 @@ export const createAnOrderAction = (newOrder) => async (dispatch) => {
         }))
     }
 }
+
+export const updateOrderFromCollection = (idOrder, updateInfo) => {
+    return async (dispatch) => {
+      try {
+          const orderRef = doc(fireStore, 'orders-history', idOrder);
+          const response = await updateDoc(orderRef, updateInfo);
+          dispatch(setUpdateOrder({id: idOrder, data:updateInfo}));
+      } catch (error) {
+        console.log(error);
+        dispatch(
+          setError({
+            error: true,
+            code: error.code,
+            mesage: error.message,
+          })
+        );
+      }
+    };
+  };

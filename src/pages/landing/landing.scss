@@ -92,16 +92,17 @@
 }
 
 .tecnology {
-    margin: 0 10%;
+    margin: 2rem 10%;
     div {
         display: flex;
+        justify-content: center;
         flex-wrap: wrap;
-        gap: 2rem;
-        margin: 1rem 0;
+        gap: 5rem;
+        margin: 2rem 0;
         img {
-            width: 100px;
-            height: 100px;
-            object-fit: cover;
+            width: 70px;
+            height: 70px;
+            object-fit: contain;
         }
     }
     h2 {

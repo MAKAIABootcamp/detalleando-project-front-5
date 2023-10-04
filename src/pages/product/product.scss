@@ -234,12 +234,13 @@ header {
         display: inline-block;
         background-color: $main-blue;
         color: white;
-        padding: 15px 25px;
-        font-size: 24px;
+        padding: 10px 20px;
+        font-size: 22px;
         border-radius: 10px;
         border: none;
         width: fit-content;
         align-self: flex-end;
+        margin-top: 2rem;
     }
 }
 }

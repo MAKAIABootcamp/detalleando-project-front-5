@@ -9,6 +9,8 @@ import { setUser, setUserId } from '../../redux/chat/chatReducer';
 import Attach from "/camera.svg"
 import { v4 as uuidv4 } from 'uuid';
 import { Timestamp, arrayUnion, serverTimestamp } from '@firebase/firestore';
+import NavSeller from '../../components/navSeller/NavSeller';
+import NavSellerDekstop from '../../components/navSellerDekstop/NavSellerDekstop';
 
 const Chat = ({ isTypeSeller }) => {
 
@@ -28,7 +30,7 @@ const Chat = ({ isTypeSeller }) => {
       dispatch(setUserId(userLogged.id))
       console.log(user);
     };
-    console.log(messages?.messages);
+    console.log(userLogged);
   
     useEffect(() => {
       dispatch(fillChatsFromCollection(chatId))
@@ -60,18 +62,7 @@ const Chat = ({ isTypeSeller }) => {
     //       }
     //     );
     //   } else {
-      console.log({messages: arrayUnion({
-        id: uuidv4(),
-        text,
-        senderId: userLogged.id,
-        date: Timestamp.now(),
-      })});
-      console.log({messages:[...messages.messages, {
-        id: uuidv4(),
-        text,
-        senderId: userLogged.id,
-        date: Timestamp.now(),
-      }]});
+      
       dispatch(addNewChatsToCollection(chatId, userLogged.id, {messages:[...messages.messages, {
         id: uuidv4(),
         text,
@@ -88,11 +79,17 @@ const Chat = ({ isTypeSeller }) => {
     //   setImg(null);
     };
 
-    return (!isTypeSeller && 
+    return (
     <>
-    <header>
+    { !isTypeSeller ?
+      <header>
         <NavDesktop/>
+    </header> :
+    <header>
+      <NavSeller/>
     </header>
+    }
+    
     <main className='main-chat'>
         <div className='sidebar'>
     <div className="chats">
@@ -113,6 +110,7 @@ const Chat = ({ isTypeSeller }) => {
     </div>
     <div className="chat">
       <div className="chatInfo">
+      <img src={user?.photoURL} alt="" />
         <span>{user?.displayName}</span>
       </div>
       <div className="messages">
