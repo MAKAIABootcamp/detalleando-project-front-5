@@ -13,7 +13,7 @@ const NavSeller = () => {
       <NavLink to={"/perfil"} className="navlink-no-underline">
         <span className="navseller-span">Perfil</span>
       </NavLink>
-      <NavLink to={"/mensajes"} className="navlink-no-underline">
+      <NavLink to={"/chat"} className="navlink-no-underline">
         <span className="navseller-span">Mensajes</span>
       </NavLink>
     </nav>

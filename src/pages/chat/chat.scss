@@ -63,12 +63,18 @@
   
         .chatInfo {
           height: 50px;
-          background-color: rgb(237, 196, 214, 0.5);
+          background-color: $background-peach;;
           display: flex;
           align-items: center;
-          justify-content: space-between;
-          padding: 10px;
-          color: $font-dark;
+          gap: 10px;
+          padding: 10px 1rem;
+          color: $font-light;
+          img {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            object-fit: cover;
+          }
         }
   
         .chatIcons {
@@ -82,7 +88,7 @@
         }
   
         .messages {
-          background-color: $background-peach;
+          background-color: white;
           padding: 10px;
           height: 70vh;
           overflow: scroll;
@@ -125,6 +131,8 @@
                 padding: 10px 20px;
                 border-radius: 0px 10px 10px 10px;
                 max-width: max-content;
+                box-shadow:  6px 6px 12px #d3d3d3,
+                -6px -6px 12px #ededed;
               }
   
               img {

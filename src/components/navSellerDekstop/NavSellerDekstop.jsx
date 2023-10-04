@@ -14,7 +14,7 @@ const NavSellerDekstop = () => {
         <NavLink to={"/perfil"} className="navseller-dekstop-left-navlink">
           <span className="navseller-dekstop-left-navlink-span">Perfil</span>
         </NavLink>
-        <NavLink to={"/mensajes"} className="navseller-dekstop-left-navlink">
+        <NavLink to={"/chat"} className="navseller-dekstop-left-navlink">
           <span className="navseller-dekstop-left-navlink-span">Mensajes</span>
         </NavLink>
       </div>

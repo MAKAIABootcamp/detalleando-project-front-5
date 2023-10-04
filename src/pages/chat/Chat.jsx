@@ -28,7 +28,7 @@ const Chat = ({ isTypeSeller }) => {
       dispatch(setUserId(userLogged.id))
       console.log(user);
     };
-    console.log(messages?.messages);
+    console.log(userLogged);
   
     useEffect(() => {
       dispatch(fillChatsFromCollection(chatId))
@@ -113,6 +113,7 @@ const Chat = ({ isTypeSeller }) => {
     </div>
     <div className="chat">
       <div className="chatInfo">
+      <img src={user?.photoURL} alt="" />
         <span>{user?.displayName}</span>
       </div>
       <div className="messages">
