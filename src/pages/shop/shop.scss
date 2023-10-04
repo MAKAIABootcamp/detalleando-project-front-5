@@ -221,10 +221,9 @@ main, .shop-main {
                 border-radius: 10px 0 0 10px;
             }
             .price {
-                flex-direction: column;
-                gap: 30px;
                 margin-top: 20%;
                 margin-left: 10%;
+                width: max-content;
             }
             .like {
                 top: 75%;

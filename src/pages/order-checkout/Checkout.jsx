@@ -88,8 +88,9 @@ const Checkout = ({ isTypeSeller }) => {
 
           const sendOrder = () => {
             Swal.fire({
-              title: 'Quieres proceder al pago?',
+              title: '¿Quieres proceder al pago?',
               showCancelButton: true,
+              cancelButtonText: 'Cancelar',
               confirmButtonText: 'Proceder',
             }).then((result) => {
               if (result.isConfirmed) {
@@ -215,7 +216,7 @@ const Checkout = ({ isTypeSeller }) => {
                 
             </div>
             <div className='payment-discount'>
-                <p>Cupon</p>
+                <p>Cupón</p>
                 <div>
                     <input type="text" />
                     <button>Aplicar</button>

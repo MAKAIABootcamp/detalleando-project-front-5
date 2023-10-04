@@ -71,13 +71,14 @@ const Product = ({ isTypeSeller }) => {
       
       Swal.fire({
         icon: 'success',
-        title: 'Excelente!',
-        text: 'El producto fue añadido al carrito con éxito!',
+        title: '¡Excelente!',
+        text: '¡El producto fue añadido al carrito con éxito!',
       }).then(() => {
         Swal.fire({
-        title: 'Quieres ir al carrito?',
+        title: '¿Quieres ir al carrito?',
         showCancelButton: true,
-        confirmButtonText: 'Proceder',
+        cancelButtonText: 'Seguir comprando',
+        confirmButtonText: 'Ir al carrito',
       }).then((result) => {
         if (result.isConfirmed) {
           navigate('/cart')

@@ -64,9 +64,9 @@ const Success = ({ isTypeSeller }) => {
     <main className='success-main'>
       <div className='desktop-container'>
         <div className='success-message'>
-            <h2>Gracias por su compra!</h2>
+            <h2>¡Gracias por su compra!</h2>
             <img src={test} alt="" />
-            <p>Vas a recibir la confirmación de tu compra en tu correo. El día de la entrega el vendodor te va a mandar la foto del producto preparado. Si quieres contactarte con el vendedor,  
+            <p>Vas a recibir la confirmación de tu compra en tu correo. El día de la entrega el vendedor te va a mandar la foto del producto preparado. Si quieres contactarte con el vendedor,  
                 <span onClick={() => navigate('/chat')}> escríbele un mensaje</span>
             </p>
             

@@ -68,11 +68,13 @@
       color: $font-dark;
       font-weight: 400;
       .status {
+        
         display: flex;
         flex-direction: column;
         gap: 10px;
         span {
           color: $font-light;
+          width: max-content;
         }
         .chosen {
           color: $font-dark;
