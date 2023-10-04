@@ -39,10 +39,15 @@ const authSlice = createSlice({
         },
         setUserAddress: (state, action) => {
             state.userLogged.address = action.payload
-        }
+        },
+        setUpdateUserProfile: (state, action) => {
+            state.userLogged.displayName = action.payload.displayName;
+            state.userLogged.photoURL = action.payload.photoURL;
+            state.userLogged.birthday = action.payload.birthday;
+          },
     }
 })
 
-export const { setIsLogged, setUserLogged, setError, setFavoritesShops, setFavoritesProducts, setShowAddress, setUpdateUser, setUserPayment, setUserAddress } = authSlice.actions;
+export const { setIsLogged, setUserLogged, setError, setFavoritesShops, setFavoritesProducts, setShowAddress, setUpdateUser, setUserPayment, setUserAddress, setUpdateUserProfile } = authSlice.actions;
 
 export default authSlice.reducer;

@@ -7,7 +7,7 @@ import {
   updateProfile,
 } from "firebase/auth";
 import { auth, fireStore } from "../../firebase/firebaseConfig";
-import { setError, setFavoritesProducts, setFavoritesShops, setIsLogged, setUpdateUser, setUserLogged, setUserPayment } from "./authReducer";
+import { setError, setFavoritesProducts, setFavoritesShops, setIsLogged, setUpdateUser, setUpdateUserProfile, setUserLogged, setUserPayment } from "./authReducer";
 import loginFromFirestore from "../../services/loginFromCollection";
 import {
   createAnUserInCollection,
@@ -362,3 +362,29 @@ export const updateSellerUser = (idUser, updateInfo) => {
     }
   }
 }
+
+
+
+export const updateProfileInfo = (userId, profileData) => {
+  return async (dispatch) => {
+    try {
+      const userRef = doc(fireStore, "users", userId);
+      await updateDoc(userRef, {
+        displayName: profileData.displayName,
+        photoURL: profileData.photoURL,
+        birthday: profileData.birthday,
+      });
+      dispatch(setUpdateUserProfile(profileData));
+    } catch (error) {
+      console.log(error);
+      dispatch(
+        setError({
+          error: true,
+          code: error.code,
+          message: error.message
+        })
+      )
+    }
+  };
+};
+
