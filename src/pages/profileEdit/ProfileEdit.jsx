@@ -4,13 +4,14 @@ import arrowBack from "/arrowback.svg";
 import { useNavigate } from "react-router-dom";
 import user from "/test.jfif";
 import { useDispatch, useSelector } from "react-redux";
-import { logout } from "../../redux/auth/authActions";
+import { logout, updateProfileInfo } from "../../redux/auth/authActions";
 import NavDesktop from "../../components/nav-desktop/NavDesktop";
 import camera from "/camera.svg";
 import fileUpload from "../../services/fileUpload";
 import Swal from "sweetalert2";
 import { doc, updateDoc } from "firebase/firestore";
 import { fireStore } from "../../firebase/firebaseConfig";
+import { setUpdateUserProfile } from "../../redux/auth/authReducer";
 const ProfileEdit = ({ isTypeSeller }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -36,15 +37,7 @@ const ProfileEdit = ({ isTypeSeller }) => {
 
   const handleSave = async () => {
     try {
-      const userDocRef = doc(fireStore, "users", date.id); //obtengo el documento
-      // para actualizar los datos del documento
-      await updateDoc(userDocRef, {
-        displayName: displayName,
-        phone: phone,
-        birthday: birthday,
-        photoURL: selectedImage || fotoURL,
-      });
-
+       dispatch(updateProfileInfo(date.id, { displayName, photoURL: selectedImage || fotoURL, birthday }));
       Swal.fire(
         "Excelente!",
         "Los datos fueron actualizados correctamente",

@@ -19,6 +19,7 @@ const Profile = ({ isTypeSeller }) => {
   const prods = useSelector((store) => store.auth);
   const date = prods.userLogged
 
+
   const handleProfileEdit = () => {
     navigate("/profileEdit");
   };
