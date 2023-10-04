@@ -30,3 +30,22 @@ export const createAnOrderAction = (newOrder) => async (dispatch) => {
         }))
     }
 }
+
+export const updateOrderFromCollection = (idOrder, updateInfo) => {
+    return async (dispatch) => {
+      try {
+          const orderRef = doc(fireStore, 'orders-history', idOrder);
+          const response = await updateDoc(orderRef, updateInfo);
+          dispatch(setUpdateOrder({id: idOrder, data:updateInfo}));
+      } catch (error) {
+        console.log(error);
+        dispatch(
+          setError({
+            error: true,
+            code: error.code,
+            mesage: error.message,
+          })
+        );
+      }
+    };
+  };
