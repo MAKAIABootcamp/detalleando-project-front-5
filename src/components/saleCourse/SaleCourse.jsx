@@ -6,29 +6,29 @@ import { useNavigate } from "react-router-dom";
 import ItemCourse from "../itemCourse/ItemCourse";
 
 const saleCourse = ({ order }) => {
+
   const navigate = useNavigate();
 
   return (
     <table className="table-sale-course">
-      <thead>
-        <tr>
-          <th>Nombre</th>
-          <th>Cantidad</th>
-          <th>Estado</th>
-          <th>Enviar</th>
-          <th> </th>
+      <tr>
+        <th>Nombre</th>
+        <th>Cantidad</th>
+        <th>Estado</th>
+        <th>Enviar</th>
+        <th> </th>
+      </tr>
+      {order?.map((item) => (
+        <tr key={item?.id}>
+          <ItemCourse element={item}/>
+          <td onClick={() => navigate(`/OrderDetailSeller/${item?.id}`)}>
+            <img
+              src={arrow}
+              alt="arrow"
+            />
+          </td>
         </tr>
-      </thead>
-      <tbody>
-        {order?.map((item) => (
-          <tr key={item?.id}>
-            <ItemCourse element={item} />
-            <td onClick={() => navigate(`/OrderDetailSeller/${item?.id}`)}>
-              <img src={arrow} alt="arrow" />
-            </td>
-          </tr>
-        ))}
-      </tbody>
+      ))}
     </table>
   );
 };

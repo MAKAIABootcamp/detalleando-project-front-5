@@ -28,10 +28,8 @@ const userChatsSlice = createSlice({
             state.error = action.payload;
         },
         addMessage: (state, action) => {
-            state.messages = [
-                ...state.messages,
-                action.payload
-            ]
+            console.log(action.payload);
+            state.messages = {messages:[...action.payload.messages]}
         },
     }
 })

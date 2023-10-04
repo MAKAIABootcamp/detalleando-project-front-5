@@ -10,7 +10,7 @@ import Attach from "/camera.svg"
 import { v4 as uuidv4 } from 'uuid';
 import { Timestamp, arrayUnion, serverTimestamp } from '@firebase/firestore';
 
-const Chat = () => {
+const Chat = ({ isTypeSeller }) => {
 
     const { userLogged } = useSelector(store => store.auth);
     const { userChats, user, chatId, messages } = useSelector(store => store.chat);
@@ -21,18 +21,18 @@ const Chat = () => {
   
     useEffect(() => {
     dispatch(fillUserChatsFromCollection(userLogged.id))
-    }, [userLogged, send]);
+    }, [userLogged]);
   
     const handleSelect = (u) => {
       dispatch(setUser(u));
       dispatch(setUserId(userLogged.id))
       console.log(user);
     };
-    console.log(messages?.messages);
+    console.log(messages.messages);
   
     useEffect(() => {
       dispatch(fillChatsFromCollection(chatId))
-    }, [chatId, send]);
+    }, [chatId]);
   
   
     const handleSend = async () => {
@@ -60,12 +60,24 @@ const Chat = () => {
     //       }
     //     );
     //   } else {
-      dispatch(addNewChatsToCollection(chatId, userLogged.id, {messages: arrayUnion({
+      console.log({messages: arrayUnion({
         id: uuidv4(),
         text,
         senderId: userLogged.id,
         date: Timestamp.now(),
-      })}, user.uid, {
+      })});
+      console.log({messages:[...messages.messages, {
+        id: uuidv4(),
+        text,
+        senderId: userLogged.id,
+        date: Timestamp.now(),
+      }]});
+      dispatch(addNewChatsToCollection(chatId, userLogged.id, {messages:[...messages.messages, {
+        id: uuidv4(),
+        text,
+        senderId: userLogged.id,
+        date: Timestamp.now(),
+      }]}, user.uid, {
         [chatId + ".lastMessage"]: {
           text,
         },
@@ -76,7 +88,7 @@ const Chat = () => {
     //   setImg(null);
     };
 
-    return (
+    return (!isTypeSeller && 
     <>
     <header>
         <NavDesktop/>
@@ -101,13 +113,14 @@ const Chat = () => {
     </div>
     <div className="chat">
       <div className="chatInfo">
-        <img src={user?.photoURL} alt="" />
         <span>{user?.displayName}</span>
       </div>
       <div className="messages">
-      { messages && messages?.messages?.length && messages.messages.map((m) => (
+      { messages && messages?.messages?.length ? messages.messages.map((m) => (
         <Message message={m} key={m?.id} />
-      ))}
+      )):
+      <span className='no-messages'>Aún no tienes mensajes con este usuario. Escribe algo</span>
+    }
     </div>
     <div className="input">
       <input

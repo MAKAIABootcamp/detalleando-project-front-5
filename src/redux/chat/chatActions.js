@@ -41,7 +41,8 @@ export const fillChatsFromCollection = (uid) => async (dispatch) => {
     try {
       const message = await addMessagesToCollection(id, newMessages);
       const currentChat = await addChatToCollection(uid, sid, newChat)
-      dispatch(addMessage(message));
+      console.log(newMessages);
+      dispatch(addMessage(newMessages));
       dispatch(setError(false));
     } catch (error) {
       console.log(error);

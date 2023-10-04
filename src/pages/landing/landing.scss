@@ -90,6 +90,26 @@
         }
     }
 }
+
+.tecnology {
+    margin: 0 10%;
+    div {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2rem;
+        margin: 1rem 0;
+        img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+        }
+    }
+    h2 {
+        font-family: $font-primary;
+        font-size: 36px;
+        text-align: center;
+    }
+}
 footer {
     background-color: $main-pink;
     padding: 2rem 10%;

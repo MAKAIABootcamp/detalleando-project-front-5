@@ -108,3 +108,15 @@
         }
     }
 }
+
+@media (min-width: 700px) {
+    .payment-main {
+        padding: 2rem 30%;
+        .payment-add {
+            margin-left: 30%;
+        }
+    }
+    .new-container {
+        padding: 5% 35%;
+    }
+}

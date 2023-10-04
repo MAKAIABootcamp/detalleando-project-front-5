@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import NavSeller from "../../components/navSeller/NavSeller";
-import "./homeseller.scss";
+import "./homeSeller.scss";
 import CardSeller from "../../components/cardSeller/CardSeller";
 import { useNavigate } from "react-router-dom";
 import Logo from "/logo.svg";

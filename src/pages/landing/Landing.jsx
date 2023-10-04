@@ -9,6 +9,15 @@ import easy from "/icons/delivery-man.svg";
 import ShowInterface from "/icons/shopping.svg";
 import image from "/Presents.jpeg";
 import heart from "/icons/heart-white.svg"
+import firebase from "/icons/firebase.svg"
+import firestore from "/icons/firestore.svg"
+import github from "/icons/github.svg"
+import form from "/icons/react-form.svg"
+import react from "/icons/react.svg"
+import redux from "/icons/redux.svg"
+import sass from "/icons/sass.svg"
+import swiper from "/icons/swiper.svg"
+import vite from "/icons/vite.svg"
 import { NavLink } from 'react-router-dom';
 import "./landing.scss"
 
@@ -64,6 +73,20 @@ const Landing = () => {
                 <div className='about-us-description'>
                     <h2>¿Quiénes somos?</h2>
                     <p>Somos un Marketplace de tiendas de detalles, donde los compradores pueden fácilmente encontrar los detalles que quieren desde cualquier parte del mundo y los vendedores puedan tener visibilidad en el mercado.</p>
+                </div>
+            </section>
+            <section className='tecnology'>
+                <h2>Este proyecto fue desarrollado con:</h2>
+                <div>
+                    <img src={react} alt="" />
+                    <img src={redux} alt="" />
+                    <img src={firebase} alt="" />
+                    <img src={firestore} alt="" />
+                    <img src={github} alt="" />
+                    <img src={form} alt="" />
+                    <img src={sass} alt="" />
+                    <img src={swiper} alt="" />
+                    <img src={vite} alt="" />
                 </div>
             </section>
         </main>

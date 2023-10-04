@@ -57,16 +57,10 @@ const ordersSlice = createSlice({
         setAddress: (state, action) => {
             state.currentOrder.sendTo = action.payload;
         },
-        setUpdateOrder: (state, action) => {
-           const index = state.orders.findIndex(order => order.id === action.payload.id);
-           if(index !== -1){
-            state.orders[index] = {...state.orders[index], ...action.payload.data}
-           } 
-        }
     }
 })
 
-export const { setOrders, addOrder, setCurrentOrder, setError, setAdditionalInfo, setAmountProduct, deleteOrder, deleteProduct, setMethod, setOrderInProcess, setAddress, setUpdateOrder } =
+export const { setOrders, addOrder, setCurrentOrder, setError, setAdditionalInfo, setAmountProduct, deleteOrder, deleteProduct, setMethod, setOrderInProcess, setAddress } =
   ordersSlice.actions;
   
 export default ordersSlice.reducer;

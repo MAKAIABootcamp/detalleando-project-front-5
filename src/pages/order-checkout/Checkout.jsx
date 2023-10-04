@@ -161,7 +161,7 @@ const Checkout = ({ isTypeSeller }) => {
         <h1>Proceso del pago</h1>
         <div className='desktop-checkout-container'>
         <div className='order-details'>
-            <h2>Detalles de la orden</h2>
+            <h2>Detalles del orden</h2>
             {
                 currentOrder?.products.map((product, index) => (
                     <div className='product-info' key={index}>

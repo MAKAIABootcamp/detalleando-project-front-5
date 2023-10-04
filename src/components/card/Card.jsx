@@ -43,7 +43,7 @@ const Card = () => {
       <div className="order-card">
         {
           currentOrder?.products.map((product) => (
-            <div className='product-info'>
+            <div className='product-info' key={product.id}>
               <img src={product.mainImage} alt={product.name} />
               <div className="product-info-price">
                 <h4>{product.name}</h4>

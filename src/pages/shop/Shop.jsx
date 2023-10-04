@@ -257,7 +257,7 @@ const Shop = ({ isTypeSeller }) => {
                           </div>
                         ))}
                       </div>
-                    </div> : <div></div>
+                    </div> : <div key={index}></div>
                   )
                   )}
                 </>
