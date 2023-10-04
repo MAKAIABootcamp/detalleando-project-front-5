@@ -10,7 +10,7 @@ import Attach from "/camera.svg"
 import { v4 as uuidv4 } from 'uuid';
 import { Timestamp, arrayUnion, serverTimestamp } from '@firebase/firestore';
 
-const Chat = ({ isTypeSeller }) => {
+const Chat = () => {
 
     const { userLogged } = useSelector(store => store.auth);
     const { userChats, user, chatId, messages } = useSelector(store => store.chat);
@@ -60,18 +60,7 @@ const Chat = ({ isTypeSeller }) => {
     //       }
     //     );
     //   } else {
-      console.log({messages: arrayUnion({
-        id: uuidv4(),
-        text,
-        senderId: userLogged.id,
-        date: Timestamp.now(),
-      })});
-      console.log({messages:[...messages.messages, {
-        id: uuidv4(),
-        text,
-        senderId: userLogged.id,
-        date: Timestamp.now(),
-      }]});
+      
       dispatch(addNewChatsToCollection(chatId, userLogged.id, {messages:[...messages.messages, {
         id: uuidv4(),
         text,
@@ -88,7 +77,7 @@ const Chat = ({ isTypeSeller }) => {
     //   setImg(null);
     };
 
-    return (!isTypeSeller && 
+    return (
     <>
     <header>
         <NavDesktop/>

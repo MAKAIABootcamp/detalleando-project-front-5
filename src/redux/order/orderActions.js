@@ -1,5 +1,16 @@
-import { createAnOrderInCollection, getOrdersFromCollection } from "../../services/orderService";
-import { setOrders, addOrder, setCurrentOrder, setError } from "../order/orderReducer"
+import { doc, updateDoc } from "firebase/firestore";
+import {
+  createAnOrderInCollection,
+  getOrdersFromCollection,
+} from "../../services/orderService";
+import {
+  setOrders,
+  addOrder,
+  setCurrentOrder,
+  setError,
+  setUpdateOrder,
+} from "../order/orderReducer";
+import { fireStore } from "../../firebase/firebaseConfig";
 
 export const fillOrdersFromCollection = () => async (dispatch) => {
     try {

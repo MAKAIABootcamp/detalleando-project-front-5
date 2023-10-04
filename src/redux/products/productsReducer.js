@@ -25,7 +25,6 @@ const productsSlice = createSlice({
         },
         setUpdateProduct: (state, action) => {
             const index = state.products.findIndex(product => product.id === action.payload.id);
-            console.log(index)
             if (index !== -1) {
                 state.products[index] = { ...state.products[index], ...action.payload.data };
             }

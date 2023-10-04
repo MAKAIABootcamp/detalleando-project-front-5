@@ -143,7 +143,10 @@ header {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 1rem;
-            .shop-card .shop-price .shop-info {
+            .shop-card .shop-price {
+                gap: 3rem;
+            }
+            .shop-info {
                 margin-top: 0;
             }
         }

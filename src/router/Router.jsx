@@ -137,7 +137,7 @@ const Router = () => {
             />
             <Route
               path="chat"
-              element={<Chat isTypeSeller={userLogged?.isSeller} />}
+              element={<Chat />}
             />
             <Route path="checkout" element={<Checkout isTypeSeller={userLogged?.isSeller} />} />
             <Route path="payment-methods" element={<Payment isTypeSeller={userLogged?.isSeller} />} />
