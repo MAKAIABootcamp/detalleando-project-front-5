@@ -107,8 +107,8 @@ const Home = ({ isTypeSeller }) => {
           {activeSearch && search?.length > 0 ? 
             <div className="section">
               <div className="cards-container">
-                {search.map((item) => (
-                  <div className="card">
+                {search.map((item, index) => (
+                  <div className="card" key={index}>
                     <img src={item.mainImage} alt={item.name} />
                     <div>
                       <p>{item.name}</p>

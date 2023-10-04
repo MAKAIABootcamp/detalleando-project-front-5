@@ -9,8 +9,10 @@ import { setUser, setUserId } from '../../redux/chat/chatReducer';
 import Attach from "/camera.svg"
 import { v4 as uuidv4 } from 'uuid';
 import { Timestamp, arrayUnion, serverTimestamp } from '@firebase/firestore';
+import NavSeller from '../../components/navSeller/NavSeller';
+import NavSellerDekstop from '../../components/navSellerDekstop/NavSellerDekstop';
 
-const Chat = () => {
+const Chat = ({ isTypeSeller }) => {
 
     const { userLogged } = useSelector(store => store.auth);
     const { userChats, user, chatId, messages } = useSelector(store => store.chat);
@@ -79,9 +81,15 @@ const Chat = () => {
 
     return (
     <>
-    <header>
+    { !isTypeSeller ?
+      <header>
         <NavDesktop/>
+    </header> :
+    <header>
+      <NavSeller/>
     </header>
+    }
+    
     <main className='main-chat'>
         <div className='sidebar'>
     <div className="chats">
