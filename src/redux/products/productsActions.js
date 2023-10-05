@@ -46,7 +46,7 @@ export const createProduct = (newProduct) => {
       const collectionName = "products";
       const collectionRef = collection(fireStore, collectionName);
       const querySnapshot = await addDoc(collectionRef, newProduct);
-      dispatch(addProduct(newProduct));
+      // dispatch(addProduct(newProduct));
       dispatch(setError(false));
     } catch (error) {
       console.log(error);

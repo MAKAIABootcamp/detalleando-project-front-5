@@ -14,8 +14,8 @@ const CardSeller = () => {
   const navigate = useNavigate();
 
   const handleDeleteProduct = (id, index) => {
-    console.log(index)
-    console.log(id)
+    // console.log(index)
+    // console.log(id)
     dispatch(deleteProductFronCollection(id, index));
     Swal.fire(
       "Excelente!",
