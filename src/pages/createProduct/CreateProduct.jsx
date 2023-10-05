@@ -21,7 +21,7 @@ const CreateProduct = ({ isTypeSeller }) => {
   },[])
 
   const getCategories = () => {
-    if (userLogged.category === "Bouquets y arreglos") {
+    if (userLogged?.category === "Bouquets y arreglos") {
       setCategoriesShop([
         { name: "Ramos" },
         { name: "Ramos dulces" },
@@ -29,7 +29,7 @@ const CreateProduct = ({ isTypeSeller }) => {
         { name: "Terrarios" },
         { name: "Más flores" },
       ]);
-    } else if (userLogged.category === "Pastelería y confetería") {
+    } else if (userLogged?.category === "Pastelería y confitería") {
       setCategoriesShop([
         { name: "Tortas" },
         { name: "Chocolate" },
@@ -37,7 +37,7 @@ const CreateProduct = ({ isTypeSeller }) => {
         { name: "Panadería" },
         { name: "Más dulces" },
       ]);
-    } else if (userLogged.category === "Artesanías") {
+    } else if (userLogged?.category === "Artesanías") {
       setCategoriesShop([
         { name: "Juguetes" },
         { name: "Arte" },
@@ -46,7 +46,7 @@ const CreateProduct = ({ isTypeSeller }) => {
         { name: "Para la cocina" },
         { name: "Más artesanias" },
       ]);
-    } else if (userLogged.category === "Ropa y accesorios") {
+    } else if (userLogged?.category === "Ropa y accesorios") {
       setCategoriesShop([
         { name: "Relojes" },
         { name: "Anillos" },
@@ -162,7 +162,7 @@ const CreateProduct = ({ isTypeSeller }) => {
             {...register("category", { required: true })}
           >
             <option value="">Selecciona una categoría</option>
-            {categoriesShop.map((categoria, index) => (
+            {categoriesShop?.map((categoria, index) => (
               <option key={index} value={categoria.name}>
                 {categoria.name}
               </option>
