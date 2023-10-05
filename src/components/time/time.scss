@@ -9,6 +9,7 @@
     .choice {
         font-family: $font-primary;
         display: flex;
+        align-items: center;
         gap: 10px;
         font-size: 14px;
         position: relative;
@@ -19,7 +20,7 @@
         }
         .opening-calendar {
             position: absolute;
-            top: 1rem;
+            top: 1.5rem;
             left: -10px;
         }
         img {

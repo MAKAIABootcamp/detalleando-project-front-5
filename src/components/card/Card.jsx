@@ -72,7 +72,7 @@ const Card = () => {
               <span className="process">{currentOrder?.status}</span>
             </div>
             <button className="order-button" onClick={handleOrder}>
-              Ir a la orden
+              Finalizar orden
             </button>
           </div>
         </div>

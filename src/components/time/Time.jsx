@@ -46,7 +46,7 @@ const Time = () => {
         <p>Entregar en:</p>
         <div className='choice'>
             <h4 onClick={() => setOpenCalendar(!openCalendar)}>{selectedDate.toDateString()}</h4>
-            <img src={arrow} alt="Icon for arrrow" />
+            <img src={arrow} alt="Icon for arrrow" onClick={() => setOpenCalendar(!openCalendar)}/>
             {
               openCalendar && 
               <div className='opening-calendar'>

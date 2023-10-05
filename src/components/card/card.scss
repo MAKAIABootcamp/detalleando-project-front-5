@@ -179,7 +179,6 @@
           }
           .order-button {
             padding: 10px;
-            width: 100px;
             background-color: $main-blue;
             color: #fff;
             font-weight: 500;
@@ -187,6 +186,7 @@
             border: none;
             border-radius: 5px;
             cursor: pointer;
+            width: max-content;
           }
         }
       }

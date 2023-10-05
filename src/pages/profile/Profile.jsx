@@ -65,7 +65,7 @@ const Profile = ({ isTypeSeller }) => {
 
             <hr className="button-divider" />
             <div className="order-section">
-              <h3>Español</h3>
+              <h3>Idioma</h3>
               <figure className="arrow-right">
                 <img src={arrowB} alt="Arrow right" />
               </figure>
@@ -103,7 +103,7 @@ const Profile = ({ isTypeSeller }) => {
             </div>
             <div className="main-profile-desktop__filter__card">
               <img src={language} />
-              <span>Español</span>
+              <span>Idioma</span>
             </div>
             <div className="main-profile-desktop__filter__card" onClick={() => navigate('/chat')}>
               <img src={chat} />

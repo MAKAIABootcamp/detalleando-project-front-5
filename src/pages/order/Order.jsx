@@ -47,7 +47,7 @@ const Order = ({ isTypeSeller }) => {
       <div className="historial">
         <div className="status">
           <span onClick={handleClick} className={clikedActual ? "chosen" : ""}>
-            Actual
+            En progreso
           </span>
           <span
             onClick={handleClick}
@@ -65,7 +65,7 @@ const Order = ({ isTypeSeller }) => {
         }
         {
           clikedHistorial &&
-          (orderHistory.length > 0 ? <OrderHistory/> : <OrderEmpty text={'Todavía no completaste ningún órden'}/>)
+          (orderHistory.length > 0 ? <OrderHistory/> : <OrderEmpty text={'Todavía no has completado ningún órden'}/>)
           
         }
       </div>
@@ -80,7 +80,7 @@ const Order = ({ isTypeSeller }) => {
       <div className="historial">
         <div className="status">
           <span onClick={handleClick} className={clikedActual ? "chosen" : ""}>
-            Actual
+            En proceso
           </span>
           <span
             onClick={handleClick}
@@ -98,7 +98,7 @@ const Order = ({ isTypeSeller }) => {
         {
           clikedHistorial &&
           
-          (orderHistory && orderHistory.length > 0 ? <OrderHistory/> : <OrderEmpty text={'Todavía no completaste ningún órden'}/>)
+          (orderHistory && orderHistory.length > 0 ? <OrderHistory/> : <OrderEmpty text={'Todavía no has completado ningún órden'}/>)
         }
       </div>
           
